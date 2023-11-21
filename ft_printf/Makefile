@@ -6,13 +6,13 @@
 #    By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 09:06:56 by achahrou          #+#    #+#              #
-#    Updated: 2023/11/20 09:09:11 by achahrou         ###   ########.fr        #
+#    Updated: 2023/11/21 16:15:07 by achahrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS =	ft_printf_C.c ft_printf_D.c ft_printf_S.c \
-	ft_putchar.c ft_putnbr.c ft_putstr.c \
-	ft_strlen.c \
+SRCS =	ft_printf.c ft_putchar.c \
+		ft_putnbr.c ft_putstr.c \
+		ft_strlen.c ft_puthexa.c ft_putptr.c ft_putunbr.c 
 		
 OBJS = ${SRCS:.c=.o}
 NAME = libftprintf.a

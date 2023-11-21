@@ -1,32 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*   ft_putptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/20 08:51:05 by achahrou          #+#    #+#             */
-/*   Updated: 2023/11/20 10:00:45 by achahrou         ###   ########.fr       */
+/*   Created: 2023/11/21 11:57:06 by achahrou          #+#    #+#             */
+/*   Updated: 2023/11/21 12:16:17 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr(int nb)
+void	ft_putptr(void *ptr)
 {
-	long long	n;
-
-	n = (long long)nb;
-	if (n < 0)
-	{
-		ft_putchar('-');
-		n = -n;
-	}
-	if (n < 10)
-		ft_putchar(n + 48);
-	else if (n >= 10)
-	{
-		ft_putnbr(n / 10);
-		ft_putchar(n % 10 + 48);
-	}
+	ft_putstr("0x");
+	if (ptr == NULL)
+		ft_putchar(48);
+	ft_puthexa((uintptr_t)ptr, 0);
 }
