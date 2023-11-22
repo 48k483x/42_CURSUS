@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_putptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/19 20:41:27 by achahrou          #+#    #+#             */
-/*   Updated: 2023/11/19 23:09:26 by achahrou         ###   ########.fr       */
+/*   Created: 2023/11/21 11:57:06 by achahrou          #+#    #+#             */
+/*   Updated: 2023/11/21 12:16:17 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putstr(char *s)
+void	ft_putptr(void *ptr)
 {
-	write(1, s, ft_strlen(s));
-	s[ft_strlen(s) + 1] = '\0';
+	ft_putstr("0x");
+	if (ptr == NULL)
+		ft_putchar(48);
+	ft_puthexa((uintptr_t)ptr, 0);
 }
