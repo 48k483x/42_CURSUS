@@ -6,27 +6,66 @@
 /*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 08:51:05 by achahrou          #+#    #+#             */
-/*   Updated: 2023/11/20 10:00:45 by achahrou         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:59:28 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnbr(int nb)
+size_t	num_length(long num)
 {
-	long long	n;
+	size_t	len;
 
-	n = (long long)nb;
-	if (n < 0)
+	len = 1;
+	if (num < 0)
 	{
-		ft_putchar('-');
-		n = -n;
+		len++;
+		num = -num;
 	}
-	if (n < 10)
-		ft_putchar(n + 48);
-	else if (n >= 10)
+	while (num > 9)
 	{
-		ft_putnbr(n / 10);
-		ft_putchar(n % 10 + 48);
+		num /= 10;
+		len++;
 	}
+	return (len);
+}
+
+char	*ft_itoa(int n)
+{
+	size_t	sign;
+	long	num;
+	size_t	len;
+	char	*result;
+
+	num = n;
+	len = num_length(num);
+	sign = 0;
+	result = (char *)malloc((len + 1) * sizeof(char));
+	if (result == NULL)
+		return (NULL);
+	result[len] = '\0';
+	if (num < 0)
+	{
+		sign = 1;
+		num = -num;
+	}
+	while (len-- > sign)
+	{
+		result[len] = (num % 10) + '0';
+		num /= 10;
+	}
+	if (sign)
+		result[0] = '-';
+	return (result);
+}
+
+int	ft_putnbr(int nb)
+{
+	int		len;
+	char	*num;
+
+	num = ft_itoa(nb);
+	len = ft_putstr(num);
+	free(num);
+	return (len);
 }

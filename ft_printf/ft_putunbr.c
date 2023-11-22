@@ -6,13 +6,13 @@
 /*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:28:18 by achahrou          #+#    #+#             */
-/*   Updated: 2023/11/21 18:27:53 by achahrou         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:00:16 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putnr(unsigned int n)
+/*void	ft_putnr(unsigned int n)
 {
 	if (n < 10)
 		ft_putchar(n + 48);
@@ -23,7 +23,7 @@ void	ft_putnr(unsigned int n)
 	}
 }
 
-void	ft_putunbr(int n)
+int	ft_putunbr(int n)
 {
 	unsigned int	uint_max;
 
@@ -32,4 +32,53 @@ void	ft_putunbr(int n)
 		ft_putnr(uint_max - (unsigned int)(-n) + 1);
 	else
 		ft_putnr((unsigned int)n);
+}*/
+
+int	ft_ulength(unsigned int n)
+{
+	int	len;
+
+	len = 0;
+	while (n != 0)
+	{
+		len++;
+		n /= 10;
+	}
+	return (len);
+}
+
+char	*ft_uitoa(unsigned int n)
+{
+	char	*str;
+	int		len;
+
+	len = ft_ulength(n);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (!str)
+		return (NULL);
+	str[len] = '\0';
+	while (n != 0)
+	{
+		str[len - 1] = n % 10 + 48;
+		n /= 10;
+		len--;
+	}
+	return (str);
+}
+
+int	ft_putunbr(unsigned int n)
+{
+	int		count;
+	char	*str;
+
+	count = 0;
+	if (n == 0)
+		count = write(1, "0", 1);
+	else
+	{
+		str = ft_uitoa(n);
+		count = ft_putstr(str);
+		free(str);
+	}
+	return (count);
 }

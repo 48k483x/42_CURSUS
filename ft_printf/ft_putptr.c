@@ -6,16 +6,37 @@
 /*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:57:06 by achahrou          #+#    #+#             */
-/*   Updated: 2023/11/21 12:16:17 by achahrou         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:11:12 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putptr(void *ptr)
+int	len_ptr(uintptr_t n)
 {
-	ft_putstr("0x");
-	if (ptr == NULL)
-		ft_putchar(48);
-	ft_puthexa((uintptr_t)ptr, 0);
+	int	len;
+
+	len = 0;
+	while (n != 0)
+	{
+		len++;
+		n /= 16;
+	}
+	return (len);
+}
+
+int	ft_putptr(uintptr_t ptr)
+{
+	int	count;
+
+	count = 0;
+	count += ft_putstr("0x");
+	if (ptr == 0)
+		count += ft_putchar(48);
+	else
+	{
+		count += len_ptr(ptr);
+		ft_puthexa(ptr, 0);
+	}
+	return (count);
 }
