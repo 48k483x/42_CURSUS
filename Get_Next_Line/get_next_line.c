@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 11:27:00 by achahrou          #+#    #+#             */
-/*   Updated: 2023/11/30 14:58:20 by marvin           ###   ########.fr       */
+/*   Updated: 2023/12/05 10:24:31 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,83 +15,92 @@
 char	*get_next_line(int fd)
 {
 	static t_list	*list = NULL;
-	char		*line;
-	int		readed;
+	char			*next_line;
+
 	if (fd < 0 || BUFFER_SIZE < 0 || read(fd, &next_line, 0) < 0)
 		return (NULL);
-	readed = 1;
-	line = NULL;
-	// 1. read from fd and add to linked list
-	read_and_list(fd, &list, &readed);
+	create_list(&list, fd);
 	if (list == NULL)
 		return (NULL);
-	// 2. extract from list to line
-	extract_line(list, &line);
-	// 3. clean up list
-	return (NULL);
+	next_line = get_line(list);
+	polish_list(&list);
+	return (next_line);
 }
-/* use read() to add characters to the list */
 
-void	read_and_list(int fd, t_list **list, int *readed_ptr)
+void	polish_list(t_list **list)
 {
+	t_list	*last_node;
+	t_list	*clean_node;
+	int		i;
+	int		j;
 	char	*buf;
 
-	buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	if (buf == NULL)
+	buf = malloc(BUFFER_SIZE + 1);
+	clean_node = malloc(sizeof(t_list));
+	if (clean_node == NULL || buf == NULL)
 		return ;
-	while (!found_newline(*list) && *readed_ptr != 0)
+	last_node = find_lst_node(*list);
+	i = 0;
+	j = 0;
+	while (last_node->content[i] && last_node->content[i] != '\n')
+		++i;
+	while (last_node->content[i] && last_node->content[++i])
+		buf[j++] = last_node->content[i];
+	buf[j] = '\0';
+	clean_node->content = buf;
+	clean_node->next = NULL;
+	dealloc(list, clean_node, buf);
+}
+
+void	create_list(t_list **list, int fd)
+{
+	char	*buf;
+	int		readed;
+
+	while (!found_newline(*list))
 	{
-		*readed_ptr = (int)read(fd, buf, BUFFER_SIZE);
-	 	if ((*list == NULL && *readed_ptr == 0) || *readed_ptr == -1)
+		buf = malloc(BUFFER_SIZE + 1);
+		if (!buf)
+			return ;
+		readed = read(fd, buf, BUFFER_SIZE);
+		if (!readed)
 		{
 			free(buf);
 			return ;
 		}
-		buf[*readed_ptr] = '\0';
-		add_to_list(buf, *readed_ptr);
-		free(buf);
+		buf[readed] = '\0';
+		append(list, buf);
 	}
 }
-/* Add the content of our buffer to the end of our list */
-void	add_to_list(t_list **list, char *buf, int readed)
+
+void	append(t_list **list, char *buf)
 {
-	int	i;
-	t_list	*last;
+	t_list	*lst_node;
 	t_list	*new_node;
 
+	lst_node = find_lst_node(*list);
 	new_node = malloc(sizeof(t_list));
-	if (new_node == NULL)
-		return ;	
-	new_node->next = NULL;
-	new_node->content =	malloc(sizeof(char) * (readed+ 1));
-	if (new_node->content == NULL)	
+	if (!new_node)
 		return ;
-	i = 0;
-	while (buf[i] && i < readed)
-	{
-		new_node->content[i] = buf[i];
-		i++;
-	}
-	new_node->current[i] = '\0';
 	if (*list == NULL)
-	{
 		*list = new_node;
-		return ;
-	}
-	last = ft_lst_get_last(*list);
-	last->next = NULL;
+	else
+		lst_node->next = new_node;
+	new_node->content = buf;
+	new_node->next = NULL;
 }
-/* Extracts our chars from the our list and stores them in our line */
-/* And of course stopping after the first \n encounters */
 
-void	extract_chars(t_list *list, char **line)
+char	*get_line(t_list *list)
 {
-	int i;
-	int	j;
+	char	*next_line;
+	int		str_len;
 
-	if (last == NULL)
-		return ;
-	generate_line(line, list);
-	if (*line == NULL)
-        return ;
+	if (NULL == list)
+		return (NULL);
+	str_len = len_to_newline(list);
+	next_line = malloc(str_len + 1);
+	if (!next_line)
+		return (NULL);
+	copy_str(list, next_line);
+	return (next_line);
 }
