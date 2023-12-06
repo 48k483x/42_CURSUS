@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/30 11:20:17 by achahrou          #+#    #+#             */
-/*   Updated: 2023/12/05 12:03:16 by achahrou         ###   ########.fr       */
+/*   Created: 2023/12/06 07:13:19 by achahrou          #+#    #+#             */
+/*   Updated: 2023/12/06 07:25:17 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10 
@@ -36,6 +36,7 @@ void	polish_list(t_list **list);
 char	*get_next_line(int fd);
 void	dealloc(t_list **list, t_list *clean_node, char *buf);
 void	create_list(t_list **list, int fd);
-void	append(t_list **list, char *buf);
+void	append(t_list **list, char *buf, int fd);
 
 #endif
+
