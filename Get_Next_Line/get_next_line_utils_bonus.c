@@ -1,14 +1,16 @@
 /* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 07:08:56 by achahrou          #+#    #+#             */
-/*   Updated: 2023/12/06 07:13:04 by achahrou         ###   ########.fr       */
+/*   Created: 2023/12/06 09:29:20 by achahrou          #+#    #+#             */
+/*   Updated: 2023/12/06 09:29:23 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 int	found_newline(t_list *list)
 {
@@ -113,4 +115,3 @@ void	dealloc(t_list **list, t_list *clean_node, char *buf)
 		free(clean_node);
 	}
 }
-

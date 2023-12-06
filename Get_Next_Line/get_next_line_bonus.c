@@ -6,7 +6,7 @@
 /*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 07:15:11 by achahrou          #+#    #+#             */
-/*   Updated: 2023/12/06 08:51:22 by achahrou         ###   ########.fr       */
+/*   Updated: 2023/12/06 09:28:10 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,3 @@ char	*get_next_line(int fd)
 	polish_list(&list[fd]);
 	return (next_line);
 }
-
-
