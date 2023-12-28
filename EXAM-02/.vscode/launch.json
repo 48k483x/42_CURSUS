@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/achahrou/Desktop/48k483x-42CURSUS/EXAM-02/42_EXAM/.subjects/STUD_PART/exam_02/2/ft_atoi_base",
+      "program": "/Users/achahrou/Desktop/48k483x-42CURSUS/EXAM-02/42_EXAM/.subjects/STUD_PART/exam_02/2/ft_atoi_base/build/Debug/outDebug"
+    }
+  ]
+}

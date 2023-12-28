@@ -15,7 +15,7 @@ t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
 	while (swapped == 1)
 	{
 		swapped = 0;
-		while (cur != 0 and cur->next != 0)
+		while (cur != 0 && cur->next != 0)
 		{
 			if (cmp(cur->data, cur->next->data) == 0)
 			{
@@ -24,7 +24,7 @@ t_list	*sort_list(t_list* lst, int (*cmp)(int, int))
 			}
 			cur = cur->next;
 		}
-		cur = list;
+		cur = lst;
 	}
 	return (lst);
 }
