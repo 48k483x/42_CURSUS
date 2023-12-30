@@ -31,10 +31,20 @@ destroy(t_data *data)
 }
 
 int
+animate(void *param)
+{
+    t_data *data = param;
+    static int i = 0;
+    mlx_put_image_to_window(data->mlx, data->win, frames[i], 0, 0);
+    i = (i + 1) % 7;
+    return (0);
+}
+
+int
 main()
 {
     t_data data;
-    int width; int height;int i;
+    int width; int height;int i = 0;
     void *frames[7];
     if (NULL == (data.mlx = mlx_init()))
         return (1);
@@ -45,20 +55,21 @@ main()
     // register a callback for window close event
     mlx_hook(data.win, DestroyNotify, StructureNotifyMask, &destroy, &data);
     // render image
-    void *img = mlx_xpm_file_to_image(data.mlx, "/nfs/homes/achahrou/48k483x/48k483x_CUR5U5/So_Long/assets/shab.xpm", &width, &height);
+    void *img = mlx_xpm_file_to_image(data.mlx, "/nfs/homes/achahrou/Desktop/48k483x_CUR5U5/So_Long/assets/shab.xpm", &width, &height);
     if (NULL == img)
         return ((free(data.mlx)), 1);
     mlx_put_image_to_window(data.mlx, data.win, img, 0, 0);
     // render the coin
+    char *img_files[7] = {"figure1.xpm", "figure2.xpm", "figure3.xpm", "figure4.xpm", "figure5.xpm", "figure6.xpm", "figure7.xpm"};
     while (i < 7)
     {
-        char filename[128];
-        printf(filename, "frame%d.xpm", i);
-        frames[i] = mlx_xpm_file_to_image(data.mlx, filename, &width, &height);
-        if (frames[i] == NULL)
-            return 1;
-
+        frames[i] = mlx_xpm_file_to_image(data.mlx, img_files[i], &width, &height);
+        if (NULL == frames[i])
+            return ((free(data.mlx)), 1);
+        i++;
     }
+    // register the loop function
+    mlx_loop_hook(data.mlx, &animate, &data);
     // keep the window open
     mlx_loop(data.mlx);
 }
