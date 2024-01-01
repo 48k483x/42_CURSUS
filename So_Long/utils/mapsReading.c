@@ -1,6 +1,5 @@
 #include "../so_long.h"
 
-
 int ft_strlen(char *str)
 {
     int i = 0;
@@ -57,7 +56,7 @@ int validate_map_walls(char **map)
 }
 
 
-int validate_map(char **map)
+int validate_map(char **map, t_data *data)
 {
     int i = 0;
     int j;
@@ -82,5 +81,6 @@ int validate_map(char **map)
     }
     if (player != 1 || exit != 1 || collectible < 1 || !validate_map_walls(map))
         return (0);
+    data->collectible = collectible;
     return (1);
 }

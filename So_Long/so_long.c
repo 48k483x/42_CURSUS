@@ -1,23 +1,27 @@
 #include "so_long.h"
 
+int error_mssg(char *s, int ERR_TYPE)
+{
+    errno = ERR_TYPE; // Invalid argument
+    perror(s);
+    return (0);
+}
+
 int main(int ac, char **av)
 {
-
+    t_data data;
     if (ac != 2)
-        return (0);
+        return  (error_mssg("No Map Loaded, Try Again", EINVAL));
     int fd = open(av[1], O_RDONLY);
     char *line;
     char **map = NULL;
     while ((line = get_next_line(fd)))
-    {
         map = add_to_map(map, line);
-        //free(line);
-    }
-   for (int i = 0; map[i]; i++)
+    close(fd);
+    if (!window_init(&data))
     {
-        for (int j = 0; map[i][j]; j++)
-            printf("%c", map[i][j]);
-        printf("\n");
+        perror("Error: Failed to initialize window\n");
+        return (1);
     }
     free(map);
     return (0);
