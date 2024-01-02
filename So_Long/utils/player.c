@@ -1,9 +1,11 @@
 #include "../so_long.h"
 
-void exit_game(t_data *data)
+int exit_game(t_data *data, char *s)
 {
+    perror(s);
     mlx_destroy_window(data->mlx, data->win);
     exit(1);
+    return (1);
 }
 
 void move_player(int dierection, t_data *data)
@@ -21,17 +23,17 @@ void move_player(int dierection, t_data *data)
         data->player_x--;
     else if (dierection == D)
         data->player_x++;
-    if (data->map[data->player_y][data->player_x] == '1' ||
-        data->player_x < 0 || data->player_x >= data->map_wid ||
-        data->player_y < 0 || data->player_y >= data->map_hei)
+    if (data->player_x < 0 || data->player_x >= data->map_wid ||
+        data->player_y < 0 || data->player_y >= data->map_hei ||
+        data->map[data->player_y][data->player_x] == '1')
     {
         data->player_x = old_x;
         data->player_y = old_y;
     }
-    if (data->map[data->player_y][data->player_x] == 'C')
+    else if (data->map[data->player_y][data->player_x] == 'C')
         data->collectible--;
-    if (data->map[data->player_y][data->player_x] == 'E' && data->collectible == 0)
-        exit_game(data);
+    else if (data->map[data->player_y][data->player_x] == 'E' && data->collectible == 0)
+        exit_game(data, "You Won");
         
 }
 
@@ -46,6 +48,6 @@ int key_press(int key, t_data *data)
     else if (key == D)
         move_player(D, data);
     else if (key == ESC)
-        exit_game(data);
+        exit_game(data, "Quit");
     return (0);
 }

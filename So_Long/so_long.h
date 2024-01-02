@@ -14,16 +14,21 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define WINDOW_WID 1000
+# define TILE_WID 32
+# define TILE_HEI 32
+# define ANIMATION_SPEED 100
+# define PLAYER_FRAME 9
+# define WINDOW_WID 1500
 # define WINDOW_HEI 700
 # define BUFFER_SIZE 10 
-# define W 13
-# define D 2
-# define A 0
-# define S 1
-# define ESC 53
+# define W 119
+# define D 100
+# define A 97
+# define S 115
+# define ESC 65307
 # define IMG mlx_put_image_to_window
 # define WIN mlx_new_window
+
 
 typedef struct s_list
 {
@@ -36,6 +41,13 @@ typedef struct s_mlx
 	char **map;
 	void *mlx;
 	void *win;
+	void *player_img[PLAYER_FRAME];
+	void *background_img;
+	void *collectible_img;
+	void *exit_img;
+	void *wall_img;
+	void *empty_img;
+	int current_frame;
 	int player_x;
 	int player_y;
 	int map_wid;
@@ -58,6 +70,11 @@ char 	**add_to_map(char **map, char *new_line);
 int		window_init(t_data *data);
 int 	key_press(int key, t_data *data);
 void 	move_player(int dierection, t_data *data);
-void 	exit_game(t_data *data);
+int 	exit_game(t_data *data, char *s);
+int		error_mssg(char *s, int ERR_TYPE);
+int	draw_game(t_data *data);   // Remember To Delete This
+int		init_game(t_data *data);
+int 	standar_animation(t_data *data);
+void 	some_function(char **filenames);
 
 #endif /* SO_LONG_H  */

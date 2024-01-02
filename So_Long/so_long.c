@@ -4,7 +4,7 @@ int error_mssg(char *s, int ERR_TYPE)
 {
     errno = ERR_TYPE; // Invalid argument
     perror(s);
-    return (0);
+    return (1);
 }
 
 int main(int ac, char **av)
@@ -19,10 +19,7 @@ int main(int ac, char **av)
         map = add_to_map(map, line);
     close(fd);
     if (!window_init(&data))
-    {
-        perror("Error: Failed to initialize window\n");
-        return (1);
-    }
+        error_mssg("Error: Failed to initialize window\n", EPERM);
     free(map);
     return (0);
 }
