@@ -14,12 +14,12 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-# define TILE_WID 32
-# define TILE_HEI 32
+# define TILE_WID 106
+# define TILE_HEI 106
 # define ANIMATION_SPEED 100
 # define PLAYER_FRAME 9
-# define WINDOW_WID 1500
-# define WINDOW_HEI 700
+# define WINDOW_WID 1481
+# define WINDOW_HEI 635
 # define BUFFER_SIZE 10 
 # define W 119
 # define D 100
@@ -67,14 +67,18 @@ void	dealloc(t_list **list, t_list *clean_node, char *buf);
 void	create_list(t_list **list, int fd);
 void	append(t_list **list, char *buf);
 char 	**add_to_map(char **map, char *new_line);
+int 	validate_map(t_data *data);
+int 	validate_map_walls(char **map, t_data *data);
 int		window_init(t_data *data);
 int 	key_press(int key, t_data *data);
 void 	move_player(int dierection, t_data *data);
 int 	exit_game(t_data *data, char *s);
 int		error_mssg(char *s, int ERR_TYPE);
-int	draw_game(t_data *data);   // Remember To Delete This
+int		draw_game(t_data *data);   // Remember To Delete This  // Or Maybe Not
 int		init_game(t_data *data);
 int 	standar_animation(t_data *data);
 void 	some_function(char **filenames);
+int 	check_map_row_len(t_data *data);
+int 	draw_background(t_data *data);
 
 #endif /* SO_LONG_H  */

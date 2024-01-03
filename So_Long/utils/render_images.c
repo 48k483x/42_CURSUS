@@ -29,31 +29,42 @@ int init_game(t_data *data)
         exit_game(data, "Error loading tile images\n");
     return (1);
 }
-
-/*void draw_game(t_data *data)
-{
-    data->player_x = WINDOW_WID / 2;
-    data->player_y = WINDOW_HEI / 2;
-
-    IMG(data->mlx, data->win, data->background_img, 0, 0);
-    IMG(data->mlx, data->win, data->player_img[data->current_frame], data->player_x, data->player_y);
-}*/
-
-
-int draw_game(t_data *data)
+int draw_background(t_data *data)
 {
     int i;
     int j;
 
     i = 0;
-    while (i < WINDOW_HEI)
+    while (i < data->map_hei)
     {
         j = 0;
-        while (j < WINDOW_WID)
+        while (j < data->map_wid)
         {
-            if (data->map[i][j] == 0)
+            if (data->map[i][j] == '1')
+                IMG(data->mlx, data->win, data->wall_img, j * TILE_WID, i * TILE_HEI);
+            else
                 IMG(data->mlx, data->win, data->empty_img, j * TILE_WID, i * TILE_HEI);
-            else if (data->map[i][j] == 1)
+            j++;
+        }
+        i++;
+    }
+    return (1);
+}
+
+int draw_game(t_data *data)
+{
+    int i;
+    int j;
+    
+    i = 0;
+     while (i < data->map_hei)
+    {
+        j = 0;
+        while (j < data->map_wid)
+        {
+            if (data->map[i][j] == '0')
+                IMG(data->mlx, data->win, data->empty_img, j * TILE_WID, i * TILE_HEI);
+            else if (data->map[i][j] == '1')
                 IMG(data->mlx, data->win, data->wall_img, j * TILE_WID, i * TILE_HEI);
             else if (data->map[i][j] == 'E')
                 IMG(data->mlx, data->win, data->exit_img, j * TILE_WID, i * TILE_HEI);
@@ -65,19 +76,24 @@ int draw_game(t_data *data)
         }
         i++;
     }
+
     return (1);
 }
 
 int window_init(t_data *data)
 {
+    int window_wid = data->map_wid * TILE_WID;
+    int window_hei = data->map_hei * TILE_HEI;
     data->mlx = mlx_init();
-    data->win = WIN(data->mlx, WINDOW_WID, WINDOW_HEI, "So Long");
+    data->win = WIN(data->mlx, window_wid, window_hei, "So Long");
     if (!data->mlx || !data->win)
         return (0);
     mlx_hook(data->win, 17, 0, exit_game, data);
     mlx_key_hook(data->win, key_press, data);
-    init_game(data);
-    draw_game(data);
+    if (!init_game(data))
+        error_mssg("Error initializing game\n", 0);
+    if (!draw_background(data))
+        error_mssg("Error drawing game\n", 0);
     mlx_loop_hook(data->mlx, standar_animation, data);
     mlx_loop(data->mlx);
     return (1);
