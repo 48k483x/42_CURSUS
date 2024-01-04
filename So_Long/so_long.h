@@ -17,7 +17,7 @@
 # define TILE_WID 106
 # define TILE_HEI 106
 # define ANIMATION_SPEED 100
-# define PLAYER_FRAME 9
+# define PLAYER_FRAME 6
 # define WINDOW_WID 1481
 # define WINDOW_HEI 635
 # define BUFFER_SIZE 10 
@@ -25,6 +25,7 @@
 # define D 100
 # define A 97
 # define S 115
+# define SPACE 49
 # define ESC 65307
 # define IMG mlx_put_image_to_window
 # define WIN mlx_new_window
@@ -43,7 +44,7 @@ typedef struct s_mlx
 	void *win;
 	void *player_img[PLAYER_FRAME];
 	void *background_img;
-	void *collectible_img;
+	void *collectible_img[6];
 	void *exit_img;
 	void *wall_img;
 	void *empty_img;
@@ -80,5 +81,6 @@ int 	standar_animation(t_data *data);
 void 	some_function(char **filenames);
 int 	check_map_row_len(t_data *data);
 int 	draw_background(t_data *data);
-
+void 	collectible_function(char **filenames);
+int init_player(t_data *data);
 #endif /* SO_LONG_H  */

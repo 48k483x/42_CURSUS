@@ -8,6 +8,30 @@ int exit_game(t_data *data, char *s)
     return (1);
 }
 
+int init_player(t_data *data)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while (i < data->map_hei)
+    {
+        j = 0;
+        while (j < data->map_wid)
+        {
+            if (data->map[i][j] == 'P')
+            {
+                data->player_x = j;
+                data->player_y = i;
+                return (1);
+            }
+            j++;
+        }
+        i++;
+    }
+    return (0);
+}
+
 void move_player(int dierection, t_data *data)
 {
     int old_x;

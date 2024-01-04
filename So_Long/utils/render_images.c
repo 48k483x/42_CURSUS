@@ -8,6 +8,7 @@ int init_game(t_data *data)
     int hei;
     int i;
     char *filenames[PLAYER_FRAME];
+    char *collectibles[6];
 
     some_function(filenames);
     i = 0;
@@ -18,14 +19,22 @@ int init_game(t_data *data)
             exit_game(data, "Error loading images\n");
         i++;
     }
+    collectible_function(collectibles);
+    i = 0;
+    while (i < 6)
+    {
+        data->collectible_img[i] = mlx_xpm_file_to_image(data->mlx, collectibles[i], &wid, &hei);
+        if (!data->collectible_img[i])
+            exit_game(data, "Error loading images\n");
+        i++;
+    }
     data->background_img = mlx_xpm_file_to_image(data->mlx, "assets/backs/9amar.xpm", &wid, &hei);
     if (!data->background_img)
         exit_game(data, "Error loading images\n");
     data->empty_img = mlx_xpm_file_to_image(data->mlx, "assets/Objects/walks.xpm", &wid, &hei);
     data->wall_img = mlx_xpm_file_to_image(data->mlx, "assets/Objects/walls.xpm", &wid, &hei);
-    data->collectible_img = mlx_xpm_file_to_image(data->mlx, "assets/coll/1.xpm", &wid, &hei);
     data->exit_img = mlx_xpm_file_to_image(data->mlx, "assets/Objects/exit1.xpm", &wid, &hei);
-    if (!data->empty_img || !data->wall_img || !data->collectible_img || !data->exit_img)
+    if (!data->empty_img || !data->wall_img || !data->exit_img)
         exit_game(data, "Error loading tile images\n");
     return (1);
 }
@@ -51,6 +60,8 @@ int draw_background(t_data *data)
     return (1);
 }
 
+
+
 int draw_game(t_data *data)
 {
     int i;
@@ -69,14 +80,14 @@ int draw_game(t_data *data)
             else if (data->map[i][j] == 'E')
                 IMG(data->mlx, data->win, data->exit_img, j * TILE_WID, i * TILE_HEI);
             else if (data->map[i][j] == 'C')
-                IMG(data->mlx, data->win, data->collectible_img, j * TILE_WID, i * TILE_HEI);
-            else if (data->map[i][j] == 'P')
-                IMG(data->mlx, data->win, data->player_img[data->current_frame], j * TILE_WID, i * TILE_HEI);
+                IMG(data->mlx, data->win, data->collectible_img[data->current_frame % 6], j * TILE_WID, i * TILE_HEI);
+            /*else if (init_player(data))
+                IMG(data->mlx, data->win, data->player_img[data->current_frame], data->player_x * TILE_WID, data->player_y * TILE_HEI);*/
             j++;
         }
         i++;
     }
-
+    IMG(data->mlx, data->win, data->player_img[data->current_frame], data->player_x * TILE_WID, data->player_y * TILE_HEI);
     return (1);
 }
 
@@ -94,6 +105,7 @@ int window_init(t_data *data)
         error_mssg("Error initializing game\n", 0);
     if (!draw_background(data))
         error_mssg("Error drawing game\n", 0);
+    init_player(data);
     mlx_loop_hook(data->mlx, standar_animation, data);
     mlx_loop(data->mlx);
     return (1);

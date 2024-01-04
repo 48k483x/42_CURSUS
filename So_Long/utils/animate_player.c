@@ -10,9 +10,16 @@ void some_function(char **filenames)
     filenames[3] = "assets/player/4.xpm";
     filenames[4] = "assets/player/5.xpm";
     filenames[5] = "assets/player/6.xpm";
-    filenames[6] = "assets/player/7.xpm";
-    filenames[7] = "assets/player/8.xpm";
-    filenames[8] = "assets/player/9.xpm";
+}
+
+void collectible_function(char **filenames)
+{
+    filenames[0] = "assets/coll/1.xpm";
+    filenames[1] = "assets/coll/2.xpm";
+    filenames[2] = "assets/coll/3.xpm";
+    filenames[3] = "assets/coll/4.xpm";
+    filenames[4] = "assets/coll/5.xpm";
+    filenames[5] = "assets/coll/6.xpm";
 }
 
 int standar_animation(t_data *data)
