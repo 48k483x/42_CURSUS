@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/nfs/homes/achahrou/Desktop/48k483x_CUR5U5/So_Long",
-      "program": "/nfs/homes/achahrou/Desktop/48k483x_CUR5U5/So_Long/build/Debug/outDebug",
+      "cwd": "/Users/achahrou/Desktop/48k483x-42CURSUS/So_Long",
+      "program": "/Users/achahrou/Desktop/48k483x-42CURSUS/So_Long/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

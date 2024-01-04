@@ -6,8 +6,6 @@
 # include <string.h>
 #include <errno.h>
 
-#include <X11/X.h>
-#include <X11/keysym.h>
 #include "mlx.h"
 
 # include <fcntl.h>
@@ -21,11 +19,11 @@
 # define WINDOW_WID 1481
 # define WINDOW_HEI 635
 # define BUFFER_SIZE 10 
-# define W 119
-# define D 100
-# define A 97
-# define S 115
-# define ESC 65307
+# define W 13
+# define D 2
+# define A 0
+# define S 1
+# define ESC 53
 # define IMG mlx_put_image_to_window
 # define WIN mlx_new_window
 
