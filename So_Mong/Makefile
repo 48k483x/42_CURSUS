@@ -1,0 +1,33 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/12/31 11:47:08 by achahrou          #+#    #+#              #
+#    Updated: 2024/01/03 13:38:56 by achahrou         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+FLAGS = -Wall -Wextra -Werror
+MLXFLAGS = -lX11 -lXext -lmlx 
+SRC = so_long.c ./utils/mapsReading.c ./utils/get_next_line_utils.c \
+		./utils/get_next_line.c  ./utils/player.c  ./utils/render_images.c \
+		./utils/animate_player.c
+OBJ = *.o
+NAME = so_long
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	cc $(OBJ) $(MLXFLAGS) -o $(NAME)
+$(OBJ): $(SRC)
+	cc $(FLAGS) -c $(SRC)
+clean: $(OBJ)
+	@rm -rf $(OBJ)
+fclean: clean
+	@rm -rf $(NAME)
+re: fclean all
+
+.PHONY: all clean fclean re

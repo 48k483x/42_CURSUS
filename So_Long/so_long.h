@@ -25,7 +25,6 @@
 # define D 100
 # define A 97
 # define S 115
-# define SPACE 49
 # define ESC 65307
 # define IMG mlx_put_image_to_window
 # define WIN mlx_new_window

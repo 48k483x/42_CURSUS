@@ -55,10 +55,15 @@ void move_player(int dierection, t_data *data)
         data->player_y = old_y;
     }
     else if (data->map[data->player_y][data->player_x] == 'C')
+    {
         data->collectible--;
+        data->map[data->player_y][data->player_x] = '0';
+        draw_background(data);
+    }
     else if (data->map[data->player_y][data->player_x] == 'E' && data->collectible == 0)
         exit_game(data, "You Won");
-        
+    draw_background(data);
+    draw_game(data);
 }
 
 int key_press(int key, t_data *data)

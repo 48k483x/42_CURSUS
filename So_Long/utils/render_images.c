@@ -81,8 +81,6 @@ int draw_game(t_data *data)
                 IMG(data->mlx, data->win, data->exit_img, j * TILE_WID, i * TILE_HEI);
             else if (data->map[i][j] == 'C')
                 IMG(data->mlx, data->win, data->collectible_img[data->current_frame % 6], j * TILE_WID, i * TILE_HEI);
-            /*else if (init_player(data))
-                IMG(data->mlx, data->win, data->player_img[data->current_frame], data->player_x * TILE_WID, data->player_y * TILE_HEI);*/
             j++;
         }
         i++;
