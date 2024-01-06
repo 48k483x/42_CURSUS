@@ -13,11 +13,11 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdbool.h>
 
 # define TILE_WID 106
 # define TILE_HEI 106
 # define ANIMATION_SPEED 100
-# define PLAYER_FRAME 6
 # define WINDOW_WID 1481
 # define WINDOW_HEI 635
 # define BUFFER_SIZE 10 
@@ -41,19 +41,29 @@ typedef struct s_mlx
 	char **map;
 	void *mlx;
 	void *win;
-	void *player_img[PLAYER_FRAME];
+	void *player_img;;
 	void *background_img;
+	void *up;
+	void *up1;
+	void *right;
+	void *right1;
+	void *left;
+	void *left1;
+	void *down;
+	void *down1;
 	void *collectible_img[6];
 	void *exit_img;
 	void *wall_img;
 	void *empty_img;
+	int player_frame;
 	int current_frame;
 	int player_x;
 	int player_y;
 	int map_wid;
 	int map_hei;
 	int collectible;
-	int moves;
+	int player_direction;
+	//int moves;
 }   t_data;
 
 int		found_newline(t_list *list);
@@ -77,9 +87,9 @@ int		error_mssg(char *s, int ERR_TYPE);
 int		draw_game(t_data *data);   // Remember To Delete This  // Or Maybe Not
 int		init_game(t_data *data);
 int 	standar_animation(t_data *data);
-void 	some_function(char **filenames);
 int 	check_map_row_len(t_data *data);
 int 	draw_background(t_data *data);
 void 	collectible_function(char **filenames);
 int init_player(t_data *data);
+void righanime(t_data *data);
 #endif /* SO_LONG_H  */

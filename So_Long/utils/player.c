@@ -49,7 +49,7 @@ void move_player(int dierection, t_data *data)
         data->player_x++;
     if (data->player_x < 0 || data->player_x >= data->map_wid ||
         data->player_y < 0 || data->player_y >= data->map_hei ||
-        data->map[data->player_y][data->player_x] == '1')
+        data->map[data->player_y][data->player_x] == '1') 
     {
         data->player_x = old_x;
         data->player_y = old_y;
@@ -75,7 +75,7 @@ int key_press(int key, t_data *data)
     else if (key == A)
         move_player(A, data);
     else if (key == D)
-        move_player(D, data);
+        righanime(data);
     else if (key == ESC)
         exit_game(data, "Quit");
     return (0);

@@ -1,24 +1,11 @@
 
 #include "../so_long.h"
 
-
-int init_game(t_data *data)
+void collectibles_init(t_data *data, int wid, int hei)
 {
-    int wid;
-    int hei;
     int i;
-    char *filenames[PLAYER_FRAME];
     char *collectibles[6];
 
-    some_function(filenames);
-    i = 0;
-    while (i < PLAYER_FRAME)
-    {
-        data->player_img[i] = mlx_xpm_file_to_image(data->mlx, filenames[i], &wid, &hei);
-        if (!data->player_img[i])
-            exit_game(data, "Error loading images\n");
-        i++;
-    }
     collectible_function(collectibles);
     i = 0;
     while (i < 6)
@@ -28,9 +15,21 @@ int init_game(t_data *data)
             exit_game(data, "Error loading images\n");
         i++;
     }
-    data->background_img = mlx_xpm_file_to_image(data->mlx, "assets/backs/9amar.xpm", &wid, &hei);
-    if (!data->background_img)
-        exit_game(data, "Error loading images\n");
+}
+
+int init_game(t_data *data)
+{
+    int wid = 0;
+    int hei = 0;
+    collectibles_init(data, wid, hei);
+    data->up = mlx_xpm_file_to_image(data->mlx,"assets/player/up.xpm", &wid, &hei);
+    data->up1 = mlx_xpm_file_to_image(data->mlx,"assets/player/up1.xpm", &wid, &hei);
+    data->left = mlx_xpm_file_to_image(data->mlx,"assets/player/left.xpm", &wid, &hei);
+    data->left1 = mlx_xpm_file_to_image(data->mlx,"assets/player/left1.xpm", &wid, &hei);
+    data->right = mlx_xpm_file_to_image(data->mlx,"assets/player/right.xpm", &wid, &hei);
+    data->right1 = mlx_xpm_file_to_image(data->mlx,"assets/player/right1.xpm", &wid, &hei);
+    data->down = mlx_xpm_file_to_image(data->mlx,"assets/player/down.xpm", &wid, &hei);
+    data->down1 = mlx_xpm_file_to_image(data->mlx,"assets/player/down1.xpm", &wid, &hei);
     data->empty_img = mlx_xpm_file_to_image(data->mlx, "assets/Objects/walks.xpm", &wid, &hei);
     data->wall_img = mlx_xpm_file_to_image(data->mlx, "assets/Objects/walls.xpm", &wid, &hei);
     data->exit_img = mlx_xpm_file_to_image(data->mlx, "assets/Objects/exit1.xpm", &wid, &hei);
@@ -78,14 +77,14 @@ int draw_game(t_data *data)
             else if (data->map[i][j] == '1')
                 IMG(data->mlx, data->win, data->wall_img, j * TILE_WID, i * TILE_HEI);
             else if (data->map[i][j] == 'E')
-                IMG(data->mlx, data->win, data->exit_img, j * TILE_WID, i * TILE_HEI);
+                IMG(data->mlx, data->win, data->exit_img, j * TILE_WID, i * TILE_HEI + 40);
             else if (data->map[i][j] == 'C')
                 IMG(data->mlx, data->win, data->collectible_img[data->current_frame % 6], j * TILE_WID, i * TILE_HEI);
             j++;
         }
         i++;
     }
-    IMG(data->mlx, data->win, data->player_img[data->current_frame], data->player_x * TILE_WID, data->player_y * TILE_HEI);
+         IMG(data->mlx, data->win, data->right, data->player_x * TILE_WID + 40, data->player_y * TILE_HEI + 40);
     return (1);
 }
 
