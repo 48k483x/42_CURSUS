@@ -1,24 +1,11 @@
 
 #include "../so_long.h"
 
-
-int init_game(t_data *data)
+void collectibles_init(t_data *data, int wid, int hei)
 {
-    int wid;
-    int hei;
     int i;
-    char *filenames[PLAYER_FRAME];
     char *collectibles[6];
 
-    some_function(filenames);
-    i = 0;
-    while (i < PLAYER_FRAME)
-    {
-        data->player_img[i] = mlx_xpm_file_to_image(data->mlx, filenames[i], &wid, &hei);
-        if (!data->player_img[i])
-            exit_game(data, "Error loading images\n");
-        i++;
-    }
     collectible_function(collectibles);
     i = 0;
     while (i < 6)
@@ -28,9 +15,23 @@ int init_game(t_data *data)
             exit_game(data, "Error loading images\n");
         i++;
     }
-    data->background_img = mlx_xpm_file_to_image(data->mlx, "assets/backs/9amar.xpm", &wid, &hei);
-    if (!data->background_img)
-        exit_game(data, "Error loading images\n");
+}
+
+int init_game(t_data *data)
+{
+    int wid = 0;
+    int hei = 0;
+    collectibles_init(data, wid, hei);
+    data->press = 0;
+    data->key = S;
+    data->up = mlx_xpm_file_to_image(data->mlx,"assets/player/up.xpm", &wid, &hei);
+    data->up1 = mlx_xpm_file_to_image(data->mlx,"assets/player/up1.xpm", &wid, &hei);
+    data->left = mlx_xpm_file_to_image(data->mlx,"assets/player/left.xpm", &wid, &hei);
+    data->left1 = mlx_xpm_file_to_image(data->mlx,"assets/player/left1.xpm", &wid, &hei);
+    data->right = mlx_xpm_file_to_image(data->mlx,"assets/player/right.xpm", &wid, &hei);
+    data->right1 = mlx_xpm_file_to_image(data->mlx,"assets/player/right1.xpm", &wid, &hei);
+    data->down = mlx_xpm_file_to_image(data->mlx,"assets/player/down.xpm", &wid, &hei);
+    data->down1 = mlx_xpm_file_to_image(data->mlx,"assets/player/down1.xpm", &wid, &hei);
     data->empty_img = mlx_xpm_file_to_image(data->mlx, "assets/Objects/walks.xpm", &wid, &hei);
     data->wall_img = mlx_xpm_file_to_image(data->mlx, "assets/Objects/walls.xpm", &wid, &hei);
     data->exit_img = mlx_xpm_file_to_image(data->mlx, "assets/Objects/exit1.xpm", &wid, &hei);
@@ -78,14 +79,30 @@ int draw_game(t_data *data)
             else if (data->map[i][j] == '1')
                 IMG(data->mlx, data->win, data->wall_img, j * TILE_WID, i * TILE_HEI);
             else if (data->map[i][j] == 'E')
-                IMG(data->mlx, data->win, data->exit_img, j * TILE_WID, i * TILE_HEI);
+                IMG(data->mlx, data->win, data->exit_img, j * TILE_WID, i * TILE_HEI + 40);
             else if (data->map[i][j] == 'C')
                 IMG(data->mlx, data->win, data->collectible_img[data->current_frame % 6], j * TILE_WID, i * TILE_HEI);
             j++;
         }
         i++;
     }
-    IMG(data->mlx, data->win, data->player_img[data->current_frame], data->player_x * TILE_WID, data->player_y * TILE_HEI);
+    if (!data->press && data->key == D)
+         IMG(data->mlx, data->win, data->right, (data->player_x * TILE_WID + 40), data->player_y * TILE_HEI + 40);
+    if (!data->press && data->key == A)
+         IMG(data->mlx, data->win, data->left, (data->player_x * TILE_WID + 40), data->player_y * TILE_HEI + 40);
+    if (!data->press && data->key == W)
+         IMG(data->mlx, data->win, data->up, (data->player_x * TILE_WID + 40), data->player_y * TILE_HEI + 40);
+    if (!data->press && data->key == S)
+        IMG(data->mlx, data->win, data->down, (data->player_x * TILE_WID + 40), data->player_y * TILE_HEI + 40);
+    else if (data->press == 1)
+        anime_right(data);
+    else if (data->press == 2)
+        anime_left(data);
+    else if (data->press == 3)
+        anime_up(data);
+    else if (data->press == 4)
+        anime_down(data);
+
     return (1);
 }
 
@@ -98,12 +115,12 @@ int window_init(t_data *data)
     if (!data->mlx || !data->win)
         return (0);
     mlx_hook(data->win, 17, 0, exit_game, data);
-    mlx_key_hook(data->win, key_press, data);
     if (!init_game(data))
         error_mssg("Error initializing game\n", 0);
     if (!draw_background(data))
         error_mssg("Error drawing game\n", 0);
     init_player(data);
+    mlx_hook(data->win, 2, 0, key_press, data);
     mlx_loop_hook(data->mlx, standar_animation, data);
     mlx_loop(data->mlx);
     return (1);

@@ -23,6 +23,7 @@ int init_player(t_data *data)
             {
                 data->player_x = j;
                 data->player_y = i;
+                data->map[i][j] = '0';
                 return (1);
             }
             j++;
@@ -40,16 +41,32 @@ void move_player(int dierection, t_data *data)
     old_x = data->player_x;
     old_y = data->player_y;
     if (dierection == W)
+    {
         data->player_y--;
+        data->key = W;
+        data->press = 3;
+    }
     else if (dierection == S)
+    {
         data->player_y++;
+        data->key = S;
+        data->press = 4;
+    }
     else if (dierection == A)
+    {
         data->player_x--;
+        data->key = A;
+        data->press = 2;
+    }
     else if (dierection == D)
+    {
         data->player_x++;
+        data->key = D;
+        data->press = 1;
+    }
     if (data->player_x < 0 || data->player_x >= data->map_wid ||
         data->player_y < 0 || data->player_y >= data->map_hei ||
-        data->map[data->player_y][data->player_x] == '1')
+        data->map[data->player_y][data->player_x] == '1') 
     {
         data->player_x = old_x;
         data->player_y = old_y;

@@ -1,17 +1,5 @@
 #include "../so_long.h"
 
-char *filenames[PLAYER_FRAME];
-
-void some_function(char **filenames) 
-{
-    filenames[0] = "assets/player/1.xpm";
-    filenames[1] = "assets/player/2.xpm";
-    filenames[2] = "assets/player/3.xpm";
-    filenames[3] = "assets/player/4.xpm";
-    filenames[4] = "assets/player/5.xpm";
-    filenames[5] = "assets/player/6.xpm";
-}
-
 void collectible_function(char **filenames)
 {
     filenames[0] = "assets/coll/1.xpm";
@@ -24,20 +12,104 @@ void collectible_function(char **filenames)
 
 int standar_animation(t_data *data)
 {
-    static int counter = 0;
+    data->frame_counter++;
+    draw_game(data);
+    return (0);
+}
 
-    if (counter == ANIMATION_SPEED)
+
+void anime_right(t_data *data)
+{
+   static int j;
+
+   if (j <= 0)
+        j = 106;
+    j -= 5;
+    if (data->frame_counter % 2 == 0)
     {
-        data->current_frame = (data->current_frame + 1) % PLAYER_FRAME;
-        draw_game(data);
-        counter = 0;
+        IMG(data->mlx, data->win, data->right, (data->player_x * TILE_WID + 40) - j, data->player_y * TILE_HEI + 40);
     }
     else
     {
-        counter++;
+        IMG(data->mlx, data->win, data->right1, (data->player_x * TILE_WID + 40) - j, data->player_y * TILE_HEI + 40);
     }
+    if (j <= 0)
+    {
+        data->press = 0;
 
-    usleep(750); // delay for 100000 microseconds = 0.1 seconds
+    }
+}
 
-    return (0);
+void anime_left(t_data *data)
+{
+   static int i;
+
+   if (i <= 0)
+        i = 106;
+    i -= 5;
+    if (data->frame_counter % 2 == 0)
+    {
+        IMG(data->mlx, data->win, data->left, (data->player_x * TILE_WID + 40) + i, data->player_y * TILE_HEI + 40);
+    }
+    else
+    {
+        IMG(data->mlx, data->win, data->left1, (data->player_x * TILE_WID + 40) + i, data->player_y * TILE_HEI + 40);
+    }
+    if (i <= 0)
+    {
+        data->press = 0;
+        i = 0;
+    }
+}
+
+void anime_up(t_data *data)
+{
+   static int i;
+
+   if (i <= 0)
+        i = 106;
+    i -= 5;
+    if (data->frame_counter % 2 == 0)
+    {
+        IMG(data->mlx, data->win, data->up, (data->player_x * TILE_WID + 40), (data->player_y * TILE_HEI + 40) + i);
+    }
+    else
+    {
+        IMG(data->mlx, data->win, data->up1, (data->player_x * TILE_WID + 40), (data->player_y * TILE_HEI + 40) + i);
+    }
+    if (i <= 0)
+    {
+        data->press = 0;
+        i = 0;
+    }
+}
+
+void anime_down(t_data *data)
+{
+   static int i;
+
+   if (i <= 0)
+        i = 106;
+    i -= 5;
+    if (data->frame_counter % 2 == 0)
+    {
+        IMG(data->mlx, data->win, data->down, (data->player_x * TILE_WID + 40), (data->player_y * TILE_HEI + 40) - i);
+    }
+    else
+    {
+        IMG(data->mlx, data->win, data->down1, (data->player_x * TILE_WID + 40), (data->player_y * TILE_HEI + 40) - i);
+    }
+    if (i <= 0)
+    {
+        data->press = 0;
+        i = 0;
+    }
+}
+
+void render_anime(t_data *data, int key)
+{
+    if (key == D)
+        anime_right(data);
+    else if (key == A)
+        anime_left(data);
 }

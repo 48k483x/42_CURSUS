@@ -7,6 +7,14 @@ int error_mssg(char *s, int ERR_TYPE)
     return (1);
 }
 
+int	check(int c)
+{
+	if (c == '1' || c == 'E' || c == 'C' || c == 'X')
+		return (1);
+	else
+		return (0);
+}
+
 int main(int ac, char **av)
 {
     t_data data;
