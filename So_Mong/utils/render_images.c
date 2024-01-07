@@ -36,7 +36,9 @@ int init_game(t_data *data)
     data->empty_img = mlx_xpm_file_to_image(data->mlx, "assets/Objects/walks.xpm", &wid, &hei);
     data->wall_img = mlx_xpm_file_to_image(data->mlx, "assets/Objects/walls.xpm", &wid, &hei);
     data->exit_img = mlx_xpm_file_to_image(data->mlx, "assets/Objects/exit1.xpm", &wid, &hei);
-    if (!data->empty_img || !data->wall_img || !data->exit_img)
+    data->enemy = mlx_xpm_file_to_image(data->mlx, "assets/Objects/sk.xpm", &wid, &hei);
+    data->enemy1 = mlx_xpm_file_to_image(data->mlx, "assets/Objects/sk1.xpm", &wid, &hei);
+    if (!data->empty_img || !data->wall_img || !data->exit_img || !data->enemy)
         exit_game(data, "Error loading tile images\n");
     return (1);
 }
@@ -83,6 +85,8 @@ int draw_game(t_data *data)
                 IMG(data->mlx, data->win, data->exit_img, j * TILE_WID, i * TILE_HEI + 40);
             else if (data->map[i][j] == 'C')
                 IMG(data->mlx, data->win, data->collectible_img[data->current_frame % 6], j * TILE_WID, i * TILE_HEI);
+            else if (data->map[i][j] == 'X')
+                IMG(data->mlx, data->win, data->enemy, j * TILE_WID, i * TILE_HEI);
             j++;
         }
         i++;

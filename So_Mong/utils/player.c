@@ -30,6 +30,8 @@ int init_player(t_data *data)
         }
         i++;
     }
+    data->start_x = data->player_x;
+    data->start_y = data->player_y;
     return (0);
 }
 
@@ -50,6 +52,8 @@ void move_player(int key,t_data *data)
         data->player_x = old_x;
         data->player_y = old_y;
     }
+    else if (data->map[data->player_y][data->player_x] == 'X')
+        restart_game(data);
     else if (data->map[data->player_y][data->player_x] == 'C')
     {
         data->collectible--;

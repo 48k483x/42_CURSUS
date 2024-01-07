@@ -49,6 +49,8 @@ typedef struct s_mlx
 	void *left1;
 	void *down;
 	void *down1;
+	void *enemy;
+	void *enemy1;
 	void *collectible_img[6];
 	void *exit_img;
 	void *wall_img;
@@ -57,6 +59,8 @@ typedef struct s_mlx
 	int current_frame;
 	int player_x;
 	int player_y;
+	int start_x;
+	int start_y;
 	int map_wid;
 	int map_hei;
 	int collectible;
@@ -108,4 +112,6 @@ void free_visited(t_data *data, int **visited);
 int ft_strlen(char *str);
 int dfs(t_data *data, int x, int y, int **visited);
 int validate_way(t_data *data, int x, int y);
+void restart_game(t_data *data);
+void collectibles_init(t_data *data, int wid, int hei);
 #endif /* SO_LONG_H  */
