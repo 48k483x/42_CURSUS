@@ -26,6 +26,7 @@
 # define ESC 53
 # define IMG mlx_put_image_to_window
 # define WIN mlx_new_window
+# define XPM mlx_xpm_file_to_image
 
 
 typedef struct s_list
