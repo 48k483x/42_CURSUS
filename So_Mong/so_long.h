@@ -104,5 +104,8 @@ void move_left(t_data *data);
 void move_up(t_data *data);
 void move_down(t_data *data);
 void all_moves(int key, t_data *data);
-
+void free_visited(t_data *data, int **visited);
+int ft_strlen(char *str);
+int dfs(t_data *data, int x, int y, int **visited);
+int validate_way(t_data *data, int x, int y);
 #endif /* SO_LONG_H  */

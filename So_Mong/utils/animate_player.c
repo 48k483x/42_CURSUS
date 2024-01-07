@@ -1,28 +1,9 @@
 #include "../so_long.h"
-
-void collectible_function(char **filenames)
+void	anime_right(t_data *data)
 {
-    filenames[0] = "assets/coll/1.xpm";
-    filenames[1] = "assets/coll/2.xpm";
-    filenames[2] = "assets/coll/3.xpm";
-    filenames[3] = "assets/coll/4.xpm";
-    filenames[4] = "assets/coll/5.xpm";
-    filenames[5] = "assets/coll/6.xpm";
-}
+	static int	j;
 
-int standar_animation(t_data *data)
-{
-    data->frame_counter++;
-    draw_game(data);
-    return (0);
-}
-
-
-void anime_right(t_data *data)
-{
-   static int j;
-
-   if (j <= 0)
+	if (j <= 0)
         j = 106;
     j -= 5;
     if (data->frame_counter % 2 == 0)

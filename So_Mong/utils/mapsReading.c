@@ -1,28 +1,5 @@
 #include "../so_long.h"
 
-int ft_strlen(char *str)
-{
-    int i = 0;
-
-    while (str[i])
-        i++;
-    return (i);
-}
-
-int check_map_row_len(t_data *data)
-{
-    int i = 0;
-    int len = ft_strlen(data->map[0]);
-
-    while (data->map[i])
-    {
-        if (ft_strlen(data->map[i]) != len)
-            return (0);
-        i++;
-    }
-    return (1);
-}
-
 char **add_to_map(char **map, char *new_line)
 {
     int i = 0;
@@ -71,6 +48,44 @@ int validate_map_walls(char **map, t_data *data)
     return (1);
 }
 
+int dfs(t_data *data, int x, int y, int **visited)
+{
+    if (x < 0 || x >= data->map_hei || y < 0 || y >= data->map_wid || data->map[x][y] == '1' || visited[x][y])
+        return (0);
+    if (data->map[x][y] == 'E')
+        return (1);
+    visited[x][y] = 1;
+    if (dfs(data, x + 1, y, visited) || dfs(data, x - 1, y, visited) || dfs(data, x, y + 1, visited) || dfs(data, x, y - 1, visited))
+        return (1);
+    return (0);
+}
+int validate_way(t_data *data, int x, int y)
+{
+    int i;
+    int j;
+    int **visited;
+
+    visited = malloc(sizeof(int *) * data->map_hei);
+    if (!visited)
+        return (0);
+    i = 0;
+    while (i < data->map_hei)
+    {
+        visited[i] = malloc (data->map_wid * sizeof(int));
+        if (!visited[i])
+            return (0);
+        j = 0;
+        while (j < data->map_wid)
+        {
+            visited[i][j] = 0;
+            j++;
+        }
+        i++;
+    }
+    int result = dfs(data, x, y, visited);
+    free_visited(data, visited);
+    return (result);
+}
 
 int validate_map(t_data *data)
 {
@@ -78,6 +93,8 @@ int validate_map(t_data *data)
     int j;
     int player = 0;
     int exit = 0;
+    int playerX;
+    int playerY;
     data->collectible = 0;
     
     while (data->map[i])
@@ -86,7 +103,11 @@ int validate_map(t_data *data)
         while (data->map[i][j])
         {
             if (data->map[i][j] == 'P')
+            {
                 player++;
+                playerX = i;
+                playerY = j;
+            }
             else if (data->map[i][j] == 'E')
                 exit++;
             else if (data->map[i][j] == 'C')
@@ -95,7 +116,7 @@ int validate_map(t_data *data)
         }
         i++;
     }
-    if (player != 1 || exit != 1 || data->collectible < 1 || !validate_map_walls(data->map, data))
+    if (player != 1 || exit != 1 || data->collectible < 1 || !validate_map_walls(data->map, data) || !validate_way(data, playerX, playerY ))
         return (0);
     return (1);
 }
