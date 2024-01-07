@@ -25,6 +25,7 @@ int init_game(t_data *data)
     data->press = 0;
     data->key = S;
     data->reached = 1;
+    data->moves = 0;
     data->up = mlx_xpm_file_to_image(data->mlx,"assets/player/up.xpm", &wid, &hei);
     data->up1 = mlx_xpm_file_to_image(data->mlx,"assets/player/up1.xpm", &wid, &hei);
     data->left = mlx_xpm_file_to_image(data->mlx,"assets/player/left.xpm", &wid, &hei);
@@ -70,7 +71,7 @@ int draw_game(t_data *data)
 {
     int i;
     int j;
-    
+
     i = 0;
      while (i < data->map_hei)
     {
@@ -92,7 +93,6 @@ int draw_game(t_data *data)
         i++;
     }
     render_anime(data);
-
     return (1);
 }
 

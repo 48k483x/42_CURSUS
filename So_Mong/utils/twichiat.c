@@ -12,8 +12,14 @@ void collectible_function(char **filenames)
 
 int standar_animation(t_data *data)
 {
+    char *n;
+
+    n = ft_itoa(data->moves);
     data->frame_counter++;
     draw_game(data);
+    mlx_string_put(data->mlx, data->win, 50, 50, 0xFFFF00, "Moves Number : ");
+    mlx_string_put(data->mlx, data->win, 210, 50, 0xFFFF00, ft_itoa(data->moves));
+    free(n);
     return (0);
 }
 

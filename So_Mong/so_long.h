@@ -69,6 +69,8 @@ typedef struct s_mlx
 	int key;
 	int	reached;
 	int frame_counter;
+	int moves;
+
 }   t_data;
 
 int		found_newline(t_list *list);
@@ -114,4 +116,11 @@ int dfs(t_data *data, int x, int y, int **visited);
 int validate_way(t_data *data, int x, int y);
 void restart_game(t_data *data);
 void collectibles_init(t_data *data, int wid, int hei);
+size_t	count_word_str(long nb);
+void	*allocation_str(size_t len);
+char	*if_zero(char *str);
+char	*ft_itoa(int n);
+char	*ft_strdup(const char *s);
+void	*ft_memset(void *s, int c, size_t n);
+void	*ft_memcpy(void *dest, const void *src, size_t n);
 #endif /* SO_LONG_H  */

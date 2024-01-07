@@ -43,7 +43,6 @@ void move_player(int key,t_data *data)
 
     old_x = data->player_x;
     old_y = data->player_y;
-    
     all_moves(key, data);    
     if (data->player_x < 0 || data->player_x >= data->map_wid ||
         data->player_y < 0 || data->player_y >= data->map_hei ||
@@ -53,7 +52,7 @@ void move_player(int key,t_data *data)
         data->player_y = old_y;
     }
     else if (data->map[data->player_y][data->player_x] == 'X')
-        restart_game(data);
+        exit_game(data, "You Lose");
     else if (data->map[data->player_y][data->player_x] == 'C')
     {
         data->collectible--;
@@ -70,14 +69,26 @@ int key_press(int key, t_data *data)
 {
     if (data->reached == 1)
     {
-        if (key == W)
+        if (key == W && data->map[data->player_y - 1][data->player_x] != '1')
+        {
             move_player(W, data);
-        else if (key == S)
+            data->moves++;
+        }
+        else if (key == S  && data->map[data->player_y + 1][data->player_x] != '1')
+        {
             move_player(S, data);
-        else if (key == A)
+            data->moves++;
+        }
+        else if (key == A && data->map[data->player_y][data->player_x - 1] != '1')
+        {
             move_player(A, data);
-        else if (key == D)
+            data->moves++;
+        }
+        else if (key == D && data->map[data->player_y][data->player_x + 1] != '1')
+        {
             move_player(D, data);
+            data->moves++;
+        }
     }
    if (key == ESC)
         exit_game(data, "You Exited Game");
