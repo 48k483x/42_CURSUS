@@ -33,37 +33,16 @@ int init_player(t_data *data)
     return (0);
 }
 
-void move_player(int dierection, t_data *data)
+
+void move_player(int key,t_data *data)
 {
     int old_x;
     int old_y;
 
     old_x = data->player_x;
     old_y = data->player_y;
-    if (dierection == W)
-    {
-        data->player_y--;
-        data->key = W;
-        data->press = 3;
-    }
-    else if (dierection == S)
-    {
-        data->player_y++;
-        data->key = S;
-        data->press = 4;
-    }
-    else if (dierection == A)
-    {
-        data->player_x--;
-        data->key = A;
-        data->press = 2;
-    }
-    else if (dierection == D)
-    {
-        data->player_x++;
-        data->key = D;
-        data->press = 1;
-    }
+    
+    all_moves(key, data);    
     if (data->player_x < 0 || data->player_x >= data->map_wid ||
         data->player_y < 0 || data->player_y >= data->map_hei ||
         data->map[data->player_y][data->player_x] == '1') 
@@ -85,15 +64,18 @@ void move_player(int dierection, t_data *data)
 
 int key_press(int key, t_data *data)
 {
-    if (key == W)
-        move_player(W, data);
-    else if (key == S)
-        move_player(S, data);
-    else if (key == A)
-        move_player(A, data);
-    else if (key == D)
-        move_player(D, data);
-    else if (key == ESC)
-        exit_game(data, "Quit");
+    if (data->reached == 1)
+    {
+        if (key == W)
+            move_player(W, data);
+        else if (key == S)
+            move_player(S, data);
+        else if (key == A)
+            move_player(A, data);
+        else if (key == D)
+            move_player(D, data);
+    }
+   if (key == ESC)
+        exit_game(data, "You Exited Game");
     return (0);
 }

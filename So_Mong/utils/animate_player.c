@@ -36,7 +36,8 @@ void anime_right(t_data *data)
     if (j <= 0)
     {
         data->press = 0;
-
+        data->reached = 1;
+        j = 0;
     }
 }
 
@@ -58,6 +59,7 @@ void anime_left(t_data *data)
     if (i <= 0)
     {
         data->press = 0;
+        data->reached = 1;
         i = 0;
     }
 }
@@ -80,6 +82,7 @@ void anime_up(t_data *data)
     if (i <= 0)
     {
         data->press = 0;
+        data->reached = 1;
         i = 0;
     }
 }
@@ -102,14 +105,27 @@ void anime_down(t_data *data)
     if (i <= 0)
     {
         data->press = 0;
+        data->reached = 1;
         i = 0;
     }
 }
 
-void render_anime(t_data *data, int key)
+void render_anime(t_data *data)
 {
-    if (key == D)
+    if (!data->press && data->key == D)
+         IMG(data->mlx, data->win, data->right, (data->player_x * TILE_WID + 40), data->player_y * TILE_HEI + 40);
+    if (!data->press && data->key == A)
+         IMG(data->mlx, data->win, data->left, (data->player_x * TILE_WID + 40), data->player_y * TILE_HEI + 40);
+    if (!data->press && data->key == W)
+         IMG(data->mlx, data->win, data->up, (data->player_x * TILE_WID + 40), data->player_y * TILE_HEI + 40);
+    if (!data->press && data->key == S)
+        IMG(data->mlx, data->win, data->down, (data->player_x * TILE_WID + 40), data->player_y * TILE_HEI + 40);
+    else if (data->press && data->key == D)
         anime_right(data);
-    else if (key == A)
+    else if (data->press && data->key == A)
         anime_left(data);
+    else if (data->press && data->key == W)
+        anime_up(data);
+    else if (data->press && data->key == S)
+        anime_down(data);
 }

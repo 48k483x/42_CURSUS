@@ -24,6 +24,7 @@ int init_game(t_data *data)
     collectibles_init(data, wid, hei);
     data->press = 0;
     data->key = S;
+    data->reached = 1;
     data->up = mlx_xpm_file_to_image(data->mlx,"assets/player/up.xpm", &wid, &hei);
     data->up1 = mlx_xpm_file_to_image(data->mlx,"assets/player/up1.xpm", &wid, &hei);
     data->left = mlx_xpm_file_to_image(data->mlx,"assets/player/left.xpm", &wid, &hei);
@@ -86,22 +87,7 @@ int draw_game(t_data *data)
         }
         i++;
     }
-    if (!data->press && data->key == D)
-         IMG(data->mlx, data->win, data->right, (data->player_x * TILE_WID + 40), data->player_y * TILE_HEI + 40);
-    if (!data->press && data->key == A)
-         IMG(data->mlx, data->win, data->left, (data->player_x * TILE_WID + 40), data->player_y * TILE_HEI + 40);
-    if (!data->press && data->key == W)
-         IMG(data->mlx, data->win, data->up, (data->player_x * TILE_WID + 40), data->player_y * TILE_HEI + 40);
-    if (!data->press && data->key == S)
-        IMG(data->mlx, data->win, data->down, (data->player_x * TILE_WID + 40), data->player_y * TILE_HEI + 40);
-    else if (data->press == 1)
-        anime_right(data);
-    else if (data->press == 2)
-        anime_left(data);
-    else if (data->press == 3)
-        anime_up(data);
-    else if (data->press == 4)
-        anime_down(data);
+    render_anime(data);
 
     return (1);
 }

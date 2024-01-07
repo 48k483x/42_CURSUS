@@ -81,8 +81,8 @@ char 	**add_to_map(char **map, char *new_line);
 int 	validate_map(t_data *data);
 int 	validate_map_walls(char **map, t_data *data);
 int		window_init(t_data *data);
-int 	key_press(int key, t_data *data);
-void 	move_player(int dierection, t_data *data);
+int 	key_press(int key ,t_data *data);
+void 	move_player(int key, t_data *data);
 int 	exit_game(t_data *data, char *s);
 int		error_mssg(char *s, int ERR_TYPE);
 int		draw_game(t_data *data);   // Remember To Delete This  // Or Maybe Not
@@ -92,12 +92,17 @@ int 	check_map_row_len(t_data *data);
 int 	draw_background(t_data *data);
 void 	collectible_function(char **filenames);
 int init_player(t_data *data);
-void righanime(t_data *data);
 int	check(int c);
 //void	renderplayeranim(t_data *data, int key);
 void anime_right(t_data *data);
-//void render_anime(t_data *datay);
+void render_anime(t_data *data);
 void anime_left(t_data *data);
 void anime_up(t_data *data);
 void anime_down(t_data *data);
+void move_right(t_data *data);
+void move_left(t_data *data);
+void move_up(t_data *data);
+void move_down(t_data *data);
+void all_moves(int key, t_data *data);
+
 #endif /* SO_LONG_H  */

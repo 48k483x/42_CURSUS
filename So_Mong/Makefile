@@ -6,7 +6,7 @@
 #    By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/31 11:47:08 by achahrou          #+#    #+#              #
-#    Updated: 2024/01/06 16:55:55 by achahrou         ###   ########.fr        #
+#    Updated: 2024/01/07 06:12:27 by achahrou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ FLAGS = -Wall -Wextra -Werror
 MLXFLAGS = -lmlx -framework OpenGL -framework AppKit 
 SRC = so_long.c ./utils/mapsReading.c ./utils/get_next_line_utils.c \
 		./utils/get_next_line.c  ./utils/player.c  ./utils/render_images.c \
-		./utils/animate_player.c 
+		./utils/animate_player.c ./utils/move_player.c 
 OBJ = *.o
 NAME = so_long
 
