@@ -6,7 +6,7 @@
 /*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 18:41:44 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/07 18:41:46 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/01/08 07:35:47 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,12 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 		i++;
 	}
 	return (dest);
+}
+void init_var(t_data *data)
+{
+	data->x = 0;
+	data->y = 0;
+	data->player_C = 0;
+	data->exit_C = 0;
+	data->collectible = 0;
 }

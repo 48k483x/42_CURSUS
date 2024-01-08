@@ -1,13 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mapsReading.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/08 06:43:40 by achahrou          #+#    #+#             */
+/*   Updated: 2024/01/08 07:36:24 by achahrou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../so_long.h"
 
-char **add_to_map(char **map, char *new_line)
+char	**add_to_map(char **map, char *new_line)
 {
-	int i = 0;
-	int size = 0;
+	int		i;
+	int		size;
+	char	**new_map;
 
+	i = 0;
+	size = 0;
 	while (map && map[size])
 		size++;
-	char **new_map = malloc(sizeof(char *) * (size + 2));
+	new_map = malloc(sizeof(char *) * (size + 2));
 	if (!new_map)
 		return (NULL);
 	while (i < size)
@@ -21,10 +36,10 @@ char **add_to_map(char **map, char *new_line)
 	return (new_map);
 }
 
-int validate_map_walls(char **map, t_data *data)
+int	validate_map_walls(char **map, t_data *data)
 {
-	int i;
-	int size;
+	int	i;
+	int	size;
 
 	size = 0;
 	while (map[size])
@@ -48,24 +63,26 @@ int validate_map_walls(char **map, t_data *data)
 	return (1);
 }
 
-int dfs(t_data *data, int x, int y, int **visited)
+int	dfs(t_data *data, int x, int y, int **visited)
 {
-	if (x < 0 || x >= data->map_hei || y < 0 || y >= data->map_wid ||
-		 data->map[x][y] == '1' || visited[x][y])
+	if (x < 0 || x >= data->map_hei || y < 0 || y >= data->map_wid || \
+			data->map[x][y] == '1' || visited[x][y])
 		return (0);
 	if (data->map[x][y] == 'E')
 		return (1);
 	visited[x][y] = 1;
-	if (dfs(data, x + 1, y, visited) || dfs(data, x - 1, y, visited) ||
-		 dfs(data, x, y + 1, visited) || dfs(data, x, y - 1, visited))
+	if (dfs(data, x + 1, y, visited) || dfs(data, x - 1, y, visited) || \
+			dfs(data, x, y + 1, visited) || dfs(data, x, y - 1, visited))
 		return (1);
 	return (0);
 }
-int validate_way(t_data *data, int x, int y)
+
+int	validate_way(t_data *data)
 {
-	int i;
-	int j;
-	int **visited;
+	int		i;
+	int		j;
+	int		result;
+	int		**visited;
 
 	visited = malloc(sizeof(int *) * data->map_hei);
 	if (!visited)
@@ -84,43 +101,36 @@ int validate_way(t_data *data, int x, int y)
 		}
 		i++;
 	}
-	int result = dfs(data, x, y, visited);
+	result = dfs(data, data->playerX, data->playerY, visited);
 	free_visited(data, visited);
 	return (result);
 }
 
-int validate_map(t_data *data)
+int	validate_map(t_data *data)
 {
-	int i = 0;
-	int j;
-	int player = 0;
-	int exit = 0;
-	int playerX;
-	int playerY;
-	data->collectible = 0;
-
-	while (data->map[i])
+	init_var(data);
+	while (data->map[data->x])
 	{
-		j = 0;
-		while (data->map[i][j])
+		data->y = 0;
+		while (data->map[data->x][data->y])
 		{
-			if (data->map[i][j] == 'P')
+			if (data->map[data->x][data->y] == 'P')
 			{
-				player++;
-				playerX = i;
-				playerY = j;
+				data->player_C++;
+				data->playerX = data->x;
+				data->playerY = data->y;
 			}
-			else if (data->map[i][j] == 'E')
-				exit++;
-			else if (data->map[i][j] == 'C')
+			else if (data->map[data->x][data->y] == 'E')
+				data->exit_C++;
+			else if (data->map[data->x][data->y] == 'C')
 				data->collectible++;
-			j++;
+			data->y++;
 		}
-		i++;
+		data->x++;
 	}
-	if (player != 1 || exit != 1 || data->collectible < 1 ||
-		 !validate_map_walls(data->map, data) ||
-		 !validate_way(data, playerX, playerY))
+	if (data->player_C != 1 || data->exit_C != 1 || data->collectible < 1 || \
+			!validate_map_walls(data->map, data) || \
+			!validate_way(data))
 		return (0);
 	return (1);
 }
