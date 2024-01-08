@@ -6,7 +6,7 @@
 /*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 18:41:44 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/08 07:35:47 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/01/08 08:08:01 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	}
 	return (dest);
 }
-void init_var(t_data *data)
+
+void	init_var(t_data *data)
 {
 	data->x = 0;
 	data->y = 0;

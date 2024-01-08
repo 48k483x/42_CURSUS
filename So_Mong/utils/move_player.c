@@ -6,7 +6,7 @@
 /*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 18:44:33 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/07 18:46:54 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/01/08 08:04:13 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	move_right(t_data *data)
 {
 	data->player_x++;
+	data->moves++;
 	data->key = D;
 	data->press = 1;
 	data->reached = 0;
@@ -23,6 +24,7 @@ void	move_right(t_data *data)
 void	move_left(t_data *data)
 {
 	data->player_x--;
+	data->moves++;
 	data->key = A;
 	data->press = 1;
 	data->reached = 0;
@@ -31,6 +33,7 @@ void	move_left(t_data *data)
 void	move_up(t_data *data)
 {
 	data->player_y--;
+	data->moves++;
 	data->key = W;
 	data->press = 1;
 	data->reached = 0;
@@ -39,6 +42,7 @@ void	move_up(t_data *data)
 void	move_down(t_data *data)
 {
 	data->player_y++;
+	data->moves++;
 	data->key = S;
 	data->press = 1;
 	data->reached = 0;

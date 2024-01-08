@@ -73,6 +73,12 @@ typedef struct s_mlx
 	int moves;
 	int i;
 	int j;
+	int x;
+	int y;
+	int player_C;
+	int exit_C;
+	int playerX;
+	int playerY;
 }   t_data;
 
 int		found_newline(t_list *list);
@@ -89,8 +95,8 @@ char 	**add_to_map(char **map, char *new_line);
 int 	validate_map(t_data *data);
 int 	validate_map_walls(char **map, t_data *data);
 int		window_init(t_data *data);
-int 	key_press(int key ,t_data *data);
-void 	move_player(int key, t_data *data);
+int 	key_press(int key ,t_data *d);
+void 	move_player(int key, t_data *d);
 int 	exit_game(t_data *data, char *s);
 int		error_mssg(char *s, int ERR_TYPE);
 int		draw_game(t_data *d);   // Remember To Delete This  // Or Maybe Not
@@ -115,7 +121,7 @@ void all_moves(int key, t_data *data);
 void free_visited(t_data *data, int **visited);
 int ft_strlen(char *str);
 int dfs(t_data *data, int x, int y, int **visited);
-int validate_way(t_data *data, int x, int y);
+int validate_way(t_data *data);
 void restart_game(t_data *data);
 void collectibles_init(t_data *data, int wid, int hei);
 size_t	count_word_str(long nb);
@@ -125,4 +131,5 @@ char	*ft_itoa(int n);
 char	*ft_strdup(const char *s);
 void	*ft_memset(void *s, int c, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
+void init_var(t_data *data);
 #endif /* SO_LONG_H  */
