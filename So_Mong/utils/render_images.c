@@ -6,7 +6,7 @@
 /*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 18:47:32 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/07 19:06:19 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/01/08 06:04:59 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,11 @@ int	draw_background(t_data *data)
 		while (j < data->map_wid)
 		{
 			if (data->map[i][j] == '1')
-				IMG(data->mlx, data->win, data->wall_img, j * TILE_WID, \
-					i * TILE_HEI);
+				IMG(data->mlx, data->win, data->wall_img, j * TW, \
+					i * TH);
 			else
-				IMG(data->mlx, data->win, data->empty_img, j * TILE_WID, \
-					i * TILE_HEI);
+				IMG(data->mlx, data->win, data->empty_img, j * TW, \
+					i * TH);
 			j++;
 		}
 		i++;
@@ -83,41 +83,41 @@ int	draw_background(t_data *data)
 	return (1);
 }
 
-int	draw_game(t_data *data)
+int	draw_game(t_data *d)
 {
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < data->map_hei)
+	d->i = 0;
+	while (d->i < d->map_hei)
 	{
-		j = 0;
-		while (j < data->map_wid)
+		d->j = 0;
+		while (d->j < d->map_wid)
 		{
-			if (data->map[i][j] == '0')
-				IMG(data->mlx, data->win, data->empty_img, j * TW, i * TH);
-			else if (data->map[i][j] == '1')
-				IMG(data->mlx, data->win, data->wall_img, j * TD, i * TH);
-			else if (data->map[i][j] == 'E')
-				IMG(data->mlx, data->win, data->exit_img, j * TW, i * TH + 40);
-			else if (data->map[i][j] == 'C')
-				IMG(data->mlx, data->win, \
-					data->collectible_img[data->current_frame % 6], \
-					j * TW, i * TH);
-			else if (data->map[i][j] == 'X')
-				IMG(data->mlx, data->win, data->enemy, j * TW, i * TH);
-			j++;
+			if (d->map[d->i][d->j] == '0')
+				IMG(d->mlx, d->win, d->empty_img, d->j * TW, d->i * TH);
+			else if (d->map[d->i][d->j] == '1')
+				IMG(d->mlx, d->win, d->wall_img, d->j * TW, d->i * TH);
+			else if (d->map[d->i][d->j] == 'E')
+				IMG(d->mlx, d->win, d->exit_img, d->j * TW, d->i * TH + 40);
+			else if (d->map[d->i][d->j] == 'C')
+				IMG(d->mlx, d->win, \
+					d->collectible_img[d->current_frame % 6], \
+					d->j * TW, d->i * TH);
+			else if (d->map[d->i][d->j] == 'X')
+				IMG(d->mlx, d->win, d->enemy, d->j * TW, d->i * TH);
+			d->j++;
 		}
-		i++;
+		d->i++;
 	}
-	render_anime(data);
+	render_anime(d);
 	return (1);
 }
 
 int	window_init(t_data *data)
 {
-	int window_wid = data->map_wid * TILE_WID;
-	int window_hei = data->map_hei * TILE_HEI;
+	int	window_wid;
+	int	window_hei;
+
+	window_wid = data->map_wid * TW;
+	window_hei = data->map_hei * TH;
 	data->mlx = mlx_init();
 	data->win = WIN(data->mlx, window_wid, window_hei, "So Long");
 	if (!data->mlx || !data->win)

@@ -13,8 +13,8 @@
 # include <unistd.h>
 # include <stdbool.h>
 
-# define TILE_WID 106
-# define TILE_HEI 106
+# define TW 106
+# define TH 106
 # define ANIMATION_SPEED 100
 # define WINDOW_WID 1481
 # define WINDOW_HEI 635
@@ -71,7 +71,8 @@ typedef struct s_mlx
 	int	reached;
 	int frame_counter;
 	int moves;
-
+	int i;
+	int j;
 }   t_data;
 
 int		found_newline(t_list *list);
@@ -92,7 +93,7 @@ int 	key_press(int key ,t_data *data);
 void 	move_player(int key, t_data *data);
 int 	exit_game(t_data *data, char *s);
 int		error_mssg(char *s, int ERR_TYPE);
-int		draw_game(t_data *data);   // Remember To Delete This  // Or Maybe Not
+int		draw_game(t_data *d);   // Remember To Delete This  // Or Maybe Not
 int		init_game(t_data *data);
 int 	standar_animation(t_data *data);
 int 	check_map_row_len(t_data *data);
