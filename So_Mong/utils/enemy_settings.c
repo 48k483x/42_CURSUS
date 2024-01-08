@@ -6,7 +6,7 @@
 /*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 18:41:44 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/08 08:08:01 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/01/08 08:45:58 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,28 @@ void	init_var(t_data *data)
 {
 	data->x = 0;
 	data->y = 0;
-	data->player_C = 0;
-	data->exit_C = 0;
+	data->player_c = 0;
+	data->exit_c = 0;
 	data->collectible = 0;
+}
+
+char	*ft_strnstr(const char *big, const char *little, size_t len)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	if (little[i] == '\0')
+		return ((char *)big);
+	while (i < len && big[i])
+	{
+		while ((i + j) < len && big[i + j] == little[j] && big[i + j])
+			j++;
+		if (little[j] == '\0')
+			return ((char *)big + i);
+		j = 0;
+		i++;
+	}
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 06:43:40 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/08 07:36:24 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/01/08 08:51:27 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	validate_way(t_data *data)
 		}
 		i++;
 	}
-	result = dfs(data, data->playerX, data->playerY, visited);
+	result = dfs(data, data->playerx, data->playery, visited);
 	free_visited(data, visited);
 	return (result);
 }
@@ -116,19 +116,19 @@ int	validate_map(t_data *data)
 		{
 			if (data->map[data->x][data->y] == 'P')
 			{
-				data->player_C++;
-				data->playerX = data->x;
-				data->playerY = data->y;
+				data->player_c++;
+				data->playerx = data->x;
+				data->playery = data->y;
 			}
 			else if (data->map[data->x][data->y] == 'E')
-				data->exit_C++;
+				data->exit_c++;
 			else if (data->map[data->x][data->y] == 'C')
 				data->collectible++;
 			data->y++;
 		}
 		data->x++;
 	}
-	if (data->player_C != 1 || data->exit_C != 1 || data->collectible < 1 || \
+	if (data->player_c != 1 || data->exit_c != 1 || data->collectible < 1 || \
 			!validate_map_walls(data->map, data) || \
 			!validate_way(data))
 		return (0);
