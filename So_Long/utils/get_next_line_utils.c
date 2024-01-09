@@ -6,7 +6,7 @@
 /*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 12:57:09 by achahrou          #+#    #+#             */
-/*   Updated: 2023/12/31 12:38:19 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/01/07 18:42:37 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	len_to_newline(t_list *list)
 		{
 			if (list->content[i] == '\n')
 			{
-				//++len;
 				return (len);
 			}
 			++len;
@@ -82,7 +81,6 @@ void	copy_str(t_list *list, char *str)
 		{
 			if (list->content[i] == '\n')
 			{
-				//str[j++] = '\n';
 				str[j] = '\0';
 				return ;
 			}
