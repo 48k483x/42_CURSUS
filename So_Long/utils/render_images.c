@@ -103,6 +103,8 @@ int	draw_game(t_data *d)
 					d->j * TW, d->i * TH);
 			else if (d->map[d->i][d->j] == 'X')
 				IMG(d->mlx, d->win, d->enemy, d->j * TW, d->i * TH);
+            else
+                exit_game(data, "An Different Letter In The Map");
 			d->j++;
 		}
 		d->i++;
