@@ -6,7 +6,7 @@ int
 main()
 {
     char *cmd[] = {"ls", NULL};
-    fork();
+    //fork();
     printf("It's Me Achahrou -> PID -> %d\n", getpid());
     fflush(stdout);
     execvp(cmd[0], cmd);
