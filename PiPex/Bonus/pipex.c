@@ -6,19 +6,19 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 10:39:31 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/16 15:21:47 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:45:49 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	openf_check(t_data *pipex, char *f1, char *f2)
+void openf_check(t_data *pipex, char *f1, char *f2)
 {
 	pipex->fd2 = open(f2, O_WRONLY | O_CREAT | O_TRUNC);
-	if (pipex->fd2)
+    if (pipex->fd2 < 0)
 		exiti("Error In Open File For Writing\n");
 	pipex->fd1 = open(f1, O_RDONLY);
-	if (pipex->fd1)
+    if (pipex->fd1 < 0)
 		exiti("Error In Open File For Reading\n");
 	if (access(f1, R_OK) < 0)
 		exiti("Error Reading File\n");
