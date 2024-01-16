@@ -6,21 +6,21 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 10:40:16 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/14 11:20:20 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/01/16 15:10:18 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void    exiti(char *s)
+void	exiti(char *s)
 {
-    perror(s);
+	perror(s);
 	exit(1);
 }
 
-int ft_strlen(char *s)
+int	ft_strlen(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i])
@@ -28,11 +28,11 @@ int ft_strlen(char *s)
 	return (i);
 }
 
-char    *str_concat(char *s1, char *s2)
+char	*str_concat(char *s1, char *s2)
 {
-	char    *concat;
-	int     i;
-	int     j;
+	char	*concat;
+	int		i;
+	int		j;
 
 	i = 0;
 	j = 0;
