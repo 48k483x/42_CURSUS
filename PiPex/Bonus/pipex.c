@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 10:39:31 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/16 15:45:49 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/01/16 15:59:00 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void openf_check(t_data *pipex, char *f1, char *f2)
 {
-	pipex->fd2 = open(f2, O_WRONLY | O_CREAT | O_TRUNC);
+	pipex->fd2 = open(f2, O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
     if (pipex->fd2 < 0)
 		exiti("Error In Open File For Writing\n");
 	pipex->fd1 = open(f1, O_RDONLY);
