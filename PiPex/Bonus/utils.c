@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 10:40:16 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/16 15:10:18 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/01/17 11:18:56 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,48 @@ char	*str_concat(char *s1, char *s2)
 		i++;
 	}
 	return (concat);
+}
+
+char	*ft_strnstr(const char *big, const char *little, size_t len)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	if (little[i] == '\0')
+		return ((char *)big);
+	while (i < len && big[i])
+	{
+		while ((i + j) < len && big[i + j] == little[j] && big[i + j])
+			j++;
+		if (little[j] == '\0')
+			return ((char *)big + i);
+		j = 0;
+		i++;
+	}
+	return (NULL);
+}
+
+void	handle_heredoc(t_data *pipex, char *limiter)
+{
+	pipex->line = NULL;
+	pipex->fd_hd = open("here_doc", O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (pipex->fd_hd < 0)
+		exiti("Error In Open fd_hd For Writing\n");
+	while ((pipex->line = get_next_line(0)))
+	{
+		if (ft_strcmp(pipex->line, limiter) == 0)
+		break;
+		write(pipex->fd_hd, pipex->line, ft_strlen(pipex->line));
+	}
+	close(pipex->fd_hd);
+	pipex->infile = "here_doc";
+	/*pipex->fd1 = open("here_doc", O_RDONLY);
+    if (pipex->fd1 < 0) {
+        perror("Error opening here_doc file");
+        exit(EXIT_FAILURE);
+    }*/
 }
 /*
 	 We splited to the utils part

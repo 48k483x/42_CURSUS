@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:16:44 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/16 15:18:56 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/01/17 10:36:05 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include "get_next_line.h"
 
 typedef struct s_pipex
 {
@@ -32,6 +33,9 @@ typedef struct s_pipex
 	char	*spath;
 	int		cmd_nums;
 	int		i;
+	int		fd_hd;
+	char	*line;
+	char	*infile;
 }	t_data;
 
 /* split Functions */
@@ -45,4 +49,13 @@ void	exiti(char *s);
 char	*str_concat(char *s1, char *s2);
 int		ft_strlen(char *s);
 
+/* Check Path Envirenment char **path */
+char	*ft_strnstr(const char *big, const char *little, size_t len);
+
+/* Free T */
+void	freex(char **s);
+
+/* herd_doc */
+void	handle_heredoc(t_data *pipex, char *limiter);
+int		ft_strcmp(const char *s1, const char *s2);
 #endif // PIPEX_H
