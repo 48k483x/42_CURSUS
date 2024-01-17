@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:16:44 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/17 10:36:05 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/01/17 18:37:10 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ typedef struct s_pipex
 	int		fd_hd;
 	char	*line;
 	char	*infile;
+	char 	**pathh;
+	char	*env_path;
+	int		j;
 }	t_data;
 
 /* split Functions */
@@ -53,7 +56,7 @@ int		ft_strlen(char *s);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 
 /* Free T */
-void	freex(char **s);
+void	freex(t_data *pipex);
 
 /* herd_doc */
 void	handle_heredoc(t_data *pipex, char *limiter);

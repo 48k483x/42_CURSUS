@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 10:39:31 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/17 17:56:47 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/01/17 18:38:42 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,26 +61,28 @@ void	parent_p(t_data *pipex)
 
 void	check_path(t_data *pipex, char *p1)
 {
-	int i = 0;
+	char *potential_path;
+
+	pipex->j = 0;
 	if (access(p1, X_OK) == 0)
 		pipex->path = p1;
 	else
 	{
-		char *env_path = getenv("PATH");
-		char **path = ft_split(env_path, ':');
-		while (path[i])
+		pipex->env_path = getenv("PATH");
+		pipex->pathh = ft_split(pipex->env_path, ':');
+		while (pipex->pathh[pipex->j])
 		{
-			char *potential_path = str_concat(path[i], "/");
+			potential_path = str_concat(pipex->pathh[pipex->j], "/");
 			potential_path = str_concat(potential_path, p1);
 			if (access(potential_path, X_OK) == 0)
 			{
 				pipex->path = potential_path;
 				break;
 			}
-			i++;
+			pipex->j++;
 			free(potential_path);
 		}
-		freex(path);
+		freex(pipex);
 		if (pipex->path == NULL)
 			exiti("Error In Path\n");
 	}

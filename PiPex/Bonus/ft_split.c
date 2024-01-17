@@ -81,17 +81,17 @@ char	**ft_split(char const *s, char c)
 	return (tab);
 }
 
-void	freex(char **s)
+void	freex(t_data *pipex)
 {
 	int	i;
 
 	i = 0;
-	while (s[i])
+	while (pipex->pathh[i])
 	{
-		free(s[i]);
+		free(pipex->pathh[i]);
 		i++;
 	}
-	free(s);
+	free(pipex->pathh);
 }
 
 int	ft_strcmp(const char *s1, const char *s2)

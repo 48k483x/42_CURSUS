@@ -85,7 +85,8 @@ void	handle_heredoc(t_data *pipex, char *limiter)
 		if (ft_strcmp(pipex->line, limiter) == 0)
 		break;
 		write(pipex->fd_hd, pipex->line, ft_strlen(pipex->line));
-		write(pipex->fd_hd, "\n", 1);
+		//write(pipex->fd_hd, "\n", 1);
+		//write(pipex->fd_hd, "\n", 1);
 	}
 	close(pipex->fd_hd);
 	pipex->infile = "here_doc";
