@@ -85,14 +85,10 @@ void	handle_heredoc(t_data *pipex, char *limiter)
 		if (ft_strcmp(pipex->line, limiter) == 0)
 		break;
 		write(pipex->fd_hd, pipex->line, ft_strlen(pipex->line));
+		write(pipex->fd_hd, "\n", 1);
 	}
 	close(pipex->fd_hd);
 	pipex->infile = "here_doc";
-	/*pipex->fd1 = open("here_doc", O_RDONLY);
-    if (pipex->fd1 < 0) {
-        perror("Error opening here_doc file");
-        exit(EXIT_FAILURE);
-    }*/
 }
 /*
 	 We splited to the utils part
