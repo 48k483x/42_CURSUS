@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 10:39:31 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/17 11:17:06 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/01/17 17:56:47 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	openf_check(t_data *pipex, char *f1, char *f2)
 		exiti("Error Writing File\n");
 }
 
-void	child_p(t_data *pipex, int ac)
+void	child_p(t_data *pipex, int ac, char *output_file)
 {
 	if (ft_strcmp(pipex->infile, "here_doc") == 0)
 	{
@@ -40,6 +40,10 @@ void	child_p(t_data *pipex, int ac)
 		dup2(pipex->fd[1], 1);
 	else
 	{
+		pipex->fd2 = open(output_file, O_WRONLY | O_CREAT | \
+							O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+        if (pipex->fd2 < 0)
+            exiti("Error In Open File For Writing\n");
 		dup2(pipex->fd2, 1);
 		close(pipex->fd2);
 	}
@@ -104,7 +108,7 @@ int	main(int ac, char **av)
 		if (pipex.pid < 0)
 			exiti("Fork Error\n");
 		else if (pipex.pid == 0)
-			child_p(&pipex, ac);
+			child_p(&pipex, ac, av[ac - 1]);
 		else
 			parent_p(&pipex);
 		pipex.i++;
