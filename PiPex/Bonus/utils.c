@@ -76,6 +76,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 
 void	handle_heredoc(t_data *pipex, char *limiter)
 {
+	printf("pipex->infile: %s\n", pipex->infile);
 	pipex->line = NULL;
 	pipex->fd_hd = open("here_doc", O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (pipex->fd_hd < 0)
@@ -83,7 +84,7 @@ void	handle_heredoc(t_data *pipex, char *limiter)
 	while ((pipex->line = get_next_line(0)))
 	{
 		if (ft_strcmp(pipex->line, limiter) == 0)
-		break;
+			break ;
 		write(pipex->fd_hd, pipex->line, ft_strlen(pipex->line));
 		//write(pipex->fd_hd, "\n", 1);
 		//write(pipex->fd_hd, "\n", 1);

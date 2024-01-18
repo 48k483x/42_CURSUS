@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:16:44 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/17 18:37:10 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/01/18 11:27:44 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ void	freex(t_data *pipex);
 
 /* herd_doc */
 void	handle_heredoc(t_data *pipex, char *limiter);
-int		ft_strcmp(const char *s1, const char *s2);
+int		ft_strcmp(char *s1, char *s2);
 #endif // PIPEX_H

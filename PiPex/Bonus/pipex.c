@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 10:39:31 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/17 18:38:42 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/01/18 12:06:33 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,30 @@ void	openf_check(t_data *pipex, char *f1, char *f2)
 
 void	child_p(t_data *pipex, int ac, char *output_file)
 {
-	if (ft_strcmp(pipex->infile, "here_doc") == 0)
+	printf("\n pipex->infile: %s\n", pipex->infile);
+	if (ft_strcmp(pipex->infile,"here_doc") != 0)
 	{
-		pipex->fd1 = open("here_doc", O_RDONLY);
-		if (pipex->fd1 < 0)
-			exiti("Error In Open File For Reading\n");
+		dup2(pipex->fd1, 0);
+		write(1, "\nim in !=\n", 10);
 	}
-	dup2 (pipex->fd1, 0);
+	else if (ft_strcmp(pipex->infile,"here_doc") == 0)
+	{
+		pipex->fd_hd = open("here_doc", O_RDONLY);
+		if (pipex->fd_hd < 0)
+			exiti("Error In Open File For Reading\n");
+		write(1, "\nim in ==\n", 10);
+		dup2 (pipex->fd_hd, 0);
+	}
 	if (pipex->i != ac - 2)
 		dup2(pipex->fd[1], 1);
 	else
 	{
-		pipex->fd2 = open(output_file, O_WRONLY | O_CREAT | \
-							O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
-        if (pipex->fd2 < 0)
-            exiti("Error In Open File For Writing\n");
-		dup2(pipex->fd2, 1);
-		close(pipex->fd2);
+			pipex->fd2 = open(output_file, O_TRUNC | O_CREAT | \
+								O_WRONLY, S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH);
+			if (pipex->fd2 < 0)
+				exiti("Error In Open File For Writing\n");
+			dup2(pipex->fd2, 1);
+			close(pipex->fd2);
 	}
 	close(pipex->fd[0]);
 	execve(pipex->path, pipex->cmd, NULL);
@@ -88,18 +95,37 @@ void	check_path(t_data *pipex, char *p1)
 	}
 }
 
+void	check_heredoc(t_data *pipex, char **av, int ac)
+{
+	if (ft_strcmp(av[1], "here_doc") == 0)
+    {
+        handle_heredoc(pipex, av[2]);
+		pipex->i++;
+    }
+	else
+	{
+		openf_check(pipex, av[1], av[ac -1]);
+		pipex->infile = av[1];
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_data	pipex;
 
 	pipex.i = 2;
-	if (ft_strcmp(av[1], "here_doc") == 0)
+	pipex.infile = NULL;
+	/*if (ft_strcmp(av[1], "here_doc") == 0)
 	{
 		handle_heredoc(&pipex, av[2]);
 		pipex.i++;
 	}
 	else
+	{
 		openf_check(&pipex, av[1], av[ac -1]);
+		pipex.infile = av[1];
+	}*/
+	check_heredoc(&pipex, av, ac);
 	while (pipex.i < ac - 1)
 	{
 		pipex.cmd = ft_split(av[pipex.i], ' ');
