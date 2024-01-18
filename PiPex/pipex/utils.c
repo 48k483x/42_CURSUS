@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achahrou <abkabex@student.42.fr>            +#+  +:+       +#+        */
+/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 10:40:16 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/17 11:18:56 by achahrou          ###   ########.fr       */
+/*   Created: 2024/01/18 19:39:10 by achahrou          #+#    #+#             */
+/*   Updated: 2024/01/18 19:40:30 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,13 +81,12 @@ void	handle_heredoc(t_data *pipex, char *limiter)
 	pipex->fd_hd = open("here_doc", O_CREAT | O_RDWR | O_TRUNC, 0644);
 	if (pipex->fd_hd < 0)
 		exiti("Error In Open fd_hd For Writing\n");
-	while ((pipex->line = get_next_line(0)))
+	pipex->line = get_next_line(0);
+	while (pipex->line)
 	{
 		if (ft_strcmp(pipex->line, limiter) == 0)
 			break ;
 		write(pipex->fd_hd, pipex->line, ft_strlen(pipex->line));
-		//write(pipex->fd_hd, "\n", 1);
-		//write(pipex->fd_hd, "\n", 1);
 	}
 	close(pipex->fd_hd);
 	pipex->infile = "here_doc";
