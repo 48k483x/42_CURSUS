@@ -6,7 +6,7 @@
 /*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 19:39:10 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/18 19:40:30 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/01/18 20:39:29 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	handle_heredoc(t_data *pipex, char *limiter)
 		if (ft_strcmp(pipex->line, limiter) == 0)
 			break ;
 		write(pipex->fd_hd, pipex->line, ft_strlen(pipex->line));
+		pipex->line = get_next_line(0);
 	}
 	close(pipex->fd_hd);
 	pipex->infile = "here_doc";
