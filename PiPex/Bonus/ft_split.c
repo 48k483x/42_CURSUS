@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achahrou <abkabex@student.42.fr>            +#+  +:+       +#+        */
+/*   By: achahrou <achahrou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 11:19:41 by achahrou          #+#    #+#             */
 /*   Updated: 2024/01/17 10:33:12 by achahrou          ###   ########.fr       */

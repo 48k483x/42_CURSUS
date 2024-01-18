@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 10:39:31 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/18 13:05:14 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/01/18 08:25:49 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,8 @@ void	child_p(t_data *pipex, int ac, char *output_file)
 
 void	parent_p(t_data *pipex)
 {
-	//wait(NULL);
-	close(pipex->fd[1]);
 	pipex->fd1 = pipex->fd[0];
+	close(pipex->fd[0]);
 }
 
 void	check_path(t_data *pipex, char *p1)
@@ -129,6 +128,10 @@ int	main(int ac, char **av)
 			child_p(&pipex, ac, av[ac - 1]);
 		else
 			parent_p(&pipex);
+		close(pipex.fd[0]);
+		close(pipex.fd[1]);
 		pipex.i++;
 	}
+	while (wait(NULL) > 0)
+		;
 }
