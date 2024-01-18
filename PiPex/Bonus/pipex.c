@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 10:39:31 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/18 12:06:33 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/01/18 13:05:14 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	child_p(t_data *pipex, int ac, char *output_file)
 
 void	parent_p(t_data *pipex)
 {
-	wait(NULL);
+	//wait(NULL);
 	close(pipex->fd[1]);
 	pipex->fd1 = pipex->fd[0];
 }
@@ -115,23 +115,13 @@ int	main(int ac, char **av)
 
 	pipex.i = 2;
 	pipex.infile = NULL;
-	/*if (ft_strcmp(av[1], "here_doc") == 0)
-	{
-		handle_heredoc(&pipex, av[2]);
-		pipex.i++;
-	}
-	else
-	{
-		openf_check(&pipex, av[1], av[ac -1]);
-		pipex.infile = av[1];
-	}*/
 	check_heredoc(&pipex, av, ac);
 	while (pipex.i < ac - 1)
 	{
 		pipex.cmd = ft_split(av[pipex.i], ' ');
 		check_path(&pipex, pipex.cmd[0]);
 		if (pipe(pipex.fd) < 0)
-			exiti("Fork Error\n");
+			exiti("Pipe Error\n");
 		pipex.pid = fork();
 		if (pipex.pid < 0)
 			exiti("Fork Error\n");
