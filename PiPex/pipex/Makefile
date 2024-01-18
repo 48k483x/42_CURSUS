@@ -1,6 +1,6 @@
 FLAGS = -Wall -Wextra -Werror
 SRC = ft_split.c pipex.c utils.c \
-		 get_next_line.c get_next_line_utils.c
+		 get_next_line.c get_next_line_utils.c here_doc_main_check.c
 OBJ = *.o
 NAME = pipex
 

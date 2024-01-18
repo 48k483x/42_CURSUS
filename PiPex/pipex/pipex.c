@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 10:39:31 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/18 19:51:53 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/01/18 20:45:07 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,13 @@ void	openf_check(t_data *pipex, char *f1, char *f2)
 
 void	child_p(t_data *pipex, int ac, char *output_file)
 {
-	printf("\n pipex->infile: %s\n", pipex->infile);
 	if (ft_strcmp(pipex->infile, "here_doc") != 0)
-	{
 		dup2(pipex->fd1, 0);
-		write(1, "\nim in !=\n", 10);
-	}
 	else if (ft_strcmp(pipex->infile, "here_doc") == 0)
 	{
 		pipex->fd_hd = open("here_doc", O_RDONLY);
 		if (pipex->fd_hd < 0)
 			exiti("Error In Open File For Reading\n");
-		write(1, "\nim in ==\n", 10);
 		dup2 (pipex->fd_hd, 0);
 	}
 	if (pipex->i != ac - 2)
@@ -91,20 +86,6 @@ void	check_path(t_data *pipex, char *p1)
 		freex(pipex);
 		if (pipex->path == NULL)
 			exiti("Error In Path\n");
-	}
-}
-
-void	check_heredoc(t_data *pipex, char **av, int ac)
-{
-	if (ft_strcmp(av[1], "here_doc") == 0)
-	{
-		handle_heredoc(pipex, av[2]);
-		pipex->i++;
-	}
-	else
-	{
-		openf_check(pipex, av[1], av[ac -1]);
-		pipex->infile = av[1];
 	}
 }
 

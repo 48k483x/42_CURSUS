@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:16:44 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/18 19:48:27 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/01/18 20:52:22 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,8 @@ void	freex(t_data *pipex);
 
 /* herd_doc */
 void	handle_heredoc(t_data *pipex, char *limiter);
+void	check_heredoc(t_data *pipex, char **av, int ac);
 int		ft_strcmp(char *s1, char *s2);
+/* open and read files f1 and f2 */
+void	openf_check(t_data *pipex, char *f1, char *f2);
 #endif // PIPEX_H

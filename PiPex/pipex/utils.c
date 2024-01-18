@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 19:39:10 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/18 20:39:29 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/01/18 20:46:28 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,24 +74,7 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	return (NULL);
 }
 
-void	handle_heredoc(t_data *pipex, char *limiter)
-{
-	printf("pipex->infile: %s\n", pipex->infile);
-	pipex->line = NULL;
-	pipex->fd_hd = open("here_doc", O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (pipex->fd_hd < 0)
-		exiti("Error In Open fd_hd For Writing\n");
-	pipex->line = get_next_line(0);
-	while (pipex->line)
-	{
-		if (ft_strcmp(pipex->line, limiter) == 0)
-			break ;
-		write(pipex->fd_hd, pipex->line, ft_strlen(pipex->line));
-		pipex->line = get_next_line(0);
-	}
-	close(pipex->fd_hd);
-	pipex->infile = "here_doc";
-}
+
 /*
 	 We splited to the utils part
 	 exiti(You Custom Error Messg);
