@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
+/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 10:39:31 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/19 06:39:40 by abkabex          ###   ########.fr       */
+/*   Created: 2024/01/19 15:14:36 by achahrou          #+#    #+#             */
+/*   Updated: 2024/01/19 15:14:38 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,13 @@ so the input of the next cmd will be fd1, that is
 the read end of the pipe , cause we alrady did in our code 
 if its not the last redirect the stdout to fd[1] that is the 
 write end of the pip */
+
 void	parent_p(t_data *pipex)
 {
 	close(pipex->fd[1]);
 	pipex->fd1 = pipex->fd[0];
 }
+
 /* its just an function to check path for the command,
    we get the env variable using getenv();
    getenv("PATH") is used to get the value of the PATH 
@@ -114,6 +116,7 @@ void	check_path(t_data *pipex, char *p1)
 			exiti("Error In Path\n");
 	}
 }
+
 /* The main function, where everything start hahaha */
 int	main(int ac, char **av)
 {

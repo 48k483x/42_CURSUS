@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
+/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/18 19:39:10 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/19 03:27:06 by abkabex          ###   ########.fr       */
+/*   Created: 2024/01/19 15:13:56 by achahrou          #+#    #+#             */
+/*   Updated: 2024/01/19 15:14:00 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (NULL);
 }
-
 
 /*
 	 We splited to the utils part
