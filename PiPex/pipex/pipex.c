@@ -6,12 +6,17 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 10:39:31 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/19 04:10:47 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/01/19 06:39:40 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
+/* 
+This function opens the input and output files.
+checks if the files can be opened for RD and WR,
+and if not, it exiti() lia mn lprogram with an 
+error message.
+*/
 void	openf_check(t_data *pipex, char *f1, char *f2)
 {
 	pipex->fd2 = open(f2, O_WRONLY | O_CREAT | O_TRUNC, \
@@ -27,6 +32,16 @@ void	openf_check(t_data *pipex, char *f1, char *f2)
 		exiti("Error Writing File\n");
 }
 
+/* this function is for the child process, so its when 
+   the pid == 0, it check first if its an here_doc, if 
+   its, it will redirect the stdin (0) to the here_doc
+   file, if its not, it will do the same thing with the
+   fd1 of the file f1, then it check if its not the last
+   cmd, then it duplicate the stdout to the RD fd of the 
+   pipe, if it's the last, then we redirect stdout to the
+   output file, then we close the RD fd of the pipe, then
+   we call execve to execute the cmd, if there is an error 
+   with the command it will just exit */
 void	child_p(t_data *pipex, int ac, char *output_file)
 {
 	if (ft_strcmp(pipex->infile, "here_doc") != 0)
@@ -53,13 +68,24 @@ void	child_p(t_data *pipex, int ac, char *output_file)
 	execve(pipex->path, pipex->cmd, NULL);
 	exit(EXIT_FAILURE);
 }
-
+/* i close the write end of the pipe, then i redirect
+the input to the read end of the pipe for the next command
+so the input of the next cmd will be fd1, that is 
+the read end of the pipe , cause we alrady did in our code 
+if its not the last redirect the stdout to fd[1] that is the 
+write end of the pip */
 void	parent_p(t_data *pipex)
 {
 	close(pipex->fd[1]);
 	pipex->fd1 = pipex->fd[0];
 }
-
+/* its just an function to check path for the command,
+   we get the env variable using getenv();
+   getenv("PATH") is used to get the value of the PATH 
+   environment variable. The PATH environment variable 
+   is a list of directories where the system looks for 
+   executables when a command is run. then we strat checking
+   if its it the right path of the command then store it*/
 void	check_path(t_data *pipex, char *p1)
 {
 	if (p1 == NULL)
@@ -88,7 +114,7 @@ void	check_path(t_data *pipex, char *p1)
 			exiti("Error In Path\n");
 	}
 }
-
+/* The main function, where everything start hahaha */
 int	main(int ac, char **av)
 {
 	t_data	pipex;
