@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 10:39:31 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/18 20:45:07 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/01/19 04:10:47 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void	parent_p(t_data *pipex)
 
 void	check_path(t_data *pipex, char *p1)
 {
-	char	*potential_path;
-
+	if (p1 == NULL)
+		exiti("Error In Command\n");
 	pipex->j = 0;
 	if (access(p1, X_OK) == 0)
 		pipex->path = p1;
@@ -73,15 +73,15 @@ void	check_path(t_data *pipex, char *p1)
 		pipex->pathh = ft_split(pipex->env_path, ':');
 		while (pipex->pathh[pipex->j])
 		{
-			potential_path = str_concat(pipex->pathh[pipex->j], "/");
-			potential_path = str_concat(potential_path, p1);
-			if (access(potential_path, X_OK) == 0)
+			pipex->potential_path = str_concat(pipex->pathh[pipex->j], "/");
+			pipex->potential_path = str_concat(pipex->potential_path, p1);
+			if (access(pipex->potential_path, X_OK) == 0)
 			{
-				pipex->path = potential_path;
+				pipex->path = pipex->potential_path;
 				break ;
 			}
 			pipex->j++;
-			free(potential_path);
+			free(pipex->potential_path);
 		}
 		freex(pipex);
 		if (pipex->path == NULL)

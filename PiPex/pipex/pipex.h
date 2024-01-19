@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 15:16:44 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/18 20:52:22 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/01/19 04:11:29 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_pipex
 	char	*infile;
 	char	**pathh;
 	char	*env_path;
+	char 	*potential_path;
 	int		j;
 }	t_data;
 
