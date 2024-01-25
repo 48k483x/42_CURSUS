@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 10:39:31 by achahrou          #+#    #+#             */
-/*   Updated: 2024/01/18 08:25:49 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/01/19 03:11:19 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int	main(int ac, char **av)
 	while (pipex.i < ac - 1)
 	{
 		pipex.cmd = ft_split(av[pipex.i], ' ');
-		check_path(&pipex, pipex.cmd[0]);
+			check_path(&pipex, pipex.cmd[0]);
 		if (pipe(pipex.fd) < 0)
 			exiti("Pipe Error\n");
 		pipex.pid = fork();
