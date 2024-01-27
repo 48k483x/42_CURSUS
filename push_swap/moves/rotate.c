@@ -1,57 +1,42 @@
-#include "push_swap.h"
-
-void	ft_lstadd_back(stack **ab, stack *new)
-{
-	stack	*current;
-
-	current = *ab;
-	if (*ab == NULL)
-	{
-		*ab = new;
-		return ;
-	}
-	while (current->next != NULL)
-		current = current->next;
-	current->next = new;
-    current->next->next = NULL;
-}
+#include "../push_swap.h"
 
 void    ra(stack **a)
 {
-    stack *new;
-    stack *old_head;
+    stack *last;
+    stack *current;
 
     if (!(*a) || !(*a)->next)
         return ;
-    new = malloc(sizeof(stack));
-    if (!new) 
-        return ;
-    old_head = (*a);
-    new->data = (*a)->data;
-    ft_lstadd_back(a, new);
-    (*a) = (*a)->next;
-    free(old_head);
+    last = (*a);
+    *a = (*a)->next;
+    current = (*a);
+    while (current->next)
+        current = current->next;
+    current->next = last;
+    last->next = NULL;
+    write(1, "ra\n", 3);
 }
 
 void    rb(stack **b)
 {
-    stack *new;
-    stack *old_head;
+    stack *last;
+    stack *current;
 
     if (!(*b) || !(*b)->next)
         return ;
-    new = malloc(sizeof(stack));
-    if (!new) 
-        return ;
-    old_head = (*b);
-    new->data = (*b)->data;
-    ft_lstadd_back(b, new);
-    (*b) = (*b)->next;
-    free(old_head);
+    last = (*b);
+    *b = (*b)->next;
+    current = (*b);
+    while (current->next)
+        current = current->next;
+    current->next = last;
+    last->next = NULL;
+    write(1, "rb\n", 3);
 }
 
 void    rr(stack **a, stack **b)
 {
     ra(a);
     rb(b);
+    write(1, "rr\n", 3);
 }

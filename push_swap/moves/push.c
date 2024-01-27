@@ -1,4 +1,4 @@
-#include "push_swap.h" 
+#include "../push_swap.h" 
 
 void    pa(stack **a, stack **b)
 {
@@ -11,6 +11,7 @@ void    pa(stack **a, stack **b)
         (*a) = (*b);
         (*b) = tmp;
     }
+    write(1, "pa\n", 3);
 }
 
 void    pb(stack **a, stack **b)
@@ -24,4 +25,5 @@ void    pb(stack **a, stack **b)
         (*b) = (*a);
         (*a) = tmp;
     }
+    write(1, "pb\n", 3);
 }
