@@ -29,17 +29,35 @@ int *av_to_tab(int ac, char **av)
     return (tab);
 }
 
-void    fill_stack(stack **a, int ac, char **av)
-{
-    int *tab;
-    int i;
+// void    fill_stack(stack **a, int ac, char **av)
+// {
+//     int *tab;
+//     int i;
 
-    tab = av_to_tab(ac, av);
-    input_check(ac, tab);
-    i = ac;
+//     tab = av_to_tab(ac, av);
+//     input_check(ac, tab);
+//     i = ac;
+//     while (i > 0)
+//     {
+//         ft_lstadd_front(a, ft_lstnew(tab[i]));
+//         i--;
+//     }
+// }
+void fill_stack(stack **a, int ac, char **av)
+{
+    int i = ac - 1;
+
+    input_check(ac, av_to_tab(ac, av));
     while (i > 0)
     {
-        ft_lstadd_front(a, ft_lstnew(tab[i]));
+        stack *new_node = malloc(sizeof(stack));
+        if (new_node == NULL)
+            exit_with_message("Error In Allocation\n");
+
+        new_node->data = atoi(av[i]);
+        new_node->next = *a;
+        *a = new_node;
+
         i--;
     }
 }

@@ -22,6 +22,7 @@ char	*ft_itoa(int n);
 /* function to add */
 void	ft_lstadd_front(stack **ab, stack *new);
 stack	*ft_lstnew(int content);
+stack	*ft_lstlast(stack *lst);
 
 /* fill the stack functions */
 int *av_to_tab(int ac, char **av);
@@ -40,7 +41,7 @@ void    exit_with_message(char *s);
 
 /* sort there random nums */
 void    sort_three(stack **a);
-void    sort_five(stack **a);
+void    sort_five(stack **a, stack **b);
 
 /* moves*/
 void    pa(stack **a, stack **b);

@@ -1,21 +1,50 @@
 #include "../push_swap.h"
 
-void    ra(stack **a)
+stack	*ft_lstlast(stack *lst)
 {
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
+}
+
+void ra(stack **a)
+{
+    stack *first;
     stack *last;
-    stack *current;
 
     if (!(*a) || !(*a)->next)
-        return ;
-    last = (*a);
+        return;
+
+    first = *a;
     *a = (*a)->next;
-    current = (*a);
-    while (current->next)
-        current = current->next;
-    current->next = last;
-    last->next = NULL;
+    first->next = NULL;
+
+    last = *a;
+    while (last->next != NULL)
+        last = last->next;
+
+    last->next = first;
+
     write(1, "ra\n", 3);
 }
+
+
+/*int	ra(stack **a)
+{
+	stack	*head;
+	stack	*tail;
+
+	if (!(*a) || !(*a)->next)
+        return ;
+	head = *a;
+	tail = ft_lstlast(head);
+	*a = head->next;
+	head->next = NULL;
+	tail->next = head;
+	return (0);
+}*/
 
 void    rb(stack **b)
 {
