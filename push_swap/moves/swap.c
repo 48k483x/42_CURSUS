@@ -22,8 +22,8 @@ void    sb(stack *b)
         tmp = b->data;
         b->data = b->next->data;
         b->next->data = tmp;
+        write(1, "sb\n", 3);
     }
-    write(1, "sb\n", 3);
 }
 
 void    ss(stack *a, stack *b)

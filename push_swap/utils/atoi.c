@@ -1,24 +1,38 @@
 #include "../push_swap.h"
 
-int ft_atoi(char *s)
+int ft_isdigit(int c)
 {
-    int i;
-    int sign;
-    int res;
-
-    i = 0;
-    sign = 1;
-    res = 0;
-    while (s[i] == ' ' || s[i] == '\t' || s[i] == '\n' || s[i] == '\v' || s[i] == '\r' || s[i] == '\f')
-        i++;
-    if (s[i] == '-')
-        sign = -1;
-    if (s[i] == '-' || s[i] == '+')
-        i++;
-    while (s[i] >= '0' && s[i] <= '9')
-    {
-        res = res * 10 + s[i] - '0';
-        i++;
-    }
-    return (res * sign);
+    if (c >= '0' && c <= '9')
+        return (1);
+    return (0);
 }
+
+int ft_atoi(char *nptr)
+{
+	int					i;
+	int					sign;
+	long int			num;
+
+	i = 0;
+	sign = 1;
+	num = 0;
+	 if (!nptr)
+        exit_with_message("Error\n");
+	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
+		i++;
+	if (nptr[i] == '-')
+	{
+		sign = -1;
+		i++;
+	}
+	else if (nptr[i] == '+')
+		i++;
+	while (ft_isdigit(nptr[i]))
+	{
+		num *= 10;
+		num += nptr[i] - '0';
+		i++;
+	}
+	return (num * sign);
+}
+

@@ -25,16 +25,19 @@ stack	*ft_lstnew(int content);
 stack	*ft_lstlast(stack *lst);
 
 /* fill the stack functions */
-int *av_to_tab(int ac, char **av);
+int     *av_to_tab(int ac, char **av);
 void    fill_stack(stack **a, int ac, char **av);
 
 /* input check functions */
 bool    integer_check(int *tab, int ac);
 bool   double_Check(int *tab, int ac);
 bool    input_check(int ac, int *tab);
+bool is_valid_integer(int ac, char **av);
+
 
 /* ft_atoi */
-int ft_atoi(char *s);
+int ft_atoi(char *nptr);
+int ft_isdigit(int c);
 
 /* exit lia bwa7ed message */
 void    exit_with_message(char *s);
@@ -42,6 +45,8 @@ void    exit_with_message(char *s);
 /* sort there random nums */
 void    sort_three(stack **a);
 void    sort_five(stack **a, stack **b);
+void    insert_in_the_correct_position(stack **a, stack **b);
+void    push_smallest_to_b(stack **a, stack **b);
 
 /* moves*/
 void    pa(stack **a, stack **b);

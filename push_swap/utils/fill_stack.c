@@ -6,7 +6,7 @@ stack	*ft_lstnew(int content)
 
 	new_node = (stack *)malloc(sizeof(stack));
 	if (!new_node)
-		exit_with_message("Error In Allocation\n");
+		exit_with_message("Error\n");
 	new_node->data = content;
 	new_node->next = NULL;
 	return (new_node);
@@ -16,15 +16,20 @@ int *av_to_tab(int ac, char **av)
 {
     int i;
     int *tab;
+    int j;
 
     i = 1;
-    tab = (int *)malloc(sizeof(int) * ac);
+    j = 0;
+    if (!is_valid_integer(ac, av))
+        exit_with_message("Error\n");
+    tab = (int *)malloc(sizeof(int) * (ac - 1));
     if (!tab)
-        exit_with_message("Error In Allocation\n");
+        exit_with_message("Error\n");
     while (i < ac)
     {
-        tab[i] = ft_atoi(av[i]);
+        tab[j] = ft_atoi(av[i]);
         i++;
+        j++;
     }
     return (tab);
 }

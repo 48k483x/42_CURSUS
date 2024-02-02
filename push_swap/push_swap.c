@@ -3,7 +3,7 @@
 void    exit_with_message(char *s)
 {
     while (*s)
-        write(1, s++, 1);
+        write(2, s++, 1);
     exit(1);
 }
 
@@ -21,9 +21,11 @@ int main(int ac, char **av)
     //     current = current->next;
     // }
     // printf("NULL\n");
-    if (ac == 4)
+    if (ac == 3 && a->data > a->next->data)
+        sa(a);
+    else if (ac == 4)
         sort_three(&a);
-    else if (ac == 6)
+    else if (ac > 4 && ac < 7)
         sort_five(&a, &b);
     printf("head\n");
     current = a;
