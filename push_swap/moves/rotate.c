@@ -31,21 +31,6 @@ void ra(stack **a)
 }
 
 
-/*int	ra(stack **a)
-{
-	stack	*head;
-	stack	*tail;
-
-	if (!(*a) || !(*a)->next)
-        return ;
-	head = *a;
-	tail = ft_lstlast(head);
-	*a = head->next;
-	head->next = NULL;
-	tail->next = head;
-	return (0);
-}*/
-
 void    rb(stack **b)
 {
     stack *last;

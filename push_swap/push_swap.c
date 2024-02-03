@@ -7,11 +7,26 @@ void    exit_with_message(char *s)
     exit(1);
 }
 
+void    free_stack(stack **a)
+{
+    stack *current;
+    stack *next;
+
+    current = *a;
+    while (current != NULL)
+    {
+        next = current->next;
+        free(current);
+        current = next;
+    }
+    *a = NULL;
+}
+
 int main(int ac, char **av) 
 {
     stack *a = NULL;
     stack *b = NULL;
-    stack *current = NULL;
+    // stack *current = NULL;
     fill_stack(&a, ac, av);
     // current = a;
     // printf("head\n");
@@ -27,14 +42,15 @@ int main(int ac, char **av)
         sort_three(&a);
     else if (ac > 4 && ac < 7)
         sort_five(&a, &b);
-    printf("head\n");
-    current = a;
-    while (current != NULL)
-    {
-        printf("%d\n", current->data);
-        current = current->next;
-    }
-    printf("NULL\n");
+    free_stack(&a);
+    // printf("head\n");
+    // current = a;
+    // while (current != NULL)
+    // {
+    //     printf("%d\n", current->data);
+    //     current = current->next;
+    // }
+    // printf("NULL\n");
 }
 
 

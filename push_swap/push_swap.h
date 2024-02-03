@@ -31,7 +31,7 @@ void    fill_stack(stack **a, int ac, char **av);
 /* input check functions */
 bool    integer_check(int *tab, int ac);
 bool   double_Check(int *tab, int ac);
-bool    input_check(int ac, int *tab);
+bool    input_check(int ac, int *tab, stack **a);
 bool is_valid_integer(int ac, char **av);
 
 
@@ -41,6 +41,9 @@ int ft_isdigit(int c);
 
 /* exit lia bwa7ed message */
 void    exit_with_message(char *s);
+
+/* free lia stack dial **a */
+void    free_stack(stack **a);
 
 /* sort there random nums */
 void    sort_three(stack **a);

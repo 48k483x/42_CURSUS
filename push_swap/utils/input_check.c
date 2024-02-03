@@ -27,16 +27,16 @@ bool is_valid_integer(int ac, char **av)
         {
             j++;
             if (av[i][j] == '\0')
-                return false;
+                return (false);
         }
         while (av[i][j] != '\0')
         {
             if (!ft_isdigit(av[i][j]))
-                return false;
+                return (false);
             j++;
         }
     }
-    return true;
+    return (true);
 }
 
 bool   double_Check(int *tab, int ac)
@@ -59,43 +59,44 @@ bool   double_Check(int *tab, int ac)
     return (true);  
 }
 
-// bool double_Check(int *tab, int ac)
-// {
-//     int i;
-//     int j;
+bool    is_sorted(int *tab, int ac)
+{
+    int i;
 
-//     i = 0;
-//     while (i < ac)
-//     {
-//         j = i + 1;
-//         while (j < ac)
-//         {
-//             printf("Comparing tab[%d] = %d with tab[%d] = %d\n", i, tab[i], j, tab[j]);
-//             if (tab[i] == tab[j])
-//             {
-//                 printf("Found duplicate: %d\n", tab[i]);
-//                 return (false);
-//             }
-//             j++;
-//         }
-//         i++;
-//     }
-//     printf("No duplicates found\n");
-//     return (true);  
-// }
+    i = 0;
+    while (i < ac - 1)
+    {
+        if (tab[i] > tab[i + 1])
+            return (false);
+        i++;
+    }
+    return (true);
+}
 
-bool    input_check(int ac, int *tab)
+bool    input_check(int ac, int *tab, stack **a)
 {
     if (ac < 3)
+    {
+        free(tab);
+        free_stack(a);
         exit_with_message("Error\n");
+    }
+    if (is_sorted(tab, ac - 1))
+    {
+        free(tab);
+        free_stack(a);
+        exit(0);
+    }
     if (!integer_check(tab, ac - 1))
     {
         free(tab);
+        free_stack(a);
         exit_with_message("Error\n");
     }
     if (!double_Check(tab, ac - 1))
     {
         free(tab);
+        free_stack(a);
         exit_with_message("Error Dup\n");
     }
     return (true);

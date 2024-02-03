@@ -51,8 +51,8 @@ int *av_to_tab(int ac, char **av)
 void fill_stack(stack **a, int ac, char **av)
 {
     int i = ac - 1;
-
-    input_check(ac, av_to_tab(ac, av));
+    int *tab = av_to_tab(ac, av);
+    input_check(ac, tab, a);
     while (i > 0)
     {
         stack *new_node = malloc(sizeof(stack));
@@ -65,5 +65,6 @@ void fill_stack(stack **a, int ac, char **av)
 
         i--;
     }
+    free(tab);
 }
     
