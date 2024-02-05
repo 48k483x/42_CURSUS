@@ -124,6 +124,10 @@ int	main(int ac, char **av)
 
 	pipex.i = 2;
 	pipex.infile = NULL;
+    if (ac < 5)
+    {
+        exiti("ac is < than 4\n");
+    }
 	check_heredoc(&pipex, av, ac);
 	while (pipex.i < ac - 1)
 	{
