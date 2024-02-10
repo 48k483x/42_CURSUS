@@ -7,6 +7,7 @@
 #include <stdbool.h>
 #include <assert.h>
 #include <unistd.h>
+#include <string.h>
 
 typedef struct node {
     int data;

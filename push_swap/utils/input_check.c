@@ -20,8 +20,10 @@ bool is_valid_integer(int ac, char **av)
 
     for (i = 1; i < ac; i++)
     {
+            if (av[i] == NULL)
+                return false;
         j = 0;
-        while (av[i][j] == ' ' || (av[i][j] >= 9 && av[i][j] <= 13))
+        while (av[i][j] != '\0' && (av[i][j] == ' ' || (av[i][j] >= 9 && av[i][j] <= 13)))
             j++;
         if (av[i][j] == '+' || av[i][j] == '-')
         {

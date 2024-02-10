@@ -1,3 +1,4 @@
+
 #include "../push_swap.h"
 
 char     ***_parsed_av(int ac, char **av)
@@ -14,6 +15,7 @@ char     ***_parsed_av(int ac, char **av)
         tab[i] = ft_split(av[i + 1], ' ');
         i++;
     }
+    tab[i] = NULL;
     return (tab);
 }
 
@@ -55,7 +57,7 @@ char    **_parsed_arr(char ***tab)
         j = 0;
         while (tab[i][j])
         {
-            arr[k] = tab[i][j];
+            arr[k] = strdup(tab[i][j]);
             j++;
             k++;
         }

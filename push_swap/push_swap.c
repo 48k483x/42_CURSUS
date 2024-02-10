@@ -30,25 +30,25 @@ int main(int ac, char **av)
     stack *a = NULL;
     stack *b = NULL;
 
-    printf("ac: %d\n", ac);
-    char **arr = _parsed_arr(_parsed_av(ac, av));
-    int i = 0;
-    while (arr[i])
-    {
-        printf("%s\n", arr[i]);
-        i++;
-    }
-    printf("what\n");
-    stack *current = NULL;
+    // printf("ac: %d\n", ac);
+     char **arr = _parsed_arr(_parsed_av(ac, av));
+    // int i = 0;
+    // while (arr[i])
+    // {
+    //     printf("%s\n", arr[i]);
+    //     i++;
+    // }
+    // printf("what\n");
+    // stack *current = NULL;
     fill_stack(&a, ac, arr);
-    current = a;
-    printf("head\n");
-    while (current != NULL)
-    {
-        printf("%d\n", current->data);
-        current = current->next;
-    }
-    printf("NULL\n");
+    // current = a;
+    // printf("head\n");
+    // while (current != NULL)
+    // {
+    //     printf("%d\n", current->data);
+    //     current = current->next;
+    // }
+    // printf("NULL\n");
     if (ac == 3 && a->data > a->next->data)
         sa(a);
     else if (ac == 4)

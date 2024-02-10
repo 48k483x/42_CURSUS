@@ -6,7 +6,7 @@ SRC = ./moves/push.c ./moves/swap.c \
         ./sorting/five.c ./utils/sorting_utils.c ./utils/parsing.c ./utils/split.c
 OBJ = *.o
 NAME = push_swap
-DURATION = 1.5  # Minimum duration to show animation (in seconds)
+DURATION =  0.5  # Minimum duration to show animation (in seconds)
 
 all: $(NAME)
 
