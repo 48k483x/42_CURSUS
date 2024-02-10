@@ -7,7 +7,7 @@ bool    integer_check(int *tab, int ac)
     i = 0;
     while (i < ac)
     {
-        if (tab[i] == INT_MIN || tab[i] > INT_MAX || tab[i] < INT_MIN)
+        if ( tab[i] > INT_MAX || tab[i] < INT_MIN)
             return (false);
         i++;
     }
@@ -77,9 +77,8 @@ bool    input_check(int ac, int *tab, stack **a)
 {
     if (ac < 3)
     {
-        free(tab);
+        //free(tab);
         free_stack(a);
-        exit_with_message("Error\n");
     }
     if (is_sorted(tab, ac - 1))
     {

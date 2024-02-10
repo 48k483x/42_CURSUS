@@ -26,6 +26,21 @@ int main(int ac, char **av)
 {
     stack *a = NULL;
     stack *b = NULL;
+    char ***tab = parsed_av(ac, av);
+    int i = 0;
+    int j;
+
+    while (tab[i])
+    {
+        j = 0;
+        while (tab[i][j])
+        {
+            printf("%s\n", tab[i][j]);
+            j++;
+        }
+        i++;
+    }
+    return 0;
     // stack *current = NULL;
     fill_stack(&a, ac, av);
     // current = a;
@@ -40,7 +55,9 @@ int main(int ac, char **av)
         sa(a);
     else if (ac == 4)
         sort_three(&a);
-    else if (ac > 4 && ac < 7)
+    else if (ac == 5)
+        sort_four(&a, &b);
+    else if (ac == 6)
         sort_five(&a, &b);
     free_stack(&a);
     // printf("head\n");

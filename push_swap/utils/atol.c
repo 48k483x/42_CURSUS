@@ -7,11 +7,11 @@ int ft_isdigit(int c)
     return (0);
 }
 
-int ft_atoi(char *nptr)
+long long ft_atol(char *nptr)
 {
-	int					i;
-	int					sign;
-	long int			num;
+	long long					i;
+	long long					sign;
+	long long			num;
 
 	i = 0;
 	sign = 1;

@@ -14,10 +14,10 @@ typedef struct node {
 } stack;
 
 /* itoa */
-size_t	count_word_str(long nb);
+/*size_t	count_word_str(long nb);
 void	*allocation_str(size_t len);
 char	*if_zero(char *str);
-char	*ft_itoa(int n);
+char	*ft_itoa(int n);*/
 
 /* function to add */
 void	ft_lstadd_front(stack **ab, stack *new);
@@ -30,13 +30,20 @@ void    fill_stack(stack **a, int ac, char **av);
 
 /* input check functions */
 bool    integer_check(int *tab, int ac);
-bool   double_Check(int *tab, int ac);
+bool    double_Check(int *tab, int ac);
 bool    input_check(int ac, int *tab, stack **a);
-bool is_valid_integer(int ac, char **av);
+bool    is_valid_integer(int ac, char **av);
 
+/* ft_split */
+int     count_strings(char const *s, char c);
+char	*malloc_strings(const char *s, char c);
+char	**ft_split(char const *s, char c);
+void    free_split(char **split);
 
-/* ft_atoi */
-int ft_atoi(char *nptr);
+/* parsing */
+char     ***parsed_av(int ac, char **av);
+/* ft_atol */
+long long ft_atol(char *nptr);
 int ft_isdigit(int c);
 
 /* exit lia bwa7ed message */
@@ -47,9 +54,14 @@ void    free_stack(stack **a);
 
 /* sort there random nums */
 void    sort_three(stack **a);
+void    sort_four(stack **a, stack **b);
 void    sort_five(stack **a, stack **b);
-void    insert_in_the_correct_position(stack **a, stack **b);
-void    push_smallest_to_b(stack **a, stack **b);
+void    min_to_b(stack **a, stack **b);
+
+/* sorting utils */
+int     stack_size(stack **a);
+stack   *stack_smallest(stack **a);
+stack   *stack_biggest(stack **a);
 
 /* moves*/
 void    pa(stack **a, stack **b);

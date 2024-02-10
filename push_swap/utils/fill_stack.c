@@ -27,7 +27,7 @@ int *av_to_tab(int ac, char **av)
         exit_with_message("Error\n");
     while (i < ac)
     {
-        tab[j] = ft_atoi(av[i]);
+        tab[j] = ft_atol(av[i]);
         i++;
         j++;
     }

@@ -1,85 +1,69 @@
 #include "../push_swap.h"
 
-void    push_smallest_to_b(stack **a, stack **b)
+void min_to_b(stack **a, stack **b)
 {
-    stack *tmp = *a;
-    int smallest;
-    int index;
-    int smallest_index;
+    stack *min;
 
-    smallest = (*a)->data;
-    index = 0;
-    while (tmp)
+    min = stack_smallest(a);
+    if (min->data == (*a)->next->data)
     {
-        if (tmp->data < smallest)
-        {
-            smallest = tmp->data;
-            smallest_index = index;
-        }
-        tmp = tmp->next;
-        index++;
+        sa(*a);
+        pb(a, b);
     }
-    index = 0;
-    while (index < smallest_index)
+    else if (min->data == (*a)->next->next->data)
     {
         ra(a);
-        index++;
-    }
-    pb(a, b);
-}
-
-void    insert_in_the_correct_position(stack **a, stack **b)
-{
-    stack *tmp = *a;
-    int value;
-    int index;
-    int i;
-
-    value = (*b)->data;
-    index = 0;
-    while (tmp && tmp->data < value)
-    {
-        tmp = tmp->next;
-        index++;
-    }
-    i = 0;
-    while (i < index)
-    {
         ra(a);
-        i++;
+        pb(a, b);
     }
-    pa(a, b);
-    while (i > 0)
+    else if (min->data == (*a)->next->next->next->data)
     {
         rra(a);
-        i--;
+        rra(a);
+        pb(a, b);
     }
+    else if (min->data == (*a)->next->next->next->next->data)
+    {
+        rra(a);
+        pb(a, b);
+    }
+}
+
+void    sort_four(stack **a, stack **b)
+{
+    stack   *min = stack_smallest(a);
+
+    if (min->data == (*a)->data)
+        pb(a, b);
+    else if (min->data == (*a)->next->data)
+    {
+        sa(*a);
+        pb(a, b);
+    }
+    else if (min->data == (*a)->next->next->data)
+    {
+        ra(a);
+        ra(a);
+        pb(a, b);
+    }
+    else if (min->data == (*a)->next->next->next->data)
+    {
+        rra(a);
+        pb(a, b);
+    }
+    sort_three(a);
+    pa(a, b);
 }
 
 void sort_five(stack **a, stack **b)
 {
-    int i;
-    int count;
-    stack *tmp = *a;
+    stack *min;
 
-    count = 0;
-    while (tmp)
-    {
-        count++;
-        tmp = tmp->next;
-    }
-    i = 0;
-    if (count == 4)
-        push_smallest_to_b(a, b);
+    min = stack_smallest(a);
+     if (min->data == (*a)->data)
+        pb(a, b);
     else
-        while (i < 2)
-        {
-            push_smallest_to_b(a, b);
-            i++;
-        }
-    if ((*b)->next && (*b)->data < (*b)->next->data)
-        sb(*b);  // Pass the stack, not a single node
-    sort_three(a);
-    while (*b != NULL)
-        insert_in_the_correct_position(a, b);
+        min_to_b(a, b);
+    sort_four(a, b);
+    pa(a, b);
 }

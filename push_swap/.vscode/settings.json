@@ -58,6 +58,7 @@
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
   "files.associations": {
     "*.embeddedhtml": "html",
-    "push_swap.h": "c"
+    "push_swap.h": "c",
+    "cstdlib": "c"
   }
 }
