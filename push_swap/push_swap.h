@@ -41,7 +41,10 @@ char	**ft_split(char const *s, char c);
 void    free_split(char **split);
 
 /* parsing */
-char     ***parsed_av(int ac, char **av);
+char     ***_parsed_av(int ac, char **av);
+int     _parsed_array_num(char ***tab);
+char    **_parsed_arr(char ***tab);
+
 /* ft_atol */
 long long ft_atol(char *nptr);
 int ft_isdigit(int c);

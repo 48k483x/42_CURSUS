@@ -15,7 +15,7 @@ $(NAME): $(OBJ)
 	@cc $(OBJ) -o $(NAME)
 	@sleep $(DURATION)
 	@ps -ef | grep "loading.sh" | grep -v grep | awk '{print $$2}' | xargs kill -9 >/dev/null 2>&1 || true   # Kill the loading animation once compilation is complete
-	@echo -e "\e[38;2;232;226;0mCompleted\e[0m"  # Print "Completed" in the specified color
+#	@echo -e "\e[38;2;232;226;0mCompleted\e[0m"  # Print "Completed" in the specified color
 
 $(OBJ): $(SRC)
 	@cc $(FLAGS) -c $(SRC)
@@ -25,7 +25,7 @@ clean:
 	@rm -rf $(OBJ)
 	@sleep $(DURATION)
 	@ps -ef | grep "cleaning.sh" | grep -v grep | awk '{print $$2}' | xargs kill -9 >/dev/null 2>&1 || true   # Kill the loading animation once             compilation is complete
-	@echo -e "\e[38;2;255;40;0mCleaned\e[0m"  # Print "Cleaned" in red
+#	@echo -e "\e[38;2;255;40;0mCleaned\e[0m"  # Print "Cleaned" in red
 
 fclean: clean
 	@rm -rf $(NAME)

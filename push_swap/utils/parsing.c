@@ -1,6 +1,6 @@
 #include "../push_swap.h"
 
-char     ***parsed_av(int ac, char **av)
+char     ***_parsed_av(int ac, char **av)
 {
     char ***tab;
     int i;
@@ -11,8 +11,56 @@ char     ***parsed_av(int ac, char **av)
     i = 0;
     while (i < ac)
     {
-        tab[i] = ft_split(av[i], ' ');
+        tab[i] = ft_split(av[i + 1], ' ');
         i++;
     }
     return (tab);
+}
+
+int _parsed_array_num(char ***tab)
+{
+    int i;
+    int j;
+    int count;
+
+    i = 0;
+    count = 0;
+    while (tab[i])
+    {
+        j = 0;
+        while (tab[i][j])
+        {
+            j++;
+            count++;
+        }
+        i++;
+    }
+    return (count);
+}
+
+char    **_parsed_arr(char ***tab)
+{
+    char **arr;
+    int i;
+    int j;
+    int k;
+
+    arr = malloc(sizeof(char *) * (_parsed_array_num(tab) + 1));
+    if (!arr)
+        return (NULL);
+    i = 0;
+    k = 0;
+    while (tab[i])
+    {
+        j = 0;
+        while (tab[i][j])
+        {
+            arr[k] = tab[i][j];
+            j++;
+            k++;
+        }
+        i++;
+    }
+    arr[k] = NULL;
+    return (arr);
 }

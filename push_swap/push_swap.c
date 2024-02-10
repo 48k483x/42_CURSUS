@@ -22,35 +22,33 @@ void    free_stack(stack **a)
     *a = NULL;
 }
 
+
+
+
 int main(int ac, char **av) 
 {
     stack *a = NULL;
     stack *b = NULL;
-    char ***tab = parsed_av(ac, av);
-    int i = 0;
-    int j;
 
-    while (tab[i])
+    printf("ac: %d\n", ac);
+    char **arr = _parsed_arr(_parsed_av(ac, av));
+    int i = 0;
+    while (arr[i])
     {
-        j = 0;
-        while (tab[i][j])
-        {
-            printf("%s\n", tab[i][j]);
-            j++;
-        }
+        printf("%s\n", arr[i]);
         i++;
     }
-    return 0;
-    // stack *current = NULL;
-    fill_stack(&a, ac, av);
-    // current = a;
-    // printf("head\n");
-    // while (current != NULL)
-    // {
-    //     printf("%d\n", current->data);
-    //     current = current->next;
-    // }
-    // printf("NULL\n");
+    printf("what\n");
+    stack *current = NULL;
+    fill_stack(&a, ac, arr);
+    current = a;
+    printf("head\n");
+    while (current != NULL)
+    {
+        printf("%d\n", current->data);
+        current = current->next;
+    }
+    printf("NULL\n");
     if (ac == 3 && a->data > a->next->data)
         sa(a);
     else if (ac == 4)

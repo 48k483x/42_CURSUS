@@ -59,7 +59,7 @@ void fill_stack(stack **a, int ac, char **av)
         if (new_node == NULL)
             exit_with_message("Error In Allocation\n");
 
-        new_node->data = atoi(av[i]);
+        new_node->data = ft_atol(av[i]);
         new_node->next = *a;
         *a = new_node;
 
