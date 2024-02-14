@@ -6,7 +6,7 @@
 /*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 03:24:38 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 04:22:05 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/02/14 05:31:38 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,8 @@ void	exit_with_message(char *s)
 	exit(1);
 }
 
-int	main(int ac, char **av)
+void	sort(t_stack *a, t_stack *b, int arr_num)
 {
-	stack	*a = NULL;
-	stack	*b = NULL;
-	int		arr_num;
-	char	**arr = NULL;
-
-	arr = _parsed_arr(_parsed_av(ac, av));
-	arr_num = 0;
-	while (arr[arr_num])
-		arr_num++;
-	fill_stack(&a, arr_num, arr);
 	if (arr_num == 2 && a->data > a->next->data)
 		sa(a);
 	else if (arr_num == 3)
@@ -48,6 +38,24 @@ int	main(int ac, char **av)
 			pa(&a, &b);
 		}
 	}
+}
+
+int	main(int ac, char **av)
+{
+	t_stack	*a;
+	t_stack	*b;
+	int		arr_num;
+	char	**arr;
+
+	a = NULL;
+	b = NULL;
+	arr = NULL;
+	arr = _parsed_arr(_parsed_av(ac, av));
+	arr_num = 0;
+	while (arr[arr_num])
+		arr_num++;
+	fill_stack(&a, arr_num, arr);
+	sort(a, b, arr_num);
 	free_split(arr);
 	free_stack(&a);
 }

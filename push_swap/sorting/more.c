@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   more.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 04:12:44 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 04:19:52 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/02/14 05:20:51 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	find_interval(stack **a)
+int	find_interval(t_stack **a)
 {
 	int	interval;
 
@@ -28,14 +28,14 @@ int	find_interval(stack **a)
 	return (interval);
 }
 
-void	pb_rb(stack **a, stack **b, int *i)
+void	pb_rb(t_stack **a, t_stack **b, int *i)
 {
 	pb(a, b);
 	rb(b);
 	(*i)++;
 }
 
-void	quick_divide_qs(stack **a, stack **b, int interval, int size)
+void	quick_divide_qs(t_stack **a, t_stack **b, int interval, int size)
 {
 	int	i;
 	int	*s_arr;
@@ -61,7 +61,7 @@ void	quick_divide_qs(stack **a, stack **b, int interval, int size)
 	free(s_arr);
 }
 
-void	move_max_up(stack **b)
+void	move_max_up(t_stack **b)
 {
 	int	size;
 	int	peak;

@@ -6,7 +6,7 @@
 /*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 04:25:27 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 04:30:17 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/02/14 05:22:01 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	sort_int_array(int *tab, int size)
 	}
 }
 
-int	*sorted_stack_array(stack **a)
+int	*sorted_stack_array(t_stack **a)
 {
 	int		i;
 	int		*s_arr;
-	stack	*tmp;
+	t_stack	*tmp;
 
 	s_arr = malloc(sizeof(int *) * stack_size(a));
 	if (!s_arr)
@@ -57,9 +57,9 @@ int	*sorted_stack_array(stack **a)
 	return (s_arr);
 }
 
-int	stack_biggest(stack **a)
+int	stack_biggest(t_stack **a)
 {
-	stack	*tmp;
+	t_stack	*tmp;
 	int		biggest;
 
 	tmp = *a;
@@ -73,10 +73,10 @@ int	stack_biggest(stack **a)
 	return (biggest);
 }
 
-stack	*stack_smallest(stack **a)
+t_stack	*stack_smallest(t_stack **a)
 {
-	stack	*tmp;
-	stack	*smallest;
+	t_stack	*tmp;
+	t_stack	*smallest;
 
 	tmp = *a;
 	smallest = tmp;
@@ -89,9 +89,9 @@ stack	*stack_smallest(stack **a)
 	return (smallest);
 }
 
-int	peak_index(stack **b, int peak)
+int	peak_index(t_stack **b, int peak)
 {
-	stack	*tmp;
+	t_stack	*tmp;
 	int		i;
 
 	i = 0;

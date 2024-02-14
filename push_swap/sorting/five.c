@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   five.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 03:58:40 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 04:02:48 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/02/14 05:20:16 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	min_to_b(stack **a, stack **b)
+void	min_to_b(t_stack **a, t_stack **b)
 {
-	stack	*min;
+	t_stack	*min;
 
 	min = stack_smallest(a);
 	if (min->data == (*a)->next->data)
@@ -41,9 +41,9 @@ void	min_to_b(stack **a, stack **b)
 	}
 }
 
-void	sort_four(stack **a, stack **b)
+void	sort_four(t_stack **a, t_stack **b)
 {
-	stack	*min;
+	t_stack	*min;
 
 	min = stack_smallest(a);
 	if (min->data == (*a)->data)
@@ -68,9 +68,9 @@ void	sort_four(stack **a, stack **b)
 	pa(a, b);
 }
 
-void	sort_five(stack **a, stack **b)
+void	sort_five(t_stack **a, t_stack **b)
 {
-	stack	*min;
+	t_stack	*min;
 
 	min = stack_smallest(a);
 	if (min->data == (*a)->data)

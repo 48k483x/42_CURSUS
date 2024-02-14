@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_stack.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/14 04:36:44 by achahrou          #+#    #+#             */
+/*   Updated: 2024/02/14 05:23:24 by achahrou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-stack *ft_lstnew(int content)
+t_stack	*ft_lstnew(int content)
 {
-	stack *new_node;
+	t_stack	*new_node;
 
-	new_node = (stack *)malloc(sizeof(stack));
+	new_node = (t_stack *)malloc(sizeof(t_stack));
 	if (!new_node)
 		return (NULL);
 	new_node->data = content;
@@ -12,15 +24,21 @@ stack *ft_lstnew(int content)
 	return (new_node);
 }
 
-int *av_to_tab(int ac, char **av)
+int	*av_to_tab(int ac, char **av)
 {
-	int i;
-	int *tab;
-	int j;
+	int		i;
+	int		*tab;
+	int		j;
+	t_index	*index;
 
+	index = malloc(sizeof(t_index));
+	if (!index)
+		return (NULL);
 	i = 0;
 	j = 0;
-	if (!is_valid_integer(ac, av))
+	index->i = 0;
+	index->j = 0;
+	if (!is_valid_integer(ac, av, index))
 		exit_with_message("Error\n");
 	tab = malloc(sizeof(int *) * (ac));
 	if (!tab)
@@ -34,29 +52,18 @@ int *av_to_tab(int ac, char **av)
 	return (tab);
 }
 
-// void    fill_stack(stack **a, int ac, char **av)
-// {
-//     int *tab;
-//     int i;
-
-//     tab = av_to_tab(ac, av);
-//     input_check(ac, tab);
-//     i = ac;
-//     while (i > 0)
-//     {
-//         ft_lstadd_front(a, ft_lstnew(tab[i]));
-//         i--;
-//     }
-// }
-void fill_stack(stack **a, int ac, char **av)
+void	fill_stack(t_stack **a, int ac, char **av)
 {
-	int i = ac - 1;
+	int		i;
+	int		*tab;
+	t_stack	*new_node;
 
-	int *tab = av_to_tab(ac, av);
+	i = ac - 1;
+	tab = av_to_tab(ac, av);
 	input_check(ac, tab, a, av);
 	while (i >= 0)
 	{
-		stack *new_node = malloc(sizeof(stack));
+		new_node = malloc(sizeof(t_stack));
 		if (NULL == new_node)
 			exit(1);
 		new_node->data = ft_atol(av[i]);

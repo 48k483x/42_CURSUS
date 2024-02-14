@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/14 05:13:08 by achahrou          #+#    #+#             */
+/*   Updated: 2024/02/14 05:14:10 by achahrou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
-int count_strings(char const *s, char c)
+
+int	count_strings(char const *s, char c)
 {
-	int i;
-	int str_count;
+	int	i;
+	int	str_count;
 
 	i = 0;
 	str_count = 0;
@@ -18,10 +31,10 @@ int count_strings(char const *s, char c)
 	return (str_count);
 }
 
-char *malloc_strings(const char *s, char c)
+char	*malloc_strings(const char *s, char c)
 {
-	char *word;
-	int i;
+	char	*word;
+	int		i;
 
 	i = 0;
 	while (s[i] && s[i] != c)
@@ -39,11 +52,11 @@ char *malloc_strings(const char *s, char c)
 	return (word);
 }
 
-char **ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	int words;
-	char **tab;
-	int i;
+	int		words;
+	char	**tab;
+	int		i;
 
 	if (!s)
 		return (NULL);
@@ -68,9 +81,9 @@ char **ft_split(char const *s, char c)
 	return (tab);
 }
 
-void free_split(char **split)
+void	free_split(char **split)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (split[i])
