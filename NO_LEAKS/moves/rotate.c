@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 03:45:51 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 03:48:29 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/02/14 08:18:13 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-stack	*ft_lstlast(stack *lst)
+t_stack	*ft_lstlast(t_stack *lst)
 {
 	if (lst == NULL)
 		return (NULL);
@@ -21,10 +21,10 @@ stack	*ft_lstlast(stack *lst)
 	return (lst);
 }
 
-void	ra(stack **a)
+void	ra(t_stack **a)
 {
-	stack	*first;
-	stack	*last;
+	t_stack	*first;
+	t_stack	*last;
 
 	if (!(*a) || !(*a)->next)
 		return ;
@@ -38,10 +38,10 @@ void	ra(stack **a)
 	write(1, "ra\n", 3);
 }
 
-void	rb(stack **b)
+void	rb(t_stack **b)
 {
-	stack	*last;
-	stack	*current;
+	t_stack	*last;
+	t_stack	*current;
 
 	if (!(*b) || !(*b)->next)
 		return ;
@@ -55,7 +55,7 @@ void	rb(stack **b)
 	write(1, "rb\n", 3);
 }
 
-void	rr(stack **a, stack **b)
+void	rr(t_stack **a, t_stack **b)
 {
 	ra(a);
 	rb(b);

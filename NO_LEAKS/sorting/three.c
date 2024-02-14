@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   three.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 04:33:53 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 04:34:12 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/02/14 08:21:19 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 	./push_swap  1 3 2   sa | ra
 	./push_swap  2 3 1   rra*/
 
-void	sort_three(stack **a)
+void	sort_three(t_stack **a)
 {
 	int	n1;
 	int	n2;

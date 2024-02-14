@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 03:48:49 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 03:50:05 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/02/14 08:18:30 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	sa(stack *a)
+void	sa(t_stack *a)
 {
 	int	tmp;
 
@@ -25,7 +25,7 @@ void	sa(stack *a)
 	}
 }
 
-void	sb(stack *b)
+void	sb(t_stack *b)
 {
 	int	tmp;
 
@@ -38,7 +38,7 @@ void	sb(stack *b)
 	}
 }
 
-void	ss(stack *a, stack *b)
+void	ss(t_stack *a, t_stack *b)
 {
 	sa(a);
 	sb(b);

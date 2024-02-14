@@ -1,10 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/14 08:08:38 by achahrou          #+#    #+#             */
+/*   Updated: 2024/02/14 08:09:41 by achahrou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../push_swap.h"
 
-char ***_parsed_av(int ac, char **av)
+char	***_parsed_av(int ac, char **av)
 {
-	char ***tab;
-	int i;
+	char	***tab;
+	int		i;
 
 	tab = malloc(sizeof(char **) * (ac + 1));
 	if (!tab)
@@ -18,10 +29,11 @@ char ***_parsed_av(int ac, char **av)
 	tab[i] = NULL;
 	return (tab);
 }
-void free_triple_array(char ***tab)
+
+void	free_triple_array(char ***tab)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (tab[i])
@@ -37,11 +49,12 @@ void free_triple_array(char ***tab)
 	}
 	free(tab);
 }
-int _parsed_array_num(char ***tab)
+
+int	_parsed_array_num(char ***tab)
 {
-	int i;
-	int j;
-	int count;
+	int	i;
+	int	j;
+	int	count;
 
 	i = 0;
 	count = 0;
@@ -58,12 +71,12 @@ int _parsed_array_num(char ***tab)
 	return (count);
 }
 
-char **_parsed_arr(char ***tab)
+char	**_parsed_arr(char ***tab)
 {
-	char **arr;
-	int i;
-	int j;
-	int k;
+	char	**arr;
+	int		i;
+	int		j;
+	int		k;
 
 	arr = malloc(sizeof(char *) * (_parsed_array_num(tab) + 1));
 	if (!arr)

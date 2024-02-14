@@ -1,17 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   atol.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/14 08:04:09 by achahrou          #+#    #+#             */
+/*   Updated: 2024/02/14 08:04:33 by achahrou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-int ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
 	return (0);
 }
 
-long long ft_atol(char *nptr)
+long long	ft_atol(char *nptr)
 {
-	long long i;
-	long long sign;
-	long long num;
+	long long	i;
+	long long	sign;
+	long long	num;
 
 	i = 0;
 	sign = 1;

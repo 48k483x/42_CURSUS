@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 03:38:29 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 03:41:23 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/02/14 08:17:12 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h" 
 
-void	pa(stack **a, stack **b)
+void	pa(t_stack **a, t_stack **b)
 {
-	stack	*tmp;
+	t_stack	*tmp;
 
 	if (!b || !*b)
 		return ;
@@ -28,9 +28,9 @@ void	pa(stack **a, stack **b)
 	}
 }
 
-void	pb(stack **a, stack **b)
+void	pb(t_stack **a, t_stack **b)
 {
-	stack	*tmp;
+	t_stack	*tmp;
 
 	if (!a || !*a)
 		return ;

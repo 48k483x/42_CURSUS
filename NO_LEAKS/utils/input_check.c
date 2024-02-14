@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   input_check.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/14 08:09:59 by achahrou          #+#    #+#             */
+/*   Updated: 2024/02/14 08:41:38 by achahrou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-bool integer_check(int *tab, int ac)
+bool	integer_check(int *tab, int ac)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < ac)
@@ -14,38 +26,38 @@ bool integer_check(int *tab, int ac)
 	return (true);
 }
 
-bool is_valid_integer(int ac, char **av)
+bool	is_valid_integer(int ac, char **av, int *i, int *j)
 {
-	int i, j;
-
-	for (i = 0; i < ac; i++)
+	*i = 0;
+	while (*i < ac)
 	{
-		if (av[i] == NULL)
-			return false;
-		j = 0;
-		while (av[i][j] != '\0' &&
-				 (av[i][j] == ' ' || (av[i][j] >= 9 && av[i][j] <= 13)))
+		if (av[*i] == NULL)
+			return (false);
+		*j = 0;
+		while (av[*i][*j] != '\0' && (av[*i][*j] == ' '
+			|| (av[*i][*j] >= 9 && av[*i][*j] <= 13)))
 			j++;
-		if (av[i][j] == '+' || av[i][j] == '-')
+		if (av[*i][*j] == '+' || av[*i][*j] == '-')
 		{
-			j++;
-			if (av[i][j] == '\0')
+			(*j)++;
+			if (av[*i][*j] == '\0')
 				return (false);
 		}
-		while (av[i][j] != '\0')
+		while (av[*i][*j] != '\0')
 		{
-			if (!ft_isdigit(av[i][j]))
+			if (!ft_isdigit(av[*i][*j]))
 				return (false);
-			j++;
+			(*j)++;
 		}
+		(*i)++;
 	}
 	return (true);
 }
 
-bool double_Check(int *tab, int ac)
+bool	double_check(int *tab, int ac)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < ac)
@@ -62,15 +74,15 @@ bool double_Check(int *tab, int ac)
 	return (true);
 }
 
-bool is_sorted(int *tab, int ac)
+bool	is_sorted(int *tab, int ac)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < ac)
 	{
 		if (i == ac - 1)
-			break;
+			break ;
 		else if (tab[i] > tab[i + 1])
 			return (false);
 		i++;
@@ -78,7 +90,7 @@ bool is_sorted(int *tab, int ac)
 	return (true);
 }
 
-bool input_check(int ac, int *tab, stack **a, char **av)
+bool	input_check(int ac, int *tab, t_stack **a, char **av)
 {
 	(void)a;
 	if (ac < 2)
@@ -86,7 +98,7 @@ bool input_check(int ac, int *tab, stack **a, char **av)
 		free(tab);
 		exit(0);
 	}
-	if (is_sorted(tab, ac))
+	if (is_sorted(tab, ac) || !double_check(tab, ac))
 	{
 		free(tab);
 		free_split(av);
@@ -98,7 +110,7 @@ bool input_check(int ac, int *tab, stack **a, char **av)
 		free_split(av);
 		exit_with_message("Error\n");
 	}
-	if (!double_Check(tab, ac))
+	if (!double_check(tab, ac))
 	{
 		free(tab);
 		free_split(av);
