@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 04:39:03 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 05:24:34 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/02/13 23:41:36 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ bool	is_sorted(int *tab, int ac)
 	{
 		if (i == ac - 1)
 			break ;
-		else if (tab[i] > tab[i + 1])
+		else if (tab[i] > tab[i + 1] || tab[i] == tab[i + 1])
 			return (false);
 		i++;
 	}
