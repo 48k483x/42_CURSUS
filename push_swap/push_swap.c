@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 03:24:38 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 03:26:36 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/02/14 04:22:05 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	main(int ac, char **av)
 	stack	*a = NULL;
 	stack	*b = NULL;
 	int		arr_num;
-	char	**arr;
+	char	**arr = NULL;
 
-	**arr = _parsed_arr(_parsed_av(ac, av));
+	arr = _parsed_arr(_parsed_av(ac, av));
 	arr_num = 0;
 	while (arr[arr_num])
 		arr_num++;
@@ -41,7 +41,7 @@ int	main(int ac, char **av)
 		sort_five(&a, &b);
 	else
 	{
-		quick_divide_QS(&a, &b, find_interval(&a), stack_size(&a));
+		quick_divide_qs(&a, &b, find_interval(&a), stack_size(&a));
 		while (b)
 		{
 			move_max_up(&b);

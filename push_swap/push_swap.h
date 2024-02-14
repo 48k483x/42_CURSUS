@@ -6,7 +6,7 @@
 /*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 03:30:47 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 03:57:51 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/02/14 04:21:01 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ int					stack_biggest(stack **a);
 stack				*stack_smallest(stack **a);
 int					peak_index(stack **b, int peak);
 
+/* Pb Rb to reduce lines nums*/
+void				pb_rb(stack **a, stack **b, int *i);
+
 /* Printing the stack */
 void				print_stack(stack *s);
 
@@ -87,8 +90,8 @@ void				sort_int_array(int *tab, int size);
 int					*sorted_stack_array(stack **a);
 
 /* Sorting more than 5 nums */
-int					find_ilsnterval(stack **a);
-void				quick_divide_QS(stack **a, stack **b, int interval, int size);
+int					find_interval(stack **a);
+void				quick_divide_qs(stack **a, stack **b, int interval, int size);
 void				move_max_up(stack **b);
 
 /* moves*/

@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils_0.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/14 04:25:27 by achahrou          #+#    #+#             */
+/*   Updated: 2024/02/14 04:30:17 by achahrou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-void sort_int_array(int *tab, int size)
+void	sort_int_array(int *tab, int size)
 {
-	int i;
-	int j;
-	int tmp;
+	int	i;
+	int	j;
+	int	tmp;
 
 	i = 0;
 	while (i < size - 1)
@@ -12,7 +24,7 @@ void sort_int_array(int *tab, int size)
 		j = i + 1;
 		while (j < size)
 		{
-			if (tab[i] > tab[j]) // 6 5 4 3 2 1
+			if (tab[i] > tab[j])
 			{
 				tmp = tab[i];
 				tab[i] = tab[j];
@@ -24,11 +36,11 @@ void sort_int_array(int *tab, int size)
 	}
 }
 
-int *sorted_stack_array(stack **a)
+int	*sorted_stack_array(stack **a)
 {
-	int i;
-	int *s_arr;
-	stack *tmp = NULL;
+	int		i;
+	int		*s_arr;
+	stack	*tmp;
 
 	s_arr = malloc(sizeof(int *) * stack_size(a));
 	if (!s_arr)
@@ -45,10 +57,10 @@ int *sorted_stack_array(stack **a)
 	return (s_arr);
 }
 
-int stack_biggest(stack **a)
+int	stack_biggest(stack **a)
 {
-	stack *tmp = NULL;
-	int biggest;
+	stack	*tmp;
+	int		biggest;
 
 	tmp = *a;
 	biggest = tmp->data;
@@ -61,10 +73,10 @@ int stack_biggest(stack **a)
 	return (biggest);
 }
 
-stack *stack_smallest(stack **a)
+stack	*stack_smallest(stack **a)
 {
-	stack *tmp = NULL;
-	stack *smallest;
+	stack	*tmp;
+	stack	*smallest;
 
 	tmp = *a;
 	smallest = tmp;
@@ -77,10 +89,10 @@ stack *stack_smallest(stack **a)
 	return (smallest);
 }
 
-int peak_index(stack **b, int peak)
+int	peak_index(stack **b, int peak)
 {
-	stack *tmp = NULL;
-	int i;
+	stack	*tmp;
+	int		i;
 
 	i = 0;
 	tmp = *b;

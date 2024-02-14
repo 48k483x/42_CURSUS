@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   more.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achahrou <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/14 04:12:44 by achahrou          #+#    #+#             */
+/*   Updated: 2024/02/14 04:19:52 by achahrou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-int find_interval(stack **a)
+int	find_interval(stack **a)
 {
-	int interval;
+	int	interval;
 
 	interval = 0;
 	if (stack_size(a) >= 6 && stack_size(a) <= 16)
@@ -16,10 +28,17 @@ int find_interval(stack **a)
 	return (interval);
 }
 
-void quick_divide_QS(stack **a, stack **b, int interval, int size)
+void	pb_rb(stack **a, stack **b, int *i)
 {
-	int i;
-	int *s_arr;
+	pb(a, b);
+	rb(b);
+	(*i)++;
+}
+
+void	quick_divide_qs(stack **a, stack **b, int interval, int size)
+{
+	int	i;
+	int	*s_arr;
 
 	i = 0;
 	s_arr = sorted_stack_array(a);
@@ -28,11 +47,7 @@ void quick_divide_QS(stack **a, stack **b, int interval, int size)
 		if (interval + i >= size)
 			interval = size - i - 1;
 		if (stack_head(a)->data <= s_arr[i])
-		{
-			pb(a, b);
-			rb(b);
-			i++;
-		}
+			pb_rb(a, b, &i);
 		else if ((*a)->data > s_arr[i] && (*a)->data <= s_arr[i + interval])
 		{
 			pb(a, b);
@@ -42,25 +57,22 @@ void quick_divide_QS(stack **a, stack **b, int interval, int size)
 		}
 		else
 			ra(a);
-		// print_stack(*a);
-		// print_stack(*b);
 	}
-	// print_stack(*a);
 	free(s_arr);
 }
-void move_max_up(stack **b)
+
+void	move_max_up(stack **b)
 {
-	int size;
-	int peak;
+	int	size;
+	int	peak;
 
 	size = stack_size(b);
 	peak = 0;
 	while (1)
 	{
 		peak = peak_index(b, stack_biggest(b));
-		// print_stack(*b);
 		if (peak == 0)
-			break;
+			break ;
 		else if (peak <= size / 2)
 			rb(b);
 		else if (peak > size / 2)

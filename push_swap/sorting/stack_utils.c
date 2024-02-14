@@ -1,8 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/14 04:22:44 by achahrou          #+#    #+#             */
+/*   Updated: 2024/02/14 04:31:58 by achahrou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
-bool sorted(stack **a)
+bool	sorted(stack **a)
 {
-	stack *tmp = *a;
+	stack	*tmp;
+
+	tmp = *a;
 	while (tmp->next)
 	{
 		if (tmp->data > tmp->next->data)
@@ -12,18 +26,20 @@ bool sorted(stack **a)
 	return (true);
 }
 
-stack *stack_head(stack **a)
+stack	*stack_head(stack **a)
 {
 	if (!*a || !a)
 		return (NULL);
 	return (*a);
 }
 
-void print_stack(stack *s)
+void	print_stack(stack *s)
 {
+	stack	*temp;
+
 	if (s == NULL)
-		return;
-	stack *temp = s;
+		return ;
+	temp = s;
 	while (temp != NULL)
 	{
 		printf("%d", temp->data);
@@ -34,10 +50,10 @@ void print_stack(stack *s)
 	printf("\n");
 }
 
-void free_stack(stack **a)
+void	free_stack(stack **a)
 {
-	stack *current;
-	stack *next;
+	stack	*current;
+	stack	*next;
 
 	current = *a;
 	while (current != NULL)
@@ -49,7 +65,7 @@ void free_stack(stack **a)
 	*a = NULL;
 }
 
-int stack_size(stack **a)
+int	stack_size(stack **a)
 {
 	if (!a || !*a)
 		return (0);

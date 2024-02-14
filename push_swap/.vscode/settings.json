@@ -59,6 +59,8 @@
   "files.associations": {
     "*.embeddedhtml": "html",
     "push_swap.h": "c",
-    "cstdlib": "c"
+    "cstdlib": "c",
+    "algorithm": "c",
+    "random": "c"
   }
 }
