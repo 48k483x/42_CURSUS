@@ -101,7 +101,7 @@ bool    input_check(int ac, int *tab, stack **a, char **av)
     {
         free(tab);
         free_split(av);
-        exit_with_message("Error Dup\n");
+        exit_with_message("Error\n");
     }
     return (true);
 }
