@@ -2,16 +2,16 @@
 
 int ft_isdigit(int c)
 {
-    if (c >= '0' && c <= '9')
-        return (1);
-    return (0);
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }
 
 long long ft_atol(char *nptr)
 {
-	long long					i;
-	long long					sign;
-	long long			num;
+	long long i;
+	long long sign;
+	long long num;
 
 	i = 0;
 	sign = 1;
@@ -32,7 +32,6 @@ long long ft_atol(char *nptr)
 		i++;
 	}
 	if (num * sign > INT_MAX || num * sign < INT_MIN)
-			exit_with_message("Error\n");
+		exit_with_message("Error\n");
 	return (num * sign);
 }
-
