@@ -1,8 +1,8 @@
 #include "../push_swap.h"
 
-stack	*ft_lstnew(int content)
+stack *ft_lstnew(int content)
 {
-	stack	*new_node;
+	stack *new_node;
 
 	new_node = (stack *)malloc(sizeof(stack));
 	if (!new_node)
@@ -14,24 +14,24 @@ stack	*ft_lstnew(int content)
 
 int *av_to_tab(int ac, char **av)
 {
-    int i;
-    int *tab;
-    int j;
+	int i;
+	int *tab;
+	int j;
 
-    i = 0;
-    j = 0;
-    if (!is_valid_integer(ac, av))
-        exit_with_message("Error\n");
-    tab = malloc(sizeof(int *) * (ac));
-    if (!tab)
-        return (NULL);
-    while (i < ac)
-    {
-        tab[j] = ft_atol(av[i]);
-        i++;
-        j++;
-    }
-    return (tab);
+	i = 0;
+	j = 0;
+	if (!is_valid_integer(ac, av))
+		exit_with_message("Error\n");
+	tab = malloc(sizeof(int *) * (ac));
+	if (!tab)
+		return (NULL);
+	while (i < ac)
+	{
+		tab[j] = ft_atol(av[i]);
+		i++;
+		j++;
+	}
+	return (tab);
 }
 
 // void    fill_stack(stack **a, int ac, char **av)
@@ -50,20 +50,19 @@ int *av_to_tab(int ac, char **av)
 // }
 void fill_stack(stack **a, int ac, char **av)
 {
-    int i = ac - 1;
+	int i = ac - 1;
 
-    int *tab = av_to_tab(ac, av);
-    input_check(ac, tab, a, av);
-    while (i >= 0)
-    {
-        stack *new_node = malloc(sizeof(stack));
-        if (NULL == new_node)
-            exit(1);
-        new_node->data = ft_atol(av[i]);
-        new_node->next = *a;
-        *a = new_node;
-        i--;
-    }
-    free(tab);
+	int *tab = av_to_tab(ac, av);
+	input_check(ac, tab, a, av);
+	while (i >= 0)
+	{
+		stack *new_node = malloc(sizeof(stack));
+		if (NULL == new_node)
+			exit(1);
+		new_node->data = ft_atol(av[i]);
+		new_node->next = *a;
+		*a = new_node;
+		i--;
+	}
+	free(tab);
 }
-    
