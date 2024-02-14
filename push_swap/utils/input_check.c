@@ -18,7 +18,7 @@ bool is_valid_integer(int ac, char **av)
 {
     int i, j;
 
-    for (i = 1; i < ac; i++)
+    for (i = 0; i < ac; i++)
     {
             if (av[i] == NULL)
                 return false;
@@ -66,38 +66,41 @@ bool    is_sorted(int *tab, int ac)
     int i;
 
     i = 0;
-    while (i < ac - 1)
+    while (i < ac)
     {
-        if (tab[i] > tab[i + 1])
+        if (i == ac - 1)
+            break;
+        else if (tab[i] > tab[i + 1])
             return (false);
         i++;
     }
     return (true);
 }
 
-bool    input_check(int ac, int *tab, stack **a)
+bool    input_check(int ac, int *tab, stack **a, char **av)
 {
-    if (ac < 3)
-    {
-        //free(tab);
-        free_stack(a);
-    }
-    if (is_sorted(tab, ac - 1))
+    (void)a;
+    if (ac < 2)
     {
         free(tab);
-        free_stack(a);
         exit(0);
     }
-    if (!integer_check(tab, ac - 1))
+    if (is_sorted(tab, ac))
     {
         free(tab);
-        free_stack(a);
+        free_split(av);
+        exit(0);
+    }
+    if (!integer_check(tab, ac))
+    {
+        free(tab);
+        free_split(av);
         exit_with_message("Error\n");
     }
-    if (!double_Check(tab, ac - 1))
+    if (!double_Check(tab, ac))
     {
         free(tab);
-        free_stack(a);
+        free_split(av);
         exit_with_message("Error Dup\n");
     }
     return (true);

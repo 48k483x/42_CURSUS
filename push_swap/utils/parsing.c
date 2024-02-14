@@ -18,7 +18,25 @@ char     ***_parsed_av(int ac, char **av)
     tab[i] = NULL;
     return (tab);
 }
+void free_triple_array(char ***tab)
+{
+    int i;
+    int j;
 
+    i = 0;
+    while (tab[i])
+    {
+        j = 0;
+        while (tab[i][j])
+        {
+            free(tab[i][j]);
+            j++;
+        }
+        free(tab[i]);
+        i++;
+    }
+    free(tab);
+}
 int _parsed_array_num(char ***tab)
 {
     int i;
@@ -63,6 +81,7 @@ char    **_parsed_arr(char ***tab)
         }
         i++;
     }
+    free_triple_array(tab);
     arr[k] = NULL;
     return (arr);
 }

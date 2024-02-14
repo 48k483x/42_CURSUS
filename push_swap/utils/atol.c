@@ -16,8 +16,6 @@ long long ft_atol(char *nptr)
 	i = 0;
 	sign = 1;
 	num = 0;
-	 if (!nptr)
-        exit_with_message("Error\n");
 	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
 		i++;
 	if (nptr[i] == '-')
@@ -33,6 +31,8 @@ long long ft_atol(char *nptr)
 		num += nptr[i] - '0';
 		i++;
 	}
+	if (num * sign > INT_MAX || num * sign < INT_MIN)
+			exit_with_message("Error\n");
 	return (num * sign);
 }
 

@@ -14,11 +14,7 @@ typedef struct node {
     struct node *next;
 } stack;
 
-/* itoa */
-/*size_t	count_word_str(long nb);
-void	*allocation_str(size_t len);
-char	*if_zero(char *str);
-char	*ft_itoa(int n);*/
+
 
 /* function to add */
 void	ft_lstadd_front(stack **ab, stack *new);
@@ -32,7 +28,7 @@ void    fill_stack(stack **a, int ac, char **av);
 /* input check functions */
 bool    integer_check(int *tab, int ac);
 bool    double_Check(int *tab, int ac);
-bool    input_check(int ac, int *tab, stack **a);
+bool    input_check(int ac, int *tab, stack **a, char **av);
 bool    is_valid_integer(int ac, char **av);
 
 /* ft_split */
@@ -45,10 +41,11 @@ void    free_split(char **split);
 char     ***_parsed_av(int ac, char **av);
 int     _parsed_array_num(char ***tab);
 char    **_parsed_arr(char ***tab);
+void    free_triple_array(char ***tab);
 
 /* ft_atol */
-long long ft_atol(char *nptr);
-int ft_isdigit(int c);
+long long   ft_atol(char *nptr);
+int         ft_isdigit(int c);
 
 /* exit lia bwa7ed message */
 void    exit_with_message(char *s);
@@ -64,8 +61,24 @@ void    min_to_b(stack **a, stack **b);
 
 /* sorting utils */
 int     stack_size(stack **a);
+stack   *stack_head(stack **a);
+bool    sorted(stack **a);
+stack   *stack_head(stack **a);
+int     stack_biggest(stack **a);
 stack   *stack_smallest(stack **a);
-stack   *stack_biggest(stack **a);
+int     peak_index(stack **b, int peak);
+
+/* Printing the stack */
+void print_stack(stack *s);
+
+/* Stack to an Sorted array */
+void    sort_int_array(int *tab, int size);
+int     *sorted_stack_array(stack **a);
+
+/* Sorting more than 5 nums */
+int find_interval(stack **a);
+void quick_divide_QS(stack **a, stack **b, int interval, int size);
+void    move_max_up(stack **b);
 
 /* moves*/
 void    pa(stack **a, stack **b);

@@ -10,12 +10,12 @@ void	ft_lstadd_front(stack **ab, stack *new)
 
 void    rra(stack **a)
 {
+    if (!a || !(*a) || !(*a)->next)
+        return ;
     stack *current;
     stack *last;
     stack *prev = NULL;
     current = *a;
-    if (!(*a) || !(*a)->next)
-        return ;
     while (current->next != NULL)
     {
         prev = current;
