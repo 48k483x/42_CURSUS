@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 03:30:47 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 18:30:41 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/02/14 20:40:56 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,12 @@ int					find_interval(t_stack **a);
 void				quick_divide_qs(t_stack **a, t_stack **b, \
 									int interval, int size);
 void				move_max_up(t_stack **a, t_stack **b);
+
+/* push_swap.c */
+void	free_all(t_stack *a, char **arr);
+bool	is_space(char c);
+int	arr_n(char **arr, char **av);
+
 
 /* moves*/
 void				pa(t_stack **a, t_stack **b, int param);

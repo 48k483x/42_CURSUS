@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 03:48:49 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 16:29:03 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/02/14 20:27:52 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,6 @@ void	ss(t_stack *a, t_stack *b, int param)
 {
 	sa(a, 0);
 	sb(b, 0);
-	if (param)
+	if (!param)
 		write(1, "ss\n", 3);
 }

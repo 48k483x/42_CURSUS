@@ -1,11 +1,5 @@
 #include "../push_swap.h"
 
-ft_error(void)
-{
-	write(2, "Error\n", 6);
-	exit(1);
-}
-
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
@@ -20,33 +14,42 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
+int	_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 void	apply_operations(t_stack **a, t_stack **b, char *line)
 {
-	if (ft_strncmp(line, "sa\n", ft_strlen(line)) == 0)
-		sa(a, 1);
-	else if (ft_strncmp(line, "sb\n", ft_strlen(line)) == 0)
-		sb(b, 1);
-	else if (ft_strncmp(line, "ss\n", ft_strlen(line)) == 0)
-		ss(a, b, 1);
-	else if (ft_strncmp(line, "pa\n", ft_strlen(line)) == 0)
-		push_a(a, b, 1);
-	else if (ft_strncmp(line, "pb\n", ft_strlen(line)) == 0)
-		push_b(a, b, 1);
-	else if (ft_strncmp(line, "ra\n", ft_strlen(line)) == 0)
-		rotate_a(a, 1);
-	else if (ft_strncmp(line, "rb\n", ft_strlen(line)) == 0)
-		rotate_b(b, 1);
-	else if (ft_strncmp(line, "rr\n", ft_strlen(line)) == 0)
-		rotate_r(a, b, 1);
-	else if (ft_strncmp(line, "rra\n", ft_strlen(line)) == 0)
-		reverse_rotate_a(a, 1);
-	else if (ft_strncmp(line, "rrb\n", ft_strlen(line)) == 0)
-		reverse_rotate_b(b, 1);
-	else if (ft_strncmp(line, "rrr\n", ft_strlen(line)) == 0)
-		reverse_rotate_r(a, b, 1);
+	if (ft_strncmp(line, "sa\n", _strlen(line)) == 0)
+		sa(*a, 1);
+	else if (ft_strncmp(line, "sb\n", _strlen(line)) == 0)
+		sb(*b, 1);
+	else if (ft_strncmp(line, "ss\n", _strlen(line)) == 0)
+		ss(*a, *b, 1);
+	else if (ft_strncmp(line, "pa\n", _strlen(line)) == 0)
+		pa(a, b, 1);
+	else if (ft_strncmp(line, "pb\n", _strlen(line)) == 0)
+		pb(a, b, 1);
+	else if (ft_strncmp(line, "ra\n", _strlen(line)) == 0)
+		ra(a, 1);
+	else if (ft_strncmp(line, "rb\n", _strlen(line)) == 0)
+		rb(b, 1);
+	else if (ft_strncmp(line, "rr\n", _strlen(line)) == 0)
+		rr(a, b, 1);
+	else if (ft_strncmp(line, "rra\n", _strlen(line)) == 0)
+		rra(a, 1);
+	else if (ft_strncmp(line, "rrb\n", _strlen(line)) == 0)
+		rrb(b, 1);
+	else if (ft_strncmp(line, "rrr\n", _strlen(line)) == 0)
+		rrr(a, b, 1);
 	else
-		ft_error();
+		exit_with_message("Error\n");
 }
 
 void	start_checking(t_stack **a, t_stack **b)
@@ -66,17 +69,18 @@ int	main(int ac, char **av)
 {
 	t_stack	*a;
 	t_stack	*b;
+	int		arr_num;
+	char	**arr;
 
-	a = NULL;
 	b = NULL;
-	if (ac < 2)
-		return (0);
-	else
-		initialize_stack(&a, ac - 2, av + 1);
-	if (stack_sorted(a, sorted) == 0)
+	a = NULL;
+	arr = _parsed_arr(_parsed_av(ac, av));
+	arr_num = arr_n(arr, av);
+	fill_stack(&a, arr_num, arr);
+	if (!sorted(&a))
 	{
 		start_checking(&a, &b);
-		if (stack_sorted(a, sorted) == 1 && !b)
+		if (sorted(&a) == 1 && !b)
 			write(1, "OK\n", 3);
 		else
 			write(1, "KO\n", 3);

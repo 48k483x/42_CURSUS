@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 03:24:38 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 18:06:59 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/02/14 20:36:30 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	arr_n(char **arr, char **av)
 {
 	int	i;
 	int	j;
+	
 	i = 1;
 	while (av[i])
 	{
@@ -50,11 +51,6 @@ int	arr_n(char **arr, char **av)
 	i = 0;
 	while (arr[i])
 		i++;
-	if (i == 0)
-	{
-		free_split(arr);
-		exit_with_message("Error\n");
-	}
 	return (i);
 }
 

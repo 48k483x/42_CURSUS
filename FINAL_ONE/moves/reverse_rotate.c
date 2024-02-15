@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 03:41:34 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 16:27:08 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/02/14 20:27:28 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void	rrr(t_stack **a, t_stack **b, int param)
 {
 	rra(a, 0);
 	rrb(b, 0);
-	if (param)
+	if (!param)
 		write(1, "rrr\n", 4);
 }
