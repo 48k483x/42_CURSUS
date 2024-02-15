@@ -2,12 +2,13 @@ FLAGS = -g -Wall -Wextra -Werror
 SRC = ./moves/push.c ./moves/swap.c ./moves/rotate.c ./moves/reverse_rotate.c \
 		push_swap.c ./utils/atol.c ./utils/fill_stack.c ./utils/input_check.c  \
 		./sorting/three.c ./sorting/stack_utils.c ./sorting/five.c ./utils/parsing.c \
-		./utils/split.c ./sorting/more.c ./sorting/stack_utils_0.c 
+		./utils/split.c ./sorting/more.c ./sorting/stack_utils_0.c ./utils/main_utils.c \
 
 SRCB = ./moves/push.c ./moves/swap.c ./moves/rotate.c ./moves/reverse_rotate.c \
 		./bonus/checker_bonus.c ./utils/atol.c ./utils/fill_stack.c ./utils/input_check.c  \
 		./sorting/three.c ./sorting/stack_utils.c ./sorting/five.c ./utils/parsing.c \
-		./utils/split.c ./sorting/more.c ./sorting/stack_utils_0.c 
+		./utils/split.c ./sorting/more.c ./sorting/stack_utils_0.c ./get_next_line/get_next_line.c \
+		./get_next_line/get_next_line_utils.c ./utils/main_utils.c \
 
 OBJ = $(SRC:.c=.o)
 OBJ_BONUS = $(SRCB:.c=.o)
