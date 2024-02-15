@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 04:36:19 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 18:23:22 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/02/15 02:17:17 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ bool	length_check(char **n)
 	int length;
 
 	i = 0;
+	printf("n[i] = %s\n", n[i]);
+	printf("n[i] = %s\n", n[i]);
 	while (n[i])
 	{
 		length = ft_strlen(n[i]);

@@ -24,11 +24,11 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 void	apply_operations(t_stack **a, t_stack **b, char *line)
 {
 	if (ft_strncmp(line, "sa\n", ft_strlen(line)) == 0)
-		swap_a(a, 1);
+		sa(a, 1);
 	else if (ft_strncmp(line, "sb\n", ft_strlen(line)) == 0)
-		swap_b(b, 1);
+		sb(b, 1);
 	else if (ft_strncmp(line, "ss\n", ft_strlen(line)) == 0)
-		swap_s(a, b, 1);
+		ss(a, b, 1);
 	else if (ft_strncmp(line, "pa\n", ft_strlen(line)) == 0)
 		push_a(a, b, 1);
 	else if (ft_strncmp(line, "pb\n", ft_strlen(line)) == 0)
