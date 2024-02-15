@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 04:39:03 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 17:17:40 by abkabex          ###   ########.fr       */
+/*   Created: 2024/02/15 03:48:10 by achahrou          #+#    #+#             */
+/*   Updated: 2024/02/15 03:48:11 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 bool	integer_check(int *tab, int ac)
 {
 	int	i;
-	
+
 	i = 0;
 	while (i < ac)
 	{

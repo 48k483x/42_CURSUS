@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/15 03:36:32 by achahrou          #+#    #+#             */
+/*   Updated: 2024/02/15 03:41:20 by achahrou         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../push_swap.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
@@ -12,16 +24,6 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	}
 	return (0);
-}
-
-int	_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
 }
 
 void	apply_operations(t_stack **a, t_stack **b, char *line)
@@ -64,6 +66,7 @@ void	start_checking(t_stack **a, t_stack **b)
 		line = get_next_line(0);
 	}
 }
+
 void	bonus_fill_stack(t_stack **a, int ac, char **av)
 {
 	int		i;
@@ -103,16 +106,11 @@ int	main(int ac, char **av)
 	arr = _parsed_arr(_parsed_av(ac, av));
 	arr_num = arr_n(arr, av);
 	bonus_fill_stack(&a, arr_num, arr);
-	if (!sorted(&a))
-	{
-		start_checking(&a, &b);
-		if (sorted(&a) == 1 && !b)
-			write(1, "OK\n", 3);
-		else
-			write(1, "KO\n", 3);
-	}
-	else
+	start_checking(&a, &b);
+	if (sorted(&a) == 1 && !b)
 		write(1, "OK\n", 3);
+	else
+		write(1, "KO\n", 3);
 	free_stack(&a);
 	if (b)
 		free_stack(&b);

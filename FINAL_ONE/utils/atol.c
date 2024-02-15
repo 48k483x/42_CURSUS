@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   atol.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 04:36:19 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 20:33:25 by abkabex          ###   ########.fr       */
+/*   Created: 2024/02/15 03:31:53 by achahrou          #+#    #+#             */
+/*   Updated: 2024/02/15 03:40:39 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,36 +19,45 @@ int	ft_isdigit(int c)
 	return (0);
 }
 
+int	_strlen(const char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
 
 int	ft_strlen(char *n)
 {
-    int i;
-	int length;
+	int	i;
+	int	length;
 
 	i = 0;
 	length = 0;
-    while (n[i] == '0') 
-        i++;
-    while (n[i] != '\0')
+	while (n[i] == '0')
+		i++;
+	while (n[i] != '\0')
 	{
-        if (ft_isdigit(n[i]))
-            length++;
-        i++;
+		if (ft_isdigit(n[i]))
+			length++;
+		i++;
 	}
 	return (length);
 }
 
 bool	length_check(char **n)
 {
-	int i;
-	int length;
+	int	i;
+	int	length;
 
 	i = 0;
 	while (n[i])
 	{
 		length = ft_strlen(n[i]);
-		if ((length == 10 && ft_atol(n[i]) > 2147483647LL) ||
-			 (length == 10 && ft_atol(n[i]) < -2147483648LL))
+		if ((length == 10 && ft_atol(n[i]) > 2147483647LL) || \
+				(length == 10 && ft_atol(n[i]) < -2147483648LL))
 			return (false);
 		if (length > 10)
 			return (false);
@@ -56,7 +65,6 @@ bool	length_check(char **n)
 	}
 	return (true);
 }
-
 
 long long	ft_atol(char *nptr)
 {

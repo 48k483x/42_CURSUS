@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 03:30:47 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 20:40:56 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/02/15 03:42:20 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,10 @@ void				quick_divide_qs(t_stack **a, t_stack **b, \
 void				move_max_up(t_stack **a, t_stack **b);
 
 /* push_swap.c */
-void	free_all(t_stack *a, char **arr);
-bool	is_space(char c);
-int	arr_n(char **arr, char **av);
-
+void				free_all(t_stack *a, char **arr);
+bool				is_space(char c);
+int					arr_n(char **arr, char **av);
+int					_strlen(const char *s);
 
 /* moves*/
 void				pa(t_stack **a, t_stack **b, int param);
