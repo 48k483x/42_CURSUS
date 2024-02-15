@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 04:39:03 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 14:33:26 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/02/14 17:17:40 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 bool	integer_check(int *tab, int ac)
 {
 	int	i;
-
+	
 	i = 0;
 	while (i < ac)
 	{

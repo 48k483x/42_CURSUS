@@ -6,7 +6,7 @@
 /*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 03:24:38 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 14:29:28 by achahrou         ###   ########.fr       */
+/*   Updated: 2024/02/14 18:06:59 by abkabex          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,43 @@ void	exit_with_message(char *s)
 	exit(1);
 }
 
-int	arr_n(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
-}
-
 void	free_all(t_stack *a, char **arr)
 {
 	free_split(arr);
 	free_stack(&a);
+}
+
+bool	is_space(char c)
+{
+	return (c == ' ' || (c >= 9 && c <= 13));
+}
+
+int	arr_n(char **arr, char **av)
+{
+	int	i;
+	int	j;
+	i = 1;
+	while (av[i])
+	{
+		j = 0;
+		while (av[i][j] && is_space(av[i][j]))
+			j++;
+		if (av[i][j] == '\0')
+		{
+			free_split(arr);
+			exit_with_message("Error\n");
+		}
+		i++;
+	}
+	i = 0;
+	while (arr[i])
+		i++;
+	if (i == 0)
+	{
+		free_split(arr);
+		exit_with_message("Error\n");
+	}
+	return (i);
 }
 
 int	main(int ac, char **av)
@@ -45,10 +68,10 @@ int	main(int ac, char **av)
 	b = NULL;
 	a = NULL;
 	arr = _parsed_arr(_parsed_av(ac, av));
-	arr_num = arr_n(arr);
+	arr_num = arr_n(arr, av);
 	fill_stack(&a, arr_num, arr);
 	if (arr_num == 2 && a->data > a->next->data)
-		sa(a);
+		sa(a, 0);
 	else if (arr_num == 3)
 		sort_three(&a);
 	else if (arr_num == 4)
