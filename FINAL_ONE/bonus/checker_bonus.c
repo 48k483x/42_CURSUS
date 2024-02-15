@@ -64,6 +64,32 @@ void	start_checking(t_stack **a, t_stack **b)
 		line = get_next_line(0);
 	}
 }
+void	bonus_fill_stack(t_stack **a, int ac, char **av)
+{
+	int		i;
+	int		*tab;
+	t_stack	*new_node;
+
+	i = ac - 1;
+	tab = av_to_tab(ac, av);
+	if (!integer_check(tab, ac) || !double_check(tab, ac))
+	{
+		free(tab);
+		free_split(av);
+		exit_with_message("Error\n");
+	}
+	while (i >= 0)
+	{
+		new_node = malloc(sizeof(t_stack));
+		if (NULL == new_node)
+			exit(1);
+		new_node->data = ft_atol(av[i]);
+		new_node->next = *a;
+		*a = new_node;
+		i--;
+	}
+	free(tab);
+}
 
 int	main(int ac, char **av)
 {
@@ -76,7 +102,7 @@ int	main(int ac, char **av)
 	a = NULL;
 	arr = _parsed_arr(_parsed_av(ac, av));
 	arr_num = arr_n(arr, av);
-	fill_stack(&a, arr_num, arr);
+	bonus_fill_stack(&a, arr_num, arr);
 	if (!sorted(&a))
 	{
 		start_checking(&a, &b);
