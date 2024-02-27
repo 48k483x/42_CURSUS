@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 04:36:44 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 14:34:01 by abkabex          ###   ########.fr       */
+/*   Created: 2024/02/15 03:48:00 by achahrou          #+#    #+#             */
+/*   Updated: 2024/02/15 03:48:01 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	*av_to_tab(int ac, char **av)
 	j = 0;
 	index->i = 0;
 	index->j = 0;
-	if (!is_valid_integer(ac, av, index))
+	if (!length_check(av) || !is_valid_integer(ac, av, index))
 		exit_with_message("Error\n");
 	tab = malloc(sizeof(int *) * (ac));
 	if (!tab)

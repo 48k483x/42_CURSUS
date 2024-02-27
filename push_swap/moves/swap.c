@@ -5,14 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 03:48:49 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 05:19:43 by achahrou         ###   ########.fr       */
+/*   Created: 2024/02/15 03:46:59 by achahrou          #+#    #+#             */
+/*   Updated: 2024/02/15 05:10:27 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	sa(t_stack *a)
+void	sa(t_stack *a, int param)
 {
 	int	tmp;
 
@@ -21,11 +21,12 @@ void	sa(t_stack *a)
 		tmp = a->data;
 		a->data = a->next->data;
 		a->next->data = tmp;
-		write(1, "sa\n", 3);
+		if (!param)
+			write(1, "sa\n", 3);
 	}
 }
 
-void	sb(t_stack *b)
+void	sb(t_stack *b, int param)
 {
 	int	tmp;
 
@@ -34,13 +35,15 @@ void	sb(t_stack *b)
 		tmp = b->data;
 		b->data = b->next->data;
 		b->next->data = tmp;
-		write(1, "sb\n", 3);
+		if (!param)
+			write(1, "sb\n", 3);
 	}
 }
 
-void	ss(t_stack *a, t_stack *b)
+void	ss(t_stack *a, t_stack *b, int param)
 {
-	sa(a);
-	sb(b);
-	write(1, "ss\n", 3);
+	sa(a, 1);
+	sb(b, 1);
+	if (!param)
+		write(1, "ss\n", 3);
 }

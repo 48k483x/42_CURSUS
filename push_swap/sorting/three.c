@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 04:33:53 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 05:22:54 by achahrou         ###   ########.fr       */
+/*   Created: 2024/02/15 03:47:42 by achahrou          #+#    #+#             */
+/*   Updated: 2024/02/15 03:47:43 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,19 @@ void	sort_three(t_stack **a)
 	n2 = (*a)->next->data;
 	n3 = (*a)->next->next->data;
 	if (n1 > n2 && n2 < n3 && n1 < n3)
-		sa(*a);
+		sa(*a, 0);
 	else if (n1 > n2 && n2 > n3)
 	{
-		sa(*a);
-		rra(a);
+		sa(*a, 0);
+		rra(a, 0);
 	}
 	else if (n1 > n2 && n3 > n2)
-		ra(a);
+		ra(a, 0);
 	else if (n1 < n2 && n2 > n3 && n3 > n1)
 	{
-		sa(*a);
-		ra(a);
+		sa(*a, 0);
+		ra(a, 0);
 	}
 	else if (n1 < n2 && n2 > n3 && n2 > n1)
-		rra(a);
+		rra(a, 0);
 }

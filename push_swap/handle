@@ -1,5 +1,0 @@
-./push_swap "0 0"
-./push_swap "-01 -001"
-
-ARG="-3 -2 -2"
-./push_swap $ARG >

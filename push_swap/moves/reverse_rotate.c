@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 03:41:34 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 05:18:50 by achahrou         ###   ########.fr       */
+/*   Created: 2024/02/15 03:45:14 by achahrou          #+#    #+#             */
+/*   Updated: 2024/02/15 05:10:21 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_lstadd_front(t_stack **ab, t_stack *new)
 	*ab = new;
 }
 
-void	rra(t_stack **a)
+void	rra(t_stack **a, int param)
 {
 	t_stack	*current;
 	t_stack	*last;
@@ -39,10 +39,11 @@ void	rra(t_stack **a)
 	prev->next = NULL;
 	last->next = *a;
 	*a = last;
-	write(1, "rra\n", 4);
+	if (!param)
+		write(1, "rra\n", 4);
 }
 
-void	rrb(t_stack **b)
+void	rrb(t_stack **b, int param)
 {
 	t_stack	*last;
 	t_stack	*current;
@@ -56,12 +57,14 @@ void	rrb(t_stack **b)
 	current->next = NULL;
 	last->next = *b;
 	*b = last;
-	write(1, "rrb\n", 4);
+	if (!param)
+		write(1, "rrb\n", 4);
 }
 
-void	rrr(t_stack **a, t_stack **b)
+void	rrr(t_stack **a, t_stack **b, int param)
 {
-	rra(a);
-	rrb(b);
-	write(1, "rrr\n", 4);
+	rra(a, 1);
+	rrb(b, 1);
+	if (!param)
+		write(1, "rrr\n", 4);
 }

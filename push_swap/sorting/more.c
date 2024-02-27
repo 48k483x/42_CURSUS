@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   more.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 04:12:44 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 14:20:36 by abkabex          ###   ########.fr       */
+/*   Created: 2024/02/15 03:47:22 by achahrou          #+#    #+#             */
+/*   Updated: 2024/02/15 03:47:23 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	find_interval(t_stack **a)
 
 void	pb_rb(t_stack **a, t_stack **b, int *i)
 {
-	pb(a, b);
-	rb(b);
+	pb(a, b, 0);
+	rb(b, 0);
 	(*i)++;
 }
 
@@ -50,13 +50,13 @@ void	quick_divide_qs(t_stack **a, t_stack **b, int interval, int size)
 			pb_rb(a, b, &i);
 		else if ((*a)->data > s_arr[i] && (*a)->data <= s_arr[i + interval])
 		{
-			pb(a, b);
+			pb(a, b, 0);
 			if (stack_size(b) >= 2 && (*b)->data < (*b)->next->data)
-				sb(*b);
+				sb(*b, 0);
 			i++;
 		}
 		else
-			ra(a);
+			ra(a, 0);
 	}
 	free(s_arr);
 }
@@ -74,9 +74,9 @@ void	move_max_up(t_stack **a, t_stack **b)
 		if (peak == 0)
 			break ;
 		else if (peak <= size / 2)
-			rb(b);
+			rb(b, 0);
 		else if (peak > size / 2)
-			rrb(b);
+			rrb(b, 0);
 	}
-	pa(a, b);
+	pa(a, b, 0);
 }

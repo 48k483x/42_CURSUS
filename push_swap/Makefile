@@ -1,39 +1,41 @@
 FLAGS = -g -Wall -Wextra -Werror
 SRC = ./moves/push.c ./moves/swap.c ./moves/rotate.c ./moves/reverse_rotate.c \
-        push_swap.c ./utils/atol.c ./utils/fill_stack.c ./utils/input_check.c  \
+		push_swap.c ./utils/atol.c ./utils/fill_stack.c ./utils/input_check.c  \
 		./sorting/three.c ./sorting/stack_utils.c ./sorting/five.c ./utils/parsing.c \
-		./utils/split.c ./sorting/more.c ./sorting/stack_utils_0.c 
-OBJ = *.o
+		./utils/split.c ./sorting/more.c ./sorting/stack_utils_0.c ./utils/main_utils.c \
+
+SRCB = ./moves/push.c ./moves/swap.c ./moves/rotate.c ./moves/reverse_rotate.c \
+		./bonus/checker_bonus.c ./utils/atol.c ./utils/fill_stack.c ./utils/input_check.c  \
+		./sorting/three.c ./sorting/stack_utils.c ./sorting/five.c ./utils/parsing.c \
+		./utils/split.c ./sorting/more.c ./sorting/stack_utils_0.c ./get_next_line/get_next_line.c \
+		./get_next_line/get_next_line_utils.c ./utils/main_utils.c \
+
+OBJ = $(SRC:.c=.o)
+OBJ_BONUS = $(SRCB:.c=.o)
 NAME = push_swap
-DURATION =  0.5  # Minimum duration to show animation (in seconds)
+BONUS_NAME = checker
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@./loading.sh &   # Start loading animation in the background
-	@cc $(OBJ) -o $(NAME)
-	@sleep $(DURATION)
-	@ps -ef | grep "loading.sh" | grep -v grep | awk '{print $$2}' | xargs kill -9 >/dev/null 2>&1 || true   # Kill the loading animation once compilation is complete
-	@echo -e "\e[38;2;232;226;0mCompleted\e[0m"  # Print "Completed" in the specified color
+	@cc $(FLAGS) $(OBJ) -o $(NAME)
 
-$(OBJ): $(SRC)
-	@cc $(FLAGS) -c $(SRC)
+%.o: %.c
+	@cc $(FLAGS) -c $< -o $@
+
+bonus: $(BONUS_NAME)
+
+$(BONUS_NAME): $(OBJ_BONUS)
+	@cc $(FLAGS) $(OBJ_BONUS) -o $(BONUS_NAME)
 
 clean:
-	@./cleaning.sh &
-	@rm -rf $(OBJ)
-	@sleep $(DURATION)
-	@ps -ef | grep "cleaning.sh" | grep -v grep | awk '{print $$2}' | xargs kill -9 >/dev/null 2>&1 || true   # Kill the loading animation once             compilation is complete
-	@echo -e "\e[38;2;255;40;0mCleaned\e[0m"  # Print "Cleaned" in red
+	@rm -rf $(OBJ) $(OBJ_BONUS)
+	@rm -rf *.o
 
-fclean:
-	@./fcleaning.sh &
-	@rm -rf $(OBJ)
-	@sleep $(DURATION)
-	@ps -ef | grep "fcleaning.sh" | grep -v grep | awk '{print $$2}' | xargs kill -9 >/dev/null 2>&1 || true   # Kill the loading animation once             compilation is complete
-	@echo -e "\e[38;2;153;51;153mFull Cleaned\e[0m"  # Print "Cleaned" in purple
-	@rm -rf $(NAME)
+fclean: clean
+	@rm -rf $(NAME) $(BONUS_NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus
+.SECONDARY: $(OBJ) $(OBJ_BONUS)

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/14 03:45:51 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 05:19:28 by achahrou         ###   ########.fr       */
+/*   Created: 2024/02/15 03:46:50 by achahrou          #+#    #+#             */
+/*   Updated: 2024/02/15 05:10:21 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_stack	*ft_lstlast(t_stack *lst)
 	return (lst);
 }
 
-void	ra(t_stack **a)
+void	ra(t_stack **a, int param)
 {
 	t_stack	*first;
 	t_stack	*last;
@@ -35,10 +35,11 @@ void	ra(t_stack **a)
 	while (last->next != NULL)
 		last = last->next;
 	last->next = first;
-	write(1, "ra\n", 3);
+	if (!param)
+		write(1, "ra\n", 3);
 }
 
-void	rb(t_stack **b)
+void	rb(t_stack **b, int param)
 {
 	t_stack	*last;
 	t_stack	*current;
@@ -52,12 +53,14 @@ void	rb(t_stack **b)
 		current = current->next;
 	current->next = last;
 	last->next = NULL;
-	write(1, "rb\n", 3);
+	if (!param)
+		write(1, "rb\n", 3);
 }
 
-void	rr(t_stack **a, t_stack **b)
+void	rr(t_stack **a, t_stack **b, int param)
 {
-	ra(a);
-	rb(b);
-	write(1, "rr\n", 3);
+	ra(a, 1);
+	rb(b, 1);
+	if (!param)
+		write(1, "rr\n", 3);
 }

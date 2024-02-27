@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abkabex <abkabex@student.42.fr>            +#+  +:+       +#+        */
+/*   By: achahrou <achahrou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 03:30:47 by achahrou          #+#    #+#             */
-/*   Updated: 2024/02/14 14:34:01 by abkabex          ###   ########.fr       */
+/*   Updated: 2024/02/15 03:42:20 by achahrou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <assert.h>
 # include <unistd.h>
 # include <string.h>
+# include "get_next_line/get_next_line.h"
 
 typedef struct node
 {
@@ -63,6 +64,9 @@ void				free_triple_array(char ***tab);
 /* ft_atol */
 long long			ft_atol(char *nptr);
 int					ft_isdigit(int c);
+int					ft_strcmp(char *s1, char *s2);
+int					ft_strlen(char *n);
+bool				length_check(char **n);
 
 /* exit lia bwa7ed message */
 void				exit_with_message(char *s);
@@ -100,19 +104,24 @@ int					find_interval(t_stack **a);
 void				quick_divide_qs(t_stack **a, t_stack **b, \
 									int interval, int size);
 void				move_max_up(t_stack **a, t_stack **b);
-void				sort(t_stack *a, t_stack *b, int arr_num);
+
+/* push_swap.c */
+void				free_all(t_stack *a, char **arr);
+bool				is_space(char c);
+int					arr_n(char **arr, char **av);
+int					_strlen(const char *s);
 
 /* moves*/
-void				pa(t_stack **a, t_stack **b);
-void				pb(t_stack **a, t_stack **b);
-void				sa(t_stack *a);
-void				sb(t_stack *b);
-void				ss(t_stack *a, t_stack *b);
-void				ra(t_stack **a);
-void				rb(t_stack **b);
-void				rr(t_stack **a, t_stack **b);
-void				rra(t_stack **a);
-void				rrb(t_stack **b);
-void				rrr(t_stack **a, t_stack **b);
+void				pa(t_stack **a, t_stack **b, int param);
+void				pb(t_stack **a, t_stack **b, int param);
+void				sa(t_stack *a, int param);
+void				sb(t_stack *b, int param);
+void				ss(t_stack *a, t_stack *b, int param);
+void				ra(t_stack **a, int param);
+void				rb(t_stack **b, int param);
+void				rr(t_stack **a, t_stack **b, int param);
+void				rra(t_stack **a, int param);
+void				rrb(t_stack **b, int param);
+void				rrr(t_stack **a, t_stack **b, int param);
 
 #endif // PUSH_SWAP_H
