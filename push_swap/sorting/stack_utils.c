@@ -5,7 +5,9 @@ bool	sorted(t_stack **a)
 {
 	t_stack	*tmp;
 
-	tmp = *a;
+ if (!a ||! *a)
+    return (false);
+	tmp= *a;
 	while (tmp->next)
 	{
 		if (tmp->data > tmp->next->data)
