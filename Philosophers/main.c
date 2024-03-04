@@ -1,4 +1,8 @@
 #include <pthread.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+
 
 struct foo {
 	int a, b, c, d;
@@ -39,16 +43,16 @@ main(void)
 	struct foo	*fp;
 
 	err = pthread_create(&tid1, NULL, thr_fn1, NULL);
-	if (err != 0)
-		err_exit(err, "can't create thread 1");
+	// if (err != 0)
+	// 	err_exit(err, "can't create thread 1");
 	err = pthread_join(tid1, (void *)&fp);
-	if (err != 0)
-		err_exit(err, "can't join with thread 1");
+	// if (err != 0)
+	// 	err_exit(err, "can't join with thread 1");
 	sleep(1);
 	printf("parent starting second thread\n");
 	err = pthread_create(&tid2, NULL, thr_fn2, NULL);
-	if (err != 0)
-		err_exit(err, "can't create thread 2");
+	// if (err != 0)
+	// 	err_exit(err, "can't create thread 2");
 	sleep(1);
 	printfoo("parent:\n", fp);
 	exit(0);
