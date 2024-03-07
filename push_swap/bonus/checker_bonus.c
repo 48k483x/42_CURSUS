@@ -54,6 +54,7 @@ void	start_checking(t_stack **a, t_stack **b)
 		free(line);
 		line = get_next_line(0);
 	}
+	//free(line);
 }
 
 void	bonus_fill_stack(t_stack **a, int ac, char **av)
@@ -92,6 +93,8 @@ int	main(int ac, char **av)
 
 	b = NULL;
 	a = NULL;
+	if (ac < 2)
+		return (0);
 	arr = _parsed_arr(_parsed_av(ac, av));
 	arr_num = arr_n(arr, av);
 	bonus_fill_stack(&a, arr_num, arr);
@@ -100,8 +103,8 @@ int	main(int ac, char **av)
 		write(1, "OK\n", 3);
 	else
 		write(1, "KO\n", 3);
-	free_stack(&a);
 	if (b)
 		free_stack(&b);
+	free_all(a, arr);
 	return (0);
 }
