@@ -28,7 +28,11 @@ int	*av_to_tab(int ac, char **av)
 	index->i = 0;
 	index->j = 0;
 	if (!length_check(av) || !is_valid_integer(ac, av, index))
+	{
+		free_split(av);
+		free(index);
 		exit_with_message("Error\n");
+	}
 	tab = malloc(sizeof(int *) * (ac));
 	if (!tab)
 		return (NULL);
