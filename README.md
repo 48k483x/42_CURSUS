@@ -12,7 +12,7 @@ My incredible journey through the 42Network at 1337 Benguerir. 🚀
 | 05 🕹️ | [So_Long](https://github.com/48k483x/42_CURSUS/tree/main/So_Long) | C | 2D Game | 💯 125% |
 | 06 ➡️ | [Pipex](https://github.com/48k483x/42_CURSUS/tree/main/PiPex) | C | Pipex emulates the shell's pipe command in C. | 💯 125% |
 | 07 🔄 | [Push Swap](https://github.com/48k483x/42_CURSUS/tree/main/push_swap) | C | Sorting algorithm project. | 💯 125% |
-| 08 🍝 | [Philosophers](https://github.com/48k483x/Philosophers) | C | Dining Philosophers Problem | 💯 TBD% |
+| 08 🍝 | [Philosophers](https://github.com/48k483x/Philosophers) | C | Dining Philosophers Problem | 💯 100% |
 | 09 🐚 | [TinyShell](https://github.com/48k483x/TinyShell) | C | Simple Unix shell implementation. | 💯 TBD% |
 
 Keep shining and coding.! ✨💻✨
