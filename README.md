@@ -14,7 +14,7 @@ My incredible journey through the 42Network at 1337 Benguerir. 🚀
 | 08 🍝 | [Philosophers](https://github.com/48k483x/Philosophers) | C | Dining Philosophers Problem | 💯 100% |
 | 09 🐚 | [TinyShell](https://github.com/48k483x/TinyShell) | C | Simple Unix shell implementation. | 💯 100% |
 | 10 📚 | [EXAM-03](https://github.com/48k483x/42_EXAM/tree/main/.subjects/STUD_PART/exam_03) | C | get_next_line or ft_printf | 💯 100% |
-| 11 🖼️ | [miniRT](https://github.com/48k483x/miniRT) | C | Mini Ray Tracer using Minilibx | 💯 100% |
+| 11 🖼️ | [miniRT](https://github.com/48k483x/MiniRayX) | C | Mini Ray Tracer using Minilibx | 💯 100% |
 | 12 🌐 | [NetPractice](https://github.com/48k483x/NetPractice) | Networking | Network configuration and troubleshooting | 💯 TBD% |
 | 13 🔠 | [CPP Modules](https://github.com/48k483x/CPP_Modules) | C++ | Introduction to C++ programming | 💯 TBD% |
 | 10 🐚 | [EXAM-04](https://github.com/48k483x/42_EXAM/tree/main/.subjects/STUD_PART/exam_04) | C | Micro shell, More tiny than minishell | 💯 100% |
