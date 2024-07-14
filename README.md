@@ -1,6 +1,5 @@
 # 👩‍💻 **42-Cursus 🚀**
 My incredible journey through the 42Network at 1337 Benguerir. 🚀
-
 ## 📊 **My Progress**
 | 🔄 **Circle** | 📂 **Project** | 💻 **Language** | 📝 **Description** | 🌟 **Score** |
 |:------------:|:---------------:|:---------------:|:------------------:|:------------:|
@@ -13,6 +12,16 @@ My incredible journey through the 42Network at 1337 Benguerir. 🚀
 | 06 ➡️ | [Pipex](https://github.com/48k483x/42_CURSUS/tree/main/PiPex) | C | Pipex emulates the shell's pipe command in C. | 💯 125% |
 | 07 🔄 | [Push Swap](https://github.com/48k483x/42_CURSUS/tree/main/push_swap) | C | Sorting algorithm project. | 💯 125% |
 | 08 🍝 | [Philosophers](https://github.com/48k483x/Philosophers) | C | Dining Philosophers Problem | 💯 100% |
-| 09 🐚 | [TinyShell](https://github.com/48k483x/TinyShell) | C | Simple Unix shell implementation. | 💯 TBD% |
+| 09 🐚 | [TinyShell](https://github.com/48k483x/TinyShell) | C | Simple Unix shell implementation. | 💯 100% |
+| 10 📚 | [EXAM-03](https://github.com/48k483x/42_EXAM/tree/main/.subjects/STUD_PART/exam_03) | C | get_next_line or ft_printf | 💯 100% |
+| 11 🖼️ | [miniRT](https://github.com/48k483x/miniRT) | C | Mini Ray Tracer using Minilibx | 💯 100% |
+| 12 🌐 | [NetPractice](https://github.com/48k483x/NetPractice) | Networking | Network configuration and troubleshooting | 💯 TBD% |
+| 13 🔠 | [CPP Modules](https://github.com/48k483x/CPP_Modules) | C++ | Introduction to C++ programming | 💯 TBD% |
+| 10 🐚 | [EXAM-04](https://github.com/48k483x/42_EXAM/tree/main/.subjects/STUD_PART/exam_04) | C | Micro shell, More tiny than minishell | 💯 100% |
+| 15 🌐 | [Webserv](https://github.com/48k483x/Webserv) | C++ | HTTP server implementation | 💯 TBD% |
+| 16 🐳 | [Inception](https://github.com/48k483x/Inception) | Docker | System administration with Docker | 💯 TBD% |
+| 17 📚 | [EXAM-05](https://github.com/48k483x/42_EXAM/tree/main/.subjects/STUD_PART/exam_05) | C++ | C++ modules and practice | 💯 TBD% |
+| 18 🏓 | [ft_transcendence](https://github.com/48k483x/ft_transcendence) | Web Development | Pong game web application | 💯 TBD% |
+| 19 📚 | [EXAM-06](https://github.com/48k483x/42_EXAM/tree/main/.subjects/STUD_PART/exam_06) | C | Network programming | 💯 TBD% |
 
 Keep shining and coding.! ✨💻✨
